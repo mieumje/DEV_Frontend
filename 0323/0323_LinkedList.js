@@ -32,12 +32,33 @@ class SinglyLinkedList{
         }
         this.size += 1;
     }
-    insert(node, newValue){
+    insert(index, newValue){
+        if(index < 0 || index > this.size) {
+            return console.log("Invalid Index");
+        }
         const newNode = new Node(newValue);
-        //console.log(node,  "----------", newNode, "----------",node.next);
-        newNode.next = node.next;
-        node.next = newNode;
+        let currNode, prevNode;
+        
+        if(index === 0){
+            newNode.next = this.head;
+            this.head = newNode;
+        }else{
+            currNode = this.head;
+            let idx = 0;
+            while(idx<index){
+                idx += 1;
+                prevNode = currNode;
+                currNode = currNode.next;
+            }
+            prevNode.next = newNode;
+            newNode.next = currNode;
+        }
         this.size += 1;
+        // const newNode = new Node(newValue);
+        // //console.log(node,  "----------", newNode, "----------",node.next);
+        // newNode.next = node.next;
+        // node.next = newNode;
+        // this.size += 1;
     }
     remove(value){
         let prevNode = this.head;
@@ -74,3 +95,6 @@ console.log(linkedList)
 linkedList.append(8);
 linkedList.display();
 console.log(linkedList)
+linkedList.insert(1,10);
+linkedList.display();
+console.log(linkedList);
