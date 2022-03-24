@@ -8,7 +8,6 @@ class Node{
 class SinglyLinkedList{
     constructor(){
         this.head = null;
-        this.tail = null;
         this.size = 0;
     }
     find(value){
@@ -21,12 +20,15 @@ class SinglyLinkedList{
 
     append(newValue){
         const newNode = new Node(newValue);
+        let currNode;
         if(this.head === null){
             this.head = newNode;
-            this.tail = newNode;
         }else{
-            this.tail.next = newNode;
-            this.tail = newNode;
+            currNode = this.head;
+            while(currNode.next){
+                currNode = currNode.next;
+            }
+            currNode.next = newNode;
         }
         this.size += 1;
     }
@@ -60,33 +62,15 @@ class SinglyLinkedList{
         displayString += "]";
         console.log(displayString);
     }
-
-    // size(){
-    //     let currNode = this.head;
-    //     let cnt = 0;
-    //     if (currNode === null ) return 0
-
-    //     while(currNode !== null){
-    //         cnt += 1;
-    //         currNode = currNode.next;
-    //     }
-    //     return cnt
-    // }
 }
 
 const linkedList = new SinglyLinkedList();
-linkedList.append(1);
-linkedList.append(5);
-linkedList.append(3);
-linkedList.append(4);
-// linkedList.display();
-// console.log(linkedList.find(1));
-linkedList.insert(linkedList.find(1), 7);
-linkedList.display();
-linkedList.remove(5);
-console.log(linkedList.find(7));
-linkedList.display();
-// console.log(linkedList.size());
-console.log(linkedList.size);
-console.log(linkedList.tail);
 
+linkedList.append(1);
+linkedList.display();
+linkedList.append(5);
+linkedList.display();
+console.log(linkedList)
+linkedList.append(8);
+linkedList.display();
+console.log(linkedList)
