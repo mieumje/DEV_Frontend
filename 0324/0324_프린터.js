@@ -1,33 +1,59 @@
+class Node{
+    constructor(value){
+        this.value = value;
+        this.next = null;
+    }
+}
+
+class Queue{
+    constructor(){
+        this.head = null;
+        this.tail = null;
+        this.size = 0;
+    }
+
+    enqueue(newValue){
+        const newNode = new Node(newValue);
+        if(this.head === null){
+            this.head = newNode;
+            this.tail = newNode;
+        }else{
+            this.tail.next = newNode;
+            this.tail = newNode;
+        }
+        this.size += 1;
+    }
+    dequeue(){
+        const value = this.head.value;
+        this.head = this.head.next;
+        this.size -= 1;
+        return value
+    }
+
+    peek(){
+        return this.head.value
+    }
+}
 function solution(priorities, location) {
     let answer = 0;
+    const queue = new Queue();
+    for(let i=0; i<priorities.length; i++){
+        queue.enqueue([priorities[i], i]);
+    }
 
-    let l = priorities.length;
+    priorities.sort((a,b) => b-a);
 
-    while(priorities){
-        if(location === 0){
-            if(priorities[0] < Math.max(...priorities)){
-                let tmp = priorities.slice(0,1);
-                priorities.push(tmp);
-                priorities.splice(0,1);
-                location = l - 1;
-            }else{
-                return answer += 1
-            }
+    while(true){
+        const curr = queue.peek();
+        if(curr[0] < priorities[answer]){
+            queue.enqueue(queue.dequeue());
         }else{
-            if(priorities[0] < Math.max(...priorities)){
-                let tmp = priorities.slice(0,1);
-                priorities.push(tmp);
-                priorities.splice(0,1);
-                location -= 1;
-            }else{
-                priorities.splice(0,1);
-                location -= 1;
-                answer += 1;
-            }
+            const value = queue.dequeue();
+            answer += 1;
+            if(location === value[1]) return answer
         }
     }
-    
-    return answer;
+
 }
 
 // priorities	        location	return
@@ -35,6 +61,6 @@ function solution(priorities, location) {
 // [1, 1, 9, 1, 1, 1]	0	        5
 
 
-let priorities = [2, 1, 3, 2];
-let location = 2;
+let priorities = [1, 1, 9, 1, 1, 1];
+let location = 5;
 console.log(solution(priorities, location))
