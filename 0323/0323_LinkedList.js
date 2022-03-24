@@ -60,16 +60,36 @@ class SinglyLinkedList{
         // node.next = newNode;
         // this.size += 1;
     }
-    remove(value){
-        let prevNode = this.head;
-        while(prevNode.next.value !== value){
-            prevNode = prevNode.next;
+    removeIndex(index){
+        if(index < 0 || index > this.size){
+            return console.log("Invalid Index");
         }
-
-        if(prevNode.value === null){
-            prevNode.next = prevNode.next.next;
+        let currNode = this.head;
+        let prevNode;
+        if(index === 0){
+            this.head = currNode.next;
+        }else{
+            let idx = 0;
+            while(idx<index){
+                idx += 1;
+                prevNode = currNode;
+                currNode = currNode.next;
+            }
+            prevNode.next = currNode.next;
         }
         this.size -= 1;
+
+        return currNode.value
+
+        // let prevNode = this.head;
+        // while(prevNode.next.value !== value){
+        //     prevNode = prevNode.next;
+        // }
+
+        // if(prevNode.value === null){
+        //     prevNode.next = prevNode.next.next;
+        // }
+        // this.size -= 1;
     }
 
     display(){
@@ -98,3 +118,6 @@ console.log(linkedList)
 linkedList.insert(1,10);
 linkedList.display();
 console.log(linkedList);
+console.log(linkedList.removeIndex(2));
+linkedList.display();
+console.log(linkedList)
