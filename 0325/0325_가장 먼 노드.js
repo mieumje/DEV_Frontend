@@ -14,7 +14,7 @@ function solution(n, edge) {
     
     while(queue.length > 0){
         let startNode = queue.shift();
-        for(let i=1; i<=6; i++){
+        for(let i=1; i<=n; i++){
             if(graph[startNode][i] && check[i]===0){
                 check[i] = check[startNode] + 1;
                 queue.push(i);
