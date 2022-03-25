@@ -4,10 +4,20 @@ class Node{
         this.children = new Map();
     }
 }
-let a = new Node();
-a.children.set('c', new Node(a.value + 'c'));
-console.log(a);
-
-let b = a.children.get('c');
-b.children.set('a', new Node(b.value + 'a'));
-console.log(b);
+class Trie{
+    constructor(){
+        this.root = new Node(); // Root 노드는 empty 상태로
+    }
+    isert(stringValue){
+        let currNode = this.root;
+        for(let chr of stringValue){
+            if(!currNode.children.has(chr)){
+                currNode.children.set(
+                    chr,
+                    new Node(currNode.value + chr)
+                );
+            }
+            currNode = currNode.children.get(chr);
+        }
+    }
+}
