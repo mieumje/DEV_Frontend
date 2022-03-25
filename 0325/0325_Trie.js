@@ -8,7 +8,7 @@ class Trie{
     constructor(){
         this.root = new Node(); // Root 노드는 empty 상태로
     }
-    isert(stringValue){
+    insert(stringValue){
         let currNode = this.root;
         for(let chr of stringValue){
             if(!currNode.children.has(chr)){
