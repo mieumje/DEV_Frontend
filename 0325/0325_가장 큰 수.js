@@ -1,4 +1,5 @@
 function solution(numbers) {
+    if(numbers.filter(value => value === 0).length === numbers.length) return "0"
     let ans = "";
     let tmp = numbers.map(value => [Array(5).join(String(value)).slice(0,4),value]);
     tmp.sort((a,b) => b[0]-a[0]);
@@ -13,3 +14,4 @@ function solution(numbers) {
 //[3, 30, 34, 5, 9]	    "9534330"
 numbers = [0,0,0]
 console.log(solution(numbers));
+console.log(numbers.filter(value => value === 0));
