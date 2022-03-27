@@ -35,6 +35,22 @@ class binarySearchTree{
             }
         }
     }
+
+    has(value){
+        let currNode = this.root;
+        while(currNode !== null){
+            if(currNode.value === value){
+                return true
+            }
+
+            if(currNode.value < value){
+                currNode = currNode.right;
+            }else{
+                currNode = currNode.left;
+            }
+        }
+        return false
+    }
 }
 
 const tree = new binarySearchTree();
@@ -45,4 +61,4 @@ console.log(tree);
 tree.insert(7);
 console.log(tree);
 tree.insert(3);
-console.log(tree);
+console.log(tree.has(3));
