@@ -13,8 +13,8 @@ function solution(n) {
     }
 
     function dfs(column, row){
-        if(row === n) {
-            console.log(column)
+        if(row === n + 1) {
+            //console.log(column)
             return answer++
         }
         
