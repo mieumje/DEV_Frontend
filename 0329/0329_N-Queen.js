@@ -1,39 +1,33 @@
 function solution(n) {
-    function checkZero(row,col,check){
-        if(check[row-1][col-1] === 1 || check[row-1][col+1] === 1 || check[row+1][col+1] === 1 || check[row+1][col-1] === 1) return false
-
+    let answer = 0;
+    let column = Array.from({length : n + 1}, () => 0);
+    dfs(column, 1);
+    
+    
+    function isValidPoint(column, row){
+        for(let i=1; i<row; i++){
+            if(column[row] === column[i]) return false
+            if(Math.abs(row - i) === Math.abs(column[row] - column[i])) return false // 행의 차 === 열의 차
+        }
         return true
     }
 
-    function search(check, row, col, n){
-        let count = 0; // count = n > answer += 1
-
-        check[row][col] = 1;
-        for(let i=0; i<n; i++){
-            check[row][i] = 1;
-            check[i][col] = 1;
+    function dfs(column, row){
+        if(row === n) {
+            console.log(column)
+            return answer++
         }
-        if (row - 1 >= 0 && col - 1 >= 0) check[row-1][col-1] = 1;
-        if (row - 1 >= 0 && col + 1 < n) check[row-1][col+1] = 1;
-        if (row + 1 < n && col + 1 < n) check[row+1][col+1] = 1;
-        if (row + 1 < n && col - 1 >= 0) check[row+1][col-1] = 1;
+        
+        for(let col=1; col<=n; col++){
+            column[row] = col;
 
-        console.log(check, 1,2, check[1][2])
-        for(let x=0; x<n; x++){
-            for(let y=0; y<n; y++){
-                if(check[x][y] === 0){
-                    row = x;
-                    col = y;
-                    count += search(check, row, col, n)
-                }
+            if(isValidPoint(column, row)){
+                dfs(column, row + 1, n);
             }
         }
-
-        return count
     }
-    
-    let check = Array.from(Array(n), () => Array.from({length : n}, () => 0));
-    return search(check, 0, 0, n);
+
+    return answer
 }
 
 // n	result
