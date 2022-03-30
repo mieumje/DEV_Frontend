@@ -7,13 +7,13 @@ function solution(strs, t) {
     for(let i=1; i<l + 1; i++){
         dp[i] = 20000;
         // console.log(t.slice(0,i)) // 현재 만들 단어
-        for(let j=1; j<i + 1; j++){
+        for(let j=1; j<Math.min(i + 1, 6); j++){
             const start = i - j, end = i;
             // console.log(t.slice(start, end))    // 확인 할 단어
             if(strsSet.has(t.slice(start, end))){
                 dp[i] = Math.min(dp[i], dp[start] + 1);
             }
-            console.log(dp)
+            // console.log(dp)
         }
     }
 
@@ -27,7 +27,7 @@ function solution(strs, t) {
 // ["ba","na","n","a"]	                "banana"	3
 // ["app","ap","p","l","e","ple","pp"]	"apple"	    2
 // ["ba","an","nan","ban","n"]	        "banana"	-1
-let strs = ["ba","na","n","a"];
+let strs = ["ba","an","nan","ban","n"];
 let t = "banana";
 console.log(solution(strs,t))
 console.log(t.slice(0,6))
