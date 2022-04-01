@@ -1,3 +1,14 @@
+function timerButton({$tartget, text, timer = 3000}){
+    const button = new toggleButton({$tartget, text, onClick: () => {
+        setTimeout(() => {
+            button.setState({
+                ...button.state,
+                toggled: !button.state.toggled 
+            })
+        }, timer)
+    }})
+}
+
 function toggleButton({
     $tartget,
     text,
@@ -19,7 +30,7 @@ function toggleButton({
         $button.textContent = text;
         $button.style.textDecoration = this.state.toggled ? 'line-through' : '';  
     };
-    
+
     $button.addEventListener('click', () => {
         this.setState({
             clickCount: this.state.clickCount + 1,
@@ -52,4 +63,9 @@ new toggleButton({
 new toggleButton({
     $tartget: $body,
     text: 'button 3'
+});
+new timerButton({
+    $tartget: $body,
+    text: 'button 4',
+    timer: 1000 * 4
 });
