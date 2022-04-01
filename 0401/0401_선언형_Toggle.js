@@ -1,6 +1,7 @@
 function toggleButton({
     $tartget,
-    text
+    text,
+    onClick
 }){
     const $button = document.createElement('button');
     $tartget.appendChild($button);
@@ -17,7 +18,10 @@ function toggleButton({
             clickCount += 1;
             $button.textContent = `${text} 버튼 토글 횟수 : ${clickCount}`
 
-            if(clickCount % 3 === 0) alert('3번 클릭했습니다.');
+            //if(clickCount % 3 === 0) alert('3번 클릭했습니다.');
+            if(onClick){
+                onClick(clickCount);
+            }
         });
     };
 
@@ -28,7 +32,10 @@ const $body = document.querySelector('body');
 
 new toggleButton({
     $tartget: $body,
-    text: 'button 1'
+    text: 'button 1',
+    onClick : (clickCount) => {
+        if(clickCount % 3 === 0) alert('3번 클릭했습니다.');
+    }
 });
 new toggleButton({
     $tartget: $body,
