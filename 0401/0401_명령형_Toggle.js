@@ -13,13 +13,16 @@ $body.appendChild($button2);
 $body.appendChild($button3);
 
 // 버튼 클릭 시 삭선추가
+const toggleButton = ($button) => {
+    if($button.style.textDecoration === 'line-through'){
+        $button.style.textDecoration = '';
+    } else{
+        $button.style.textDecoration = 'line-through';
+    }
+};
+
 document.querySelectorAll('button').forEach($button => {
     $button.addEventListener('click', (e) => {
-        const { target } = e;
-        if(target.style.textDecoration === 'line-through'){
-            target.style.textDecoration = '';
-        } else{
-            target.style.textDecoration = 'line-through';
-        }
-    })
-})
+        toggleButton(e.target);
+    });
+});
