@@ -4,17 +4,22 @@ function toggleButton({
 }){
     const $button = document.createElement('button');
     $tartget.appendChild($button);
+    let clickCount = 0;
 
-    $button.addEventListener('click', () => {
-        if($button.style.textDecoration === 'line-through'){
-            $button.style.textDecoration = '';
-        } else{
-            $button.style.textDecoration = 'line-through';
-        }
-    })
     this.render = () => {
         $button.textContent = text;
-    }
+        $button.addEventListener('click', () => {
+            if($button.style.textDecoration === 'line-through'){
+                $button.style.textDecoration = '';
+            } else{
+                $button.style.textDecoration = 'line-through';
+            }
+            clickCount += 1;
+            $button.textContent = `${text} 버튼 토글 횟수 : ${clickCount}`
+
+            if(clickCount % 3 === 0) alert('3번 클릭했습니다.');
+        });
+    };
 
     this.render();
 };
