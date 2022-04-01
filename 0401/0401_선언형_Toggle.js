@@ -1,5 +1,32 @@
-function timerButton({$tartget, text, timer = 3000}){
-    const button = new toggleButton({$tartget, text, onClick: () => {
+function buttonGroup({
+    $target,
+    buttons
+}){
+    const $group = document.createElement('div');
+    let isInit = false;
+
+    this.render = () => {
+        if(!isInit){
+            buttons.forEach(({type, ...props}) => {
+                console.log(type, props);
+                console.log(type === 'toggle')
+                if(type === 'toggle'){
+                    new toggleButton({$target: $group, ...props});
+                }else if(type === 'timer'){
+                    new timerButton({$target: $group, ...props});
+                }
+            });
+
+            $target.appendChild($group);
+            isInit = true;
+        }
+    };
+
+    this.render();
+}
+
+function timerButton({$target, text, timer = 3000}){
+    const button = new toggleButton({$target, text, onClick: () => {
         setTimeout(() => {
             button.setState({
                 ...button.state,
@@ -10,12 +37,12 @@ function timerButton({$tartget, text, timer = 3000}){
 }
 
 function toggleButton({
-    $tartget,
+    $target,
     text,
     onClick
 }){
     const $button = document.createElement('button');
-    $tartget.appendChild($button);
+    $target.appendChild($button);
     // let clickCount = 0;
     this.state = {
         clickCount: 0,
@@ -49,23 +76,24 @@ function toggleButton({
 
 const $body = document.querySelector('body');
 
-new toggleButton({
-    $tartget: $body,
-    text: 'button 1',
-    onClick : (clickCount) => {
-        if(clickCount % 3 === 0) alert('3번 클릭했습니다.')
-    }
-});
-new toggleButton({
-    $tartget: $body,
-    text: 'button 2'
-});
-new toggleButton({
-    $tartget: $body,
-    text: 'button 3'
-});
-new timerButton({
-    $tartget: $body,
-    text: 'button 4',
-    timer: 1000 * 4
+new buttonGroup({
+    $target: $body,
+    buttons: [
+        {
+            type: 'toggle',
+            text: 'toggle button 1'
+        },
+        {
+            type: 'toggle',
+            text: 'toggle button 2',
+            onClick : (clickCount) => {
+                if(clickCount % 3 === 0) alert('3번 클릭했습니다.')
+            }
+        },
+        {
+            type: 'timer',
+            text: 'timer button 1',
+            timer: 1000 * 2
+        }
+    ]
 });
