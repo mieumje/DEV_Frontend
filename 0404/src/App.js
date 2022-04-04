@@ -9,6 +9,8 @@ function App({ $target, initialState}){
         onSubmit: (text) => {
             const newState = [...todoList.state, { text }];
             todoList.setState(newState);
+
+            storage.setItem('todos', JSON.stringify(newState));
         }
     });
     
