@@ -9,6 +9,10 @@ const data = [
 
 const $app = document.querySelector('.app');
 
+new TodoForm({
+    $target: $app,
+});
+
 new TodoList({
     $target: $app,
     initialState: data
