@@ -12,11 +12,12 @@ const $app = document.querySelector('.app');
 new TodoForm({
     $target: $app,
     onSubmit: (text) => {
-        console.log(text);
+        const newState = [...todoList.state, { text }];
+        todoList.setState(newState);
     }
 });
 
-new TodoList({
+const todoList = new TodoList({
     $target: $app,
     initialState: data
 });
