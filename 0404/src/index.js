@@ -9,15 +9,7 @@ const data = [
 
 const $app = document.querySelector('.app');
 
-new TodoForm({
-    $target: $app,
-    onSubmit: (text) => {
-        const newState = [...todoList.state, { text }];
-        todoList.setState(newState);
-    }
-});
-
-const todoList = new TodoList({
+new App({
     $target: $app,
     initialState: data
 });
