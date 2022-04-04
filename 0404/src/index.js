@@ -11,6 +11,9 @@ const $app = document.querySelector('.app');
 
 new TodoForm({
     $target: $app,
+    onSubmit: (text) => {
+        console.log(text);
+    }
 });
 
 new TodoList({
