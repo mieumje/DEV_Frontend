@@ -1,4 +1,9 @@
 function App({ $target, initialState}){
+    new Header({
+        $target,
+        text: "Simple Todo List"
+    });
+
     new TodoForm({
         $target,
         onSubmit: (text) => {
@@ -9,6 +14,6 @@ function App({ $target, initialState}){
     
     const todoList = new TodoList({
         $target,
-        initialState: data
+        initialState: initialState
     });
 }
