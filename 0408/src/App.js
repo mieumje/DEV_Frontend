@@ -1,10 +1,11 @@
+import { request } from "./api.js";
 import Header from "./Header.js";
 import TodoForm from "./TodoForm.js";
 import TodoList from "./TodoList.js";
 
 export default function App({ $target }){
     this.state = {
-        username: 'mieumje',
+        username: 'roto',
         todos: []
     };
 
@@ -30,4 +31,15 @@ export default function App({ $target }){
             alert(`${id} 삭제 예정`)
         }
     });
+
+    const init = async () => {
+        const { username } = this.state;
+        console.log(username)
+        if(username){
+            const todos = await request(`/${username}`);
+            console.log(todos);
+        }
+    }
+
+    init();
 }
