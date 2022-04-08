@@ -5,7 +5,7 @@ import TodoList from "./TodoList.js";
 
 export default function App({ $target }){
     this.state = {
-        username: 'roto',
+        username: '박민제',
         todos: []
     };
 
@@ -16,8 +16,14 @@ export default function App({ $target }){
 
     new TodoForm({
         $target,
-        onSubmit: (content) => {
-            alert(`${content} 추가 처리`)
+        onSubmit: async (content) => {
+            await request(`/${this.state.username}`, {
+                method: "POST",
+                body: JSON.stringify({
+                    content,
+                    isCompleted: false
+                })
+            })
         }
     });
     
