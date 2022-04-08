@@ -9,6 +9,11 @@ export default function App({ $target }){
         todos: []
     };
 
+    this.setState = (nextState) => {
+        this.state = nextState;
+        todoList.setState(this.state.todos);
+    }
+
     new Header({
         $target,
         initialState: this.state.username
@@ -23,7 +28,8 @@ export default function App({ $target }){
                     content,
                     isCompleted: false
                 })
-            })
+            });
+            await init();
         }
     });
     
@@ -43,7 +49,10 @@ export default function App({ $target }){
         console.log(username)
         if(username){
             const todos = await request(`/${username}`);
-            console.log(todos);
+            this.setState({
+                ...this.state,
+                todos
+            })
         }
     }
 
