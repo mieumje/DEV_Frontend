@@ -22,14 +22,22 @@ export default function App({ $target }){
     new TodoForm({
         $target,
         onSubmit: async (content) => {
+            const todo = {
+                content,
+                isCompleted: false
+            };
+            this.setState({
+                ...this.state,
+                todos: [
+                    ...this.state.todos,
+                    todo
+                ]
+            })
             await request(`/${this.state.username}`, {
                 method: "POST",
-                body: JSON.stringify({
-                    content,
-                    isCompleted: false
-                })
+                body: JSON.stringify(todo)
             });
-            await init();
+            await fetchTodos();
         }
     });
     
@@ -44,7 +52,7 @@ export default function App({ $target }){
         }
     });
 
-    const init = async () => {
+    const fetchTodos = async () => {
         const { username } = this.state;
         console.log(username)
         if(username){
@@ -56,5 +64,5 @@ export default function App({ $target }){
         }
     }
 
-    init();
+    fetchTodos();
 }
