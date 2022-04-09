@@ -75,7 +75,14 @@ export default function App({ $target }){
         },
         onRemove: async (id) => {
             const { username } = this.state.username;
-            await request(`/${username}/${id}`,{
+            const todoIndex = this.state.todos.findIndex(todo => todo._id === id);
+            const nextTodo = [...this.state.todos];
+            nextTodo.splice(todoIndex, 1);
+            this.setState({
+                ...this.state,
+                todos: nextTodo
+            });
+            await request(`/${username}/${id}?delay=3000`,{
                 method: 'DELETE'
             });
 
@@ -91,7 +98,7 @@ export default function App({ $target }){
                 ...this.state,
                 isTodoLoading: true
             });
-            const todos = await request(`/${username}?delay=3000`);
+            const todos = await request(`/${username}`);
             this.setState({
                 ...this.state,
                 todos
