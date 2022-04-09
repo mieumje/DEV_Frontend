@@ -59,8 +59,13 @@ export default function App({ $target }){
             
             await fetchTodos();
         },
-        onRemove: (id) => {
-            alert(`${id} 삭제 예정`)
+        onRemove: async (id) => {
+            const { username } = this.state.username;
+            await request(`/${username}/${id}`,{
+                method: 'DELETE'
+            });
+
+            await fetchTodos();
         }
     });
 
