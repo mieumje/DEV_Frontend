@@ -30,13 +30,13 @@ export default function App({ $target }){
                 content,
                 isCompleted: false
             };
-            this.setState({
-                ...this.state,
-                todos: [
-                    ...this.state.todos,
-                    todo
-                ]
-            })
+            // this.setState({              낙관적 업데이트
+            //     ...this.state,
+            //     todos: [
+            //         ...this.state.todos,
+            //         todo
+            //     ]
+            // })
             await request(`/${this.state.username}`, {
                 method: "POST",
                 body: JSON.stringify(todo)
@@ -51,8 +51,13 @@ export default function App({ $target }){
             isTodoLoading: this.state.isTodoLoading,
             todos: this.state.todos
         },
-        onToggle: (id) => {
-            alert(`${id} 토글 예정`)
+        onToggle: async (id) => {
+            const { username } = this.state.username;
+            await request(`/${username}/${id}/toggle`, {
+                method: 'PUT'
+            });
+            
+            await fetchTodos();
         },
         onRemove: (id) => {
             alert(`${id} 삭제 예정`)
@@ -67,7 +72,7 @@ export default function App({ $target }){
                 ...this.state,
                 isTodoLoading: true
             });
-            const todos = await request(`/${username}?delay=3000`);
+            const todos = await request(`/${username}`);
             this.setState({
                 ...this.state,
                 todos
