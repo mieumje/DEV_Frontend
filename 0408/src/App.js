@@ -59,7 +59,14 @@ export default function App({ $target }){
             todos: this.state.todos
         },
         onToggle: async (id) => {
-            const { username } = this.state.username;
+            const { username } = this.state;
+            const todoIndex = this.state.todos.findIndex(todo => todo._id === id);
+            const nextTodo = [...this.state.todos];
+            nextTodo[todoIndex].isCompleted = !nextTodo[todoIndex].isCompleted;
+            this.setState({
+                ...this.state,
+                todos: nextTodo
+            });
             await request(`/${username}/${id}/toggle`, {
                 method: 'PUT'
             });
