@@ -3,8 +3,14 @@ export default function Header({ $target, initialState }){
     $target.appendChild($h1);
     this.state = initialState;
 
+    this.setState = (nextState) => {
+        this.state = nextState;
+        this.render();
+    }
+
     this.render = () => {
-        $h1.innerHTML = `${this.state}의 할 일 목록`;
+        const { username, isTodoLoading } = this.state;
+        $h1.innerHTML = `${username}의 할 일 목록 ${isTodoLoading ? '로딩중...' : ''}`;
     }
 
     this.render();

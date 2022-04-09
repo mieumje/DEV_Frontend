@@ -12,15 +12,22 @@ export default function App({ $target }){
 
     this.setState = (nextState) => {
         this.state = nextState;
+        header.setState({
+            username: this.state.username,
+            isTodoLoading: this.state.isTodoLoading,
+        })
         todoList.setState({
             isTodoLoading: this.state.isTodoLoading,
             todos: this.state.todos
         });
     }
 
-    new Header({
+    const header = new Header({
         $target,
-        initialState: this.state.username
+        initialState: {
+            username: this.state.username,
+            isTodoLoading: this.state.isTodoLoading
+        }
     });
 
     new TodoForm({
@@ -30,13 +37,13 @@ export default function App({ $target }){
                 content,
                 isCompleted: false
             };
-            // this.setState({              낙관적 업데이트
-            //     ...this.state,
-            //     todos: [
-            //         ...this.state.todos,
-            //         todo
-            //     ]
-            // })
+            this.setState({
+                ...this.state,
+                todos: [
+                    ...this.state.todos,
+                    todo
+                ]
+            })
             await request(`/${this.state.username}`, {
                 method: "POST",
                 body: JSON.stringify(todo)
@@ -77,7 +84,7 @@ export default function App({ $target }){
                 ...this.state,
                 isTodoLoading: true
             });
-            const todos = await request(`/${username}`);
+            const todos = await request(`/${username}?delay=3000`);
             this.setState({
                 ...this.state,
                 todos
