@@ -9,8 +9,12 @@ export default function Header({ $target, initialState }){
     }
 
     this.render = () => {
-        const { username, isTodoLoading } = this.state;
-        $h1.innerHTML = `${username}의 할 일 목록 ${isTodoLoading ? '로딩중...' : ''}`;
+        const { selectedUsername, isTodoLoading } = this.state;
+        if(!selectedUsername){
+            $h1.innerHTML = "";
+            return
+        }
+        $h1.innerHTML = `${selectedUsername}의 할 일 목록 ${isTodoLoading ? '로딩중...' : ''}`;
     }
 
     this.render();
