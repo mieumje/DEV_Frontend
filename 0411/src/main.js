@@ -8,6 +8,7 @@ const post = getItem(TEMP_POST_SAVE_KEY, {
     title: '',
     content: ''
 });
+let timer = null;
 new App({
     $target,
     initialState: ''
@@ -16,9 +17,11 @@ new Editor({
     $target, 
     initialState: post,
     onEditing: (post) => {
-        setItem(TEMP_POST_SAVE_KEY, {
-            ...post,
-            tempSaveDate: new Date()
-        });
+        timer = setTimeout(() => {
+            setItem(TEMP_POST_SAVE_KEY, {
+                ...post,
+                tempSaveDate: new Date()
+            });
+        }, 500)
     }
 });
