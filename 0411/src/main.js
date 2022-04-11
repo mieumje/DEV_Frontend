@@ -17,6 +17,9 @@ new Editor({
     $target, 
     initialState: post,
     onEditing: (post) => {
+        if(timer !== null){
+            clearTimeout(timer);
+        }
         timer = setTimeout(() => {
             setItem(TEMP_POST_SAVE_KEY, {
                 ...post,
