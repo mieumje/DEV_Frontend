@@ -10,17 +10,13 @@ export default function PostList({ $target, initialState, onPostClick }){
     }
 
     this.render = () => {
-        const { posts } = this.state;
-
-        if(posts){
-            $postList.innerHTML = `
-                <ul>
-                    ${posts.map(({title, id}) => `
-                        <li data-id="${id}">${title}</li>
-                    `).join('')}
-                </ul>
-            `;
-        }
+        $postList.innerHTML = `
+            <ul>
+                ${this.state.map(post => `
+                    <li data-id="${post.id}">${post.title}</li>
+                `).join('')}
+            </ul>
+        `;
         
     }
 
