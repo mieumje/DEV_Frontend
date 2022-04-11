@@ -6,10 +6,16 @@ export default function PostEditPage({$target, initialState}) {
     const $page = document.createElement('div');
 
     this.state = initialState;
-
+    
+    let postLocalSaveKey = `temp-post-${this.state.postId}`;
+    const post = getItem(postLocalSaveKey, {
+        title: '',
+        content: ''
+    });
     this.setState = async (nextState) => {
         console.log(this.state.postId, nextState.postId)
         if(this.state.postId !== nextState.postId){
+            postLocalSaveKey = `temp-post-${nextState.postId}`;
             this.state = nextState;
             await fetchPost();
             return
@@ -17,14 +23,12 @@ export default function PostEditPage({$target, initialState}) {
         this.state = nextState;
         this.render();
         console.log(this.state.post)
-        editor.setState(this.state.post);
+        editor.setState(this.state.post || {
+            title: '',
+            content: ''
+        });
     }
 
-    const TEMP_POST_SAVE_KEY = `temp-post-${this.state.postId}`;
-    const post = getItem(TEMP_POST_SAVE_KEY, {
-        title: '',
-        content: ''
-    });
     let timer = null;
     const editor = new Editor({
         $target: $page,
@@ -34,7 +38,7 @@ export default function PostEditPage({$target, initialState}) {
                 clearTimeout(timer);
             }
             timer = setTimeout(() => {
-                setItem(TEMP_POST_SAVE_KEY, {
+                setItem(postLocalSaveKey, {
                     ...post,
                     tempSaveDate: new Date()
                 });
