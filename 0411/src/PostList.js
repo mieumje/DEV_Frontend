@@ -20,5 +20,13 @@ export default function PostList({ $target, initialState, onPostClick }){
         
     }
 
+    $postList.addEventListener('click', (e) => {
+        const $li = e.target.closest('li');
+        if($li){
+            const { id } = $li.dataset;
+            onPostClick(id);
+        }
+    })
+
     this.render();
 }

@@ -7,17 +7,27 @@ import PostEditPage from "./PostEditPage.js";
 // /posts/new - 새 post 생성
 
 export default function App({ $target }){
-    const postPage = new PostPage({ $target });
-    const postEditPage = new PostEditPage({ $target, initialState: {
-        postId: 'new',
-        post: {
-            title: '',
-            content: ''
-        } 
+    const postPage = new PostPage({ 
+        $target,
+        onPostClick: (id) => {
+            console.log(id)
+            history.pushState(null, null, `/posts/${id}`);
+            this.route();
+        }
+    });
+    const postEditPage = new PostEditPage({ 
+        $target, 
+        initialState: {
+            postId: 'new',
+            post: {
+                title: '',
+                content: ''
+            } 
     }});
 
 
     this.route = () => {
+        $target.innerHTML = '';
         const { pathname } = window.location;
 
         console.log(pathname);
@@ -35,5 +45,5 @@ export default function App({ $target }){
 
     this.route();
     
-    postPage.render();
+    
 }
