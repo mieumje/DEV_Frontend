@@ -1,5 +1,6 @@
 import PostPage from "./PostPage.js";
 import PostEditPage from "./PostEditPage.js";
+import { initRouter } from "./router.js";
 // url 규칙
 // 루트 : postPage 그리기
 
@@ -8,12 +9,7 @@ import PostEditPage from "./PostEditPage.js";
 
 export default function App({ $target }){
     const postPage = new PostPage({ 
-        $target,
-        onPostClick: (id) => {
-            console.log(id)
-            history.pushState(null, null, `/posts/${id}`);
-            this.route();
-        }
+        $target
     });
     const postEditPage = new PostEditPage({ 
         $target, 
@@ -44,6 +40,5 @@ export default function App({ $target }){
     };
 
     this.route();
-    
-    
+    initRouter(() => this.route());
 }
