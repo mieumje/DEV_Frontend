@@ -35,8 +35,10 @@ export default function App({
     this.setState({
       ...this.state,
       nextStart: nextStart + limit,
-      photos,
+      photos: [...this.state.photos, ...photos],
+      // photos: this.state.photos.concat(photos)
     });
+    console.log(this.state)
   };
 
   fetchPhotos();
