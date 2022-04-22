@@ -11,24 +11,30 @@ export default function App({
 
   this.state = {
     limit: 5,
-    start: 0, // limit 갯수만큼 계속 더해짐
+    nextStart: 0, // limit 갯수만큼 계속 더해짐
     photos: [],
   };
   
-  this.setState = (nextState) => {
-    this.setState = nextState;
-    photoListComponent.setState(nextState.photos);
-  };
-
+  
   const photoListComponent = new PhotoList({ 
     $target,
     initialState: this.state.photos,
+    onScrollEnded: async () => {
+      await fetchPhotos();
+    },
   });
-
+  
+  this.setState = (nextState) => {
+    this.state = nextState;
+    photoListComponent.setState(nextState.photos);
+  };
+  
   const fetchPhotos = async () => {
-    const photos = await request(`/cat-photos?_limit=5&_start=0`);
+    const { limit, nextStart } = this.state;
+    const photos = await request(`/cat-photos?_limit=${limit}&_start=${nextStart}`);
     this.setState({
       ...this.state,
+      nextStart: nextStart + limit,
       photos,
     });
   };
