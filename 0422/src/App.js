@@ -1,3 +1,5 @@
+import PhotoList from "./PhotoList.js";
+
 const DUMMY_DATA = [
   {
       "id": 1,
@@ -384,3 +386,15 @@ const DUMMY_DATA = [
   }
 ];
 
+export default function App({
+  $target
+}){
+  const $h1 = document.createElement('h1');
+  $h1.innerText = 'Cat Photos';
+  $h1.style.textAlign = 'center';
+  $target.appendChild($h1);
+  const photoListComponent = new PhotoList({ 
+    $target,
+    initialState: DUMMY_DATA,
+  });
+};
