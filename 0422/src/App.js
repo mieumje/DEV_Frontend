@@ -13,6 +13,7 @@ export default function App({
     limit: 5,
     nextStart: 0, // limit 갯수만큼 계속 더해짐
     photos: [],
+    totalCounts: 0,
     isLoading: false,
   };
   
@@ -22,6 +23,7 @@ export default function App({
     initialState: {
       isLoading: this.state.isLoading,
       photos: this.state.photos,
+      totalCounts: this.state.totalCounts,
     },
     onScrollEnded: async () => {
       await fetchPhotos();
@@ -33,6 +35,7 @@ export default function App({
     photoListComponent.setState({
       isLoading: this.state.isLoading,
       photos: nextState.photos,
+      totalCounts: this.state.totalCounts,
     });
   };
   
@@ -53,5 +56,16 @@ export default function App({
     
   };
 
-  fetchPhotos();
+  const initialize = async () => {
+    const totalCounts = await request('/cat-photos/count');
+
+    this.setState({
+      ...this.state,
+      totalCounts,
+    });
+
+    await fetchPhotos();
+  }
+
+  initialize();
 };
