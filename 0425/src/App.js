@@ -61,7 +61,9 @@ export default function App({
       nodes: DUMMY_DATA
     },
     onClick: async (node) => {
-      fetchNodes(node.id);
+      if (node.type === 'DIRECTORY'){
+        fetchNodes(node.id);
+      }
     },
   });
 

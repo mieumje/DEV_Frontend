@@ -35,7 +35,7 @@ export default function Nodes({
   };
 
   $nodes.addEventListener('click', (e) => {
-    const $node = e.target.closest('Node');
+    const $node = e.target.closest('.Node');
     const { id } = $node.dataset;
 
     // id가 없는 경우
