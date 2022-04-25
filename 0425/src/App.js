@@ -57,8 +57,8 @@ export default function App({
     $target,
     initialState: {
       isRoot: this.state.isRoot,
-      //nodes: this.state.nodes,
-      nodes: DUMMY_DATA
+      nodes: this.state.nodes,
+      //nodes: DUMMY_DATA
     },
     onClick: async (node) => {
       if (node.type === 'DIRECTORY'){
@@ -76,9 +76,8 @@ export default function App({
     });
   };
 
-  const fetchNodes = (id) => {
-    const nodes = request(id ? `/${id}` : '/');
-
+  const fetchNodes = async (id) => {
+    const nodes = await request(id ? `/${id}` : '/');
     this.setState({
       ...this.state,
       nodes,
