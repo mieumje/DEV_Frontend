@@ -52,6 +52,7 @@ export default function App({
   this.state = {
     isRoot: true,
     nodes: [],
+    paths: [],
   };
 
   const nodes = new Nodes({
@@ -65,6 +66,10 @@ export default function App({
     onClick: async (node) => {
       if (node.type === 'DIRECTORY'){
         fetchNodes(node.id);
+        this.setState({
+          ...this.state,
+          paths: [...this.state.paths, node]
+        });
       }
 
       if (node.type === 'FILE'){
@@ -75,6 +80,20 @@ export default function App({
         });
       }
     },
+    onPrevClick: async () => {
+      const nextPaths = [...this.state.paths];
+      nextPaths.pop();
+      this.setState({
+        ...this.state,
+        paths: nextPaths,
+      });
+
+      if (nextPaths.length === 0) {
+        await fetchNodes();
+      } else {
+        await fetchNodes(nextPaths[nextPaths.length - 1].id);
+      }
+    }
   });
 
   const imageViewer = new ImageViewer({

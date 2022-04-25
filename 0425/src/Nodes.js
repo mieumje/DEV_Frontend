@@ -2,6 +2,7 @@ export default function Nodes({
   $target,
   initialState,
   onClick,
+  onPrevClick,
 }){
   const $nodes = document.createElement('div');
   $target.appendChild($nodes);
@@ -48,7 +49,7 @@ export default function Nodes({
     if (node) {
       onClick(node);
     } else {
-      alert('올바르지 않은 노드입니다.');
+      onPrevClick(node);
     }
 
   });
