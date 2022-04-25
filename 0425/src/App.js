@@ -61,6 +61,23 @@ export default function App({
   const breadcrumb = new Breadcrumb({
     $target,
     initialState: this.state.paths,
+    onClick: async (id) => {
+      // 클릭한 경로 외에 paths를 날려준다.
+      if (id) {
+        const nextPaths = id ? [...this.state.paths] : [];
+        const index = nextPaths.findIndex(path => path.id === id);
+        this.setState({
+          ...this.state,
+          paths: nextPaths.slice(0, index + 1),
+        });
+      } else {
+        this.setState({
+          ...this.state,
+          paths: [],
+        })
+      }
+      await fetchNodes(id);
+    }
   });
 
   const loading = new Loading({
