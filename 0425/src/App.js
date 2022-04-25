@@ -57,9 +57,12 @@ export default function App({
     $target,
     initialState: {
       isRoot: this.state.isRoot,
-      nodes: this.state.nodes,
+      //nodes: this.state.nodes,
+      nodes: DUMMY_DATA
     },
-    onClick: () => {}
+    onClick: async (node) => {
+      fetchNodes(node.id);
+    },
   });
 
   this.setState = (nextState) => {
