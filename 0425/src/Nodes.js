@@ -24,7 +24,7 @@ export default function Nodes({
         </div>
       `}
       ${nodes.map(node => `
-        <div class="Node">
+        <div class="Node" data-id=${node.id}>
           <img src="${node.type === "DIRECTORY" ?
             "https://cdn.roto.codes/images/directory.png" :
             "https://cdn.roto.codes/images/file.png"
