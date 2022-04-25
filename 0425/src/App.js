@@ -1,5 +1,6 @@
 import Nodes from './Nodes.js';
 import { request } from './api.js';
+import ImageViewer from './ImageViewer.js';
 const DUMMY_DATA = [
   {
     "id": "1",
@@ -59,12 +60,25 @@ export default function App({
       isRoot: this.state.isRoot,
       nodes: this.state.nodes,
       //nodes: DUMMY_DATA
+      selectedImageUrl: null,
     },
     onClick: async (node) => {
       if (node.type === 'DIRECTORY'){
         fetchNodes(node.id);
       }
+
+      if (node.type === 'FILE'){
+        this.setState({
+          ...this.state,
+          //selectedImageUrl: `https://cat-api.roto.codes/static${node.filePath}`,
+          selectedImageUrl: `https://kdt-frontend.cat-api.programmers.co.kr/static${node.filePath}`,
+        });
+      }
     },
+  });
+
+  const imageViewer = new ImageViewer({
+    $target,
   });
 
   this.setState = (nextState) => {
@@ -73,6 +87,10 @@ export default function App({
     nodes.setState({
       isRoot: this.state.isRoot,
       nodes: this.state.nodes,
+    });
+
+    imageViewer.setState({
+      selectedImageUrl: this.state.selectedImageUrl,
     });
   };
 
