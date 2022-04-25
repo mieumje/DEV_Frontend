@@ -2,6 +2,7 @@ import Nodes from './Nodes.js';
 import { request } from './api.js';
 import ImageViewer from './ImageViewer.js';
 import Loading from './Loading.js';
+import Breadcrumb from './Breadcrumb.js';
 const DUMMY_DATA = [
   {
     "id": "1",
@@ -56,6 +57,11 @@ export default function App({
     nodes: [],
     paths: [],
   };
+
+  const breadcrumb = new Breadcrumb({
+    $target,
+    initialState: this.state.paths,
+  });
 
   const loading = new Loading({
     $target,
@@ -125,6 +131,8 @@ export default function App({
     });
 
     loading.setState(this.state.isLoading);
+    
+    breadcrumb.setState(this.state.paths);
   };
 
   const fetchNodes = async (id) => {
