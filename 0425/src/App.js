@@ -79,6 +79,12 @@ export default function App({
 
   const imageViewer = new ImageViewer({
     $target,
+    onClose: () => {
+      this.setState({
+        ...this.state,
+        selectedImageUrl: null,
+      });
+    },
   });
 
   this.setState = (nextState) => {
