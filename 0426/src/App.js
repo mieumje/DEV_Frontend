@@ -4,5 +4,8 @@ export default function App({
 }){
   const header = new Header({
     $target,
+    onKeywordInput: (keyword) => {
+      console.log(keyword);
+    }
   })
 }
