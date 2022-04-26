@@ -2,6 +2,7 @@ export default function Keyword({
   $target,
   initialState,
   onKeywordInput,
+  onEnter,
 }){
   const $keyword = document.createElement('input');
   $keyword.className = 'Keyword';
@@ -16,6 +17,10 @@ export default function Keyword({
   }
 
   $keyword.addEventListener('keyup', e => {
-    onKeywordInput(e.target.value);
+    if (e.key === 'Enter') {
+      onEnter();
+    } else {
+      onKeywordInput(e.target.value);
+    }
   })
 }

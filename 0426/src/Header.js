@@ -4,6 +4,7 @@ export default function Header({
   $target,
   initialState,
   onKeywordInput,
+  onEnter,
 }){
   const $header = document.createElement('header');
   $header.className = 'Header';
@@ -32,5 +33,6 @@ export default function Header({
       keyword: this.state.keyword,
     },
     onKeywordInput,
+    onEnter
   });
 }
