@@ -13,10 +13,12 @@ export default function Header({
   this.state = initialState;
 
   this.setState = nextState => {
-    this.state= nextState;
-    keyword.setState({
-      keyword: this.state.keyword,
-    });
+    if (this.state.keyword !== nextState.keyword) {
+      this.state= nextState;
+      keyword.setState({
+        value: this.state.keyword,
+      });
+    }
   };
 
   const $title = document.createElement('h1');

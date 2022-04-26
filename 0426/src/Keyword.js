@@ -12,7 +12,7 @@ export default function Keyword({
 
   this.setState = nextState => {
     this.state = nextState;
-    $keyword.value = this.state.keyword;
+    $keyword.value = this.state.value;
   }
 
   $keyword.addEventListener('keyup', e => {

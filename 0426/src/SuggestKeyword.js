@@ -1,6 +1,7 @@
 export default function SuggestKeyword({
   $target,
   initialState,
+  onKeywordSelect,
 }){
   const $suggest = document.createElement('div');
   $suggest.className = 'Keywords';
@@ -24,6 +25,13 @@ export default function SuggestKeyword({
 
     $suggest.style.display = this.state.length > 0 ? 'block' : 'none';
   };
+
+  $suggest.addEventListener('click', e => {
+    const $li = e.target.closest('li');
+    if ($li) {
+      onKeywordSelect($li.textContent);
+    }
+  })
 
   this.render();
 }
