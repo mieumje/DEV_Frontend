@@ -15,7 +15,10 @@ export default function App({
     header.setState({
       keyword: this.state.keyword,
     });
-    suggestKeyword.setState(this.state.keywords);
+    
+    suggestKeyword.setState({
+      keywords: this.state.keywords,
+    });
   };
 
 
@@ -38,9 +41,11 @@ export default function App({
 
   const suggestKeyword = new SuggestKeyword({
     $target,
-    initialState: this.state.keywords,
+    initialState: {
+      keywords: this.state.keywords,
+      cursor: -1,
+    },
     onKeywordSelect: (keyword) => {
-      console.log(keyword);
       this.setState({
         ...this.state,
         keyword,
