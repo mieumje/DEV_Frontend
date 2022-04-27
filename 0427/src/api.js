@@ -1,8 +1,8 @@
-const API_END_POINT = 'https://todo-api.roto.codes/roto'
+const API_END_POINT = 'https://todo-api.roto.codes/mieumje'
 
-export const request = async(url, options) => {
+export const request = async(url) => {
   try {
-    const res = await fetch(`${API_END_POINT}${url}`, options)
+    const res = await fetch(`${API_END_POINT}${url}`)
 
     if (!res.ok) {
       throw new Error('호출 실패')
