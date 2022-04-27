@@ -2,6 +2,7 @@ import { request } from "./api.js";
 import Header from "./Header.js";
 import SuggestKeyword from "./SuggestKeyword.js";
 import SearchResults from "./SearchResults.js";
+import debounce from "./debounce.js";
 
 export default function App({
   $target,
@@ -35,7 +36,7 @@ export default function App({
     initialState: {
       keyword: this.state.keyword,
     },
-    onKeywordInput: async (keyword) => {
+    onKeywordInput: debounce(async (keyword) => {
       if (keyword.trim().length > 1) {
         const keywords = await request(`/keywords?q=${keyword}`);
       
@@ -44,7 +45,7 @@ export default function App({
           keywords,
         });
       }
-    },
+    }, 300),
     onEnter: () => {
       fetchCatsImage();
     }
