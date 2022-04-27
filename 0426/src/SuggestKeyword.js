@@ -19,6 +19,7 @@ export default function SuggestKeyword({
 
   this.render = () => {
     const { keywords , cursor } = this.state;
+    console.log(keywords)
     $suggest.innerHTML = `
       <ul>
         ${keywords.map((keyword, index) => `
