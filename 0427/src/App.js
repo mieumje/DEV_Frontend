@@ -14,6 +14,12 @@ export default function App({
       title: '미완료된 일',
       todos: [],
     },
+    onDrop: async (todoId) => {
+      await request(`/${todoId}/toggle`, {
+        method: 'PUT',
+      });
+      await fetchTodos();
+    }
   });
 
   const completedTodoList = new TodoList({
@@ -22,6 +28,12 @@ export default function App({
       title: '완료된 일',
       todos: [],
     },
+    onDrop: async (todoId) => {
+      await request(`/${todoId}/toggle`, {
+        method: 'PUT',
+      });
+      await fetchTodos();
+    }
   });
 
   this.setState = nextState => {
