@@ -1,11 +1,13 @@
 import { request } from "./api.js";
+import TaskManger from "./TaskManager.js";
 import TaskQueue from "./TaskQueue.js";
 import TodoList from "./TodoList.js";
 
 export default function App({
   $target,
 }){
-  const tasks = new TaskQueue();
+  //const tasks = new TaskQueue();
+  const tasks = new TaskManger;
   this.state = {
     todos: [],
   };
@@ -26,10 +28,15 @@ export default function App({
         todos: nextTodos,
       });
 
-      tasks.addTask(async () => {
+      /*tasks.addTask(async () => {
         await request(`/${todoId}/toggle`, {
           method: 'PUT',
         });
+      });*/
+
+      tasks.addTask({
+        url: `/${todoId}/toggle`,
+        method: 'PUT',
       });
       
     }
@@ -51,10 +58,15 @@ export default function App({
         todos: nextTodos,
       });
 
-      tasks.addTask(async () => {
+      /*tasks.addTask(async () => {
         await request(`/${todoId}/toggle`, {
           method: 'PUT',
         });
+      });*/
+
+      tasks.addTask({
+        url: `/${todoId}/toggle`,
+        method: 'PUT',
       });
       
     }
