@@ -8,6 +8,7 @@
     "main main aside"
     ". . aside"
     "footer footer footer";
+  grid-gap: 10px;
 }
 
 .container > * {
