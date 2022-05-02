@@ -4,16 +4,19 @@
   border: 2px solid;
   margin: 100px;
   perspective: 300px;
-  perspective-origin: 50% 50%;
 }
 
 .container .item {
   width: 150px;
   height: 150px;
   background-color: skyblue;
-  transition-duration: 1s;
+  transform: rotateY(45deg);
+  transform-style: preserve-3d;
 }
 
-.container .item:hover {
-  transform: rotateY(45deg);
+.container .item .box {
+  width: 100px;
+  height: 100px;
+  background-color: aquamarine;
+  transform: rotateX(45deg);
 }
