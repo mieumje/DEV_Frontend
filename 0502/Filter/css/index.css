@@ -1,5 +1,5 @@
 .container {
-  filter: blur(10px);
+  filter: grayscale(50%); /* 기본 값 100% */
 }
 
 .container .item {
