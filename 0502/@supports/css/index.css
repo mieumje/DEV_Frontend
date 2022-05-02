@@ -1,0 +1,28 @@
+body {
+  background-color: skyblue;
+}
+.container {
+  width: 200px;
+  height: 200px;
+  border: 2px solid;
+  position: absolute;
+  top: 30px;
+  left: 50px;
+}
+.item {
+  width: 150px;
+  height: 250px;
+  border: 2px solid;
+  background-color: orange;
+}
+@supports (backdrop-filter: blur()) {
+  .container {
+    backdrop-filter: blur(200px);
+  }
+}
+@supports not (backdrop-filter: blur()) {
+  .container {
+    background-image: linear-gradient(beige, green);
+  }
+}
+
