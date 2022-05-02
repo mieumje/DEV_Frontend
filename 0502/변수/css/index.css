@@ -21,3 +21,14 @@
 .success {
   background-color: var(--color-success);
 }
+
+.container {
+  --color-container: brown;
+}
+
+.item {
+  width: 100px;
+  height: 100px;
+  border: 2px solid;
+  background-color: var(--color-container);
+}
