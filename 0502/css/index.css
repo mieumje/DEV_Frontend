@@ -1,0 +1,19 @@
+.container {
+  width: 150px;
+  height: 150px;
+  border: 2px solid;
+  margin: 100px;
+}
+
+.container .item {
+  width: 150px;
+  height: 150px;
+  background-color: skyblue;
+  transition-duration: 1s;
+  /* transform-origin: 50% 50%; 기본 값*/
+  transform-origin: 100% 100%;
+}
+
+.container .item:hover {
+  transform: rotate(45deg);
+}
