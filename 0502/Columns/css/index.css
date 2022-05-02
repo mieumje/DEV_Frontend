@@ -1,5 +1,6 @@
 .container {
   border: 2px solid;
-  column-count: 3; 
-  column-width: 500px; /* 지정한 px을 기준으로 최적의 너비를 자동으로 판단 */
+  column-count: 2; 
+  column-width: auto;
+  column-rule: 4px solid red;
 }
