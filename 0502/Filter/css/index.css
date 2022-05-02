@@ -1,5 +1,5 @@
 .container {
-  filter: contrast(80%) /* 기본 값 100% */
+  filter: opacity(10%) /* 기본 값 100% */
 }
 
 .container .item {
