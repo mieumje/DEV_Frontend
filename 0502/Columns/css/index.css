@@ -4,4 +4,5 @@
   column-rule-width: 4px;
   column-rule-color: antiquewhite;
   column-rule-style: dashed;
+  column-gap: 50px; /* 기본 값 normal */
 }
