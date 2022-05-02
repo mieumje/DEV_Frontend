@@ -1,0 +1,13 @@
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: aquamarine;
+}
+
+/* @media 타입 and (기능) { 스타일 } */
+@media screen and (max-width: 700px) {
+  .box {
+    width: 200px;
+    background-color: royalblue;
+  }
+}
