@@ -1,4 +1,5 @@
 .container {
   border: 2px solid;
-  column-count:  2/*기본 값 1 : 다단에서 단이 1개만 있다는 뜻*/
+  column-count: 3; 
+  column-width: 500px; /* 지정한 px을 기준으로 최적의 너비를 자동으로 판단 */
 }
