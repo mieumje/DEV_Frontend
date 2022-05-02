@@ -1,22 +1,32 @@
 .container {
   width: 150px;
-  height: 150px;
+  height: 200px;
   border: 2px solid;
-  margin: 100px;
   perspective: 300px;
 }
 
 .container .item {
   width: 150px;
-  height: 150px;
-  background-color: skyblue;
-  transform: rotateY(45deg);
-  transform-style: preserve-3d;
+  height: 200px;
+  font-size: 40px;
+  transition-duration: 1s;
+  backface-visibility: hidden;
 }
 
-.container .item .box {
-  width: 100px;
-  height: 100px;
-  background-color: aquamarine;
-  transform: rotateX(45deg);
+.container .item.front {
+  background-color: skyblue;
+  position: absolute;
+}
+
+.container .item.back {
+  background-color:bisque;
+  transform: rotateY(-180deg);
+}
+
+.container:hover .item.front {
+  transform: rotateY(180deg);
+}
+
+.container:hover .item.back {
+  transform: rotateY(0);
 }
