@@ -1,0 +1,4 @@
+.container {
+  border: 2px solid;
+  column-count:  2/*기본 값 1 : 다단에서 단이 1개만 있다는 뜻*/
+}
