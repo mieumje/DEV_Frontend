@@ -1,0 +1,23 @@
+:root { /* 가상 클래스 선택자 - 전역으로 사용하기 위해*/
+  --color-primary: royalblue; /* royalblue 색상의 변수 생성 */
+  --color-dange: red; /* red 색상의 변수 생성 */
+  --color-success: yellowgreen; /* yellowgreen 색상의 변수 생성 */
+}
+
+.box {
+  width: 200px;
+  height: 70px;
+  border: 2px solid;
+}
+
+.primary {
+  background-color: var(--color-primary); /* 변수를 사용하기 위해 var() 함수를 실행하고, 인수에 변수를 담아야 한다. */
+}
+
+.danger {
+  background-color: var(--color-dange);
+}
+
+.success {
+  background-color: var(--color-success);
+}
