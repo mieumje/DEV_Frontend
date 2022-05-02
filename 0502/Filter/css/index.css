@@ -1,5 +1,5 @@
 .container {
-  filter: invert(80%) /* 기본 값 100% */
+  filter: drop-shadow(10px 20px 10px red) /* x축으로의 거리, y축으로의 거리, 그림자의 흐림 정도 색상*/
 }
 
 .container .item {
