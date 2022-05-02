@@ -1,7 +1,6 @@
 :root { /* 가상 클래스 선택자 - 전역으로 사용하기 위해*/
   --color-primary: royalblue; /* royalblue 색상의 변수 생성 */
   --color-danger: red; /* red 색상의 변수 생성 */
-  --color-success: yellowgreen; /* yellowgreen 색상의 변수 생성 */
 }
 
 .box {
@@ -20,7 +19,7 @@
 }
 
 .success {
-  background-color: var(--color-danger);
+  background-color: var(--color-success, orange);
 }
 
 .container {
