@@ -1,0 +1,13 @@
+.container {
+  filter: blur(10px);
+}
+
+.container .item {
+  width: 120px;
+  height: 120px;
+  background-image: linear-gradient(skyblue, green);
+}
+
+.container img {
+  width: 220px;
+}
