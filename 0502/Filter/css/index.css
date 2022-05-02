@@ -11,3 +11,13 @@
 .container img {
   width: 220px;
 }
+
+.cover {
+  width: 150px;
+  height: 200px;
+  border: 4px solid;
+  position: fixed;
+  top: 30px;
+  left: 30px;
+  backdrop-filter: blur(10px);
+}
