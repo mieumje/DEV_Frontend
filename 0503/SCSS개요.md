@@ -629,3 +629,210 @@ left라는 값에서 파악할 수 있는 100% 너비에서 50px를 제외한 �
   color: blue;
 }
 ```
+
+삼항연산자는 if() 함수에 3개 인수를 주어 사용할 수 있다.
+
+```CSS
+/* if(조건, true일 때 실행할 data, false일 때 실행할 data) */
+/* SCSS */
+@mixin large-text($size: 30px) {
+    font-size: if($size < 30px, 30px, $size);
+    font-weight: bold;
+    font-family: sans-serif;
+    color: blue;
+}
+
+.box-a {
+    width: 100px;
+    height: 200px;
+    @include large-text;
+}
+
+.box-b {
+    width: 500px;
+    @include large-text(40px);
+}
+
+.box-c {
+    width: 500px;
+    @include large-text(10px);
+}
+
+/* CSS */
+.box-a {
+  width: 100px;
+  height: 200px;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: sans-serif;
+  color: blue;
+}
+
+.box-b {
+  width: 500px;
+  font-size: 40px;
+  font-weight: bold;
+  font-family: sans-serif;
+  color: blue;
+}
+
+.box-c {
+  width: 500px;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: sans-serif;
+  color: blue;
+}
+```
+
+mixin 규칙은 단순 CSS 속성, 값만 적는 것이 아니라 중첩 등 다양한 Sass 내용을 mixin 규칙 내부에서 사용할 수 있다. 아래처럼 mixin 내부에서 또 다른 mixin 내용을 include 규칙으로 가져와 활용할 수 있다.
+
+```CSS
+/* SCSS */
+@mixin reset-margin {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@mixin section {
+    font-size: 20px;
+    line-height: 1.4;
+    color: blue;
+    h1 {
+        font-size: 40px;
+        font-weight: bold;
+        @include reset-margin;
+        &::after {
+            content: "!!";
+        }
+    }
+}
+
+.section {
+    @include section;
+}
+
+/* CSS */
+.section {
+  font-size: 20px;
+  line-height: 1.4;
+  color: blue;
+}
+.section h1 {
+  font-size: 40px;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.section h1::after {
+  content: "!!";
+}
+```
+
+인수를 몇 개가 들어오는지 모를 때 가변 인수를 활용해 한번에 받아서 사용할 수 있다. 자바스크립트의 나머지 매개변수($rest)와 비슷하다. 가변 인수는 (...)으로 사용할 수 있다.
+
+```CSS
+/* SCSS */
+@mixin bg($w, $h, $rest...) {
+    width: $w;
+    height: $h;
+    background: $rest;
+}
+
+.box {
+    @include bg(
+        100px,
+        200px,
+        url("/imgaes.a.png") no-repeat center,
+        url("/imgaes.b.png") repeat-x,
+        url("/imgaes.c.png") repeat-y center / contain
+    );
+    /* background: 
+         url("/imgaes.a.png") no-repeat center, 
+         url("/imgaes.b.png") repeat-x, 
+         url("/imgaes.c.png") repeat-y center / contain;
+    */
+}
+
+/* CSS */
+.box {
+  width: 100px;
+  height: 200px;
+  background: url("/imgaes.a.png") no-repeat center, url("/imgaes.b.png") repeat-x, url("/imgaes.c.png") repeat-y center/contain;
+}
+```
+
+전개 연산자를 mixin 규칙의 매개변수에서만 활용하는 것이 아니라 리스트 데이터를 전개해서 매개변수로 넣어주는 역할을 할 수 있다.
+
+```CSS
+/* SCSS */
+@mixin spread($t, $r, $b, $l) {
+    margin-top: $t;
+    margin-right: $r;
+    margin-bottom: $b;
+    margin-left: $l;
+}
+
+.box {
+    $m: 10px 20px 30px 40px; /* 리스트 데이터 */
+    @include spread($m...);
+}
+
+/* CSS */
+.box {
+  margin-top: 10px;
+  margin-right: 20px;
+  margin-bottom: 30px;
+  margin-left: 40px;
+}
+
+```
+
+리스트 데이터를 변수에 담지 않고, 그대로 적고 전개 연산자를 활용하여 작성할수도 있다.
+
+```CSS
+/* SCSS */
+.box {
+    $m: 10px 20px 30px 40px; /* 리스트 데이터 */
+    @include spread($m...);
+    @include spread(10px 20px 30px 40px...);
+}
+```
+
+Sass 보간과 전개 연산자를 통해 동시에 margin과 padding의 개별 속성을 지정할 수 있다.
+
+```CSS
+/* SCSS */
+@mixin spread($p, $t, $r, $b, $l) {
+    #{$p}: {
+        top: $t;
+        right: $r;
+        bottom: $b;
+        left: $l;
+    };
+}
+
+.box {
+    $m: 10px 20px 30px 40px;
+    @include spread(margin, $m...);
+    @include spread(padding, 10px 20px 30px 40px...);
+}
+
+/* CSS */
+.box {
+  margin-top: 10px;
+  margin-right: 20px;
+  margin-bottom: 30px;
+  margin-left: 40px;
+  padding-top: 10px;
+  padding-right: 20px;
+  padding-bottom: 30px;
+  padding-left: 40px;
+}
+```
+
+
+
+
