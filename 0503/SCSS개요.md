@@ -347,3 +347,69 @@ $path: "-assets/images";
 ```
 
 자바스크립트 처럼 SCSS에서는 보간을 사용할 수 있다. 자바스크립트와는 달리 ${}형태가 아닌, #{}형태로 사용할 수 있다.
+
+---
+
+## 변수, 데이터, 연산자 2
+
+Sass에는 Numbers라는 숫자 데이터가 존재한다. px 단위같이 단위가 붙어 있는 데이터도 숫자 단위로 취급한다.
+
+```CSS
+/* Numbers */
+$number1: 1;
+$number2: .82;
+$number3: 20px;
+$number4: 2fr;
+```
+
+문자 데이터는 CSS 속성에 값으로 사용할 수 있는 모든 문자 데이터들을 의미한다. CSS에서 사용할 수 있는 문자로 된 값이나 ("")로 묶여진 모든 값은 문자 데이터이다.
+
+```CSS
+/* Strings */
+$string1: bold;
+$string2: absolute;
+$string3: "img/images/";
+```
+
+색상 데이터가 존재한다. CSS에서 만들 수 있는 모든 색상은 색상 데이터에 해당된다.
+
+```CSS
+/* Colors */
+$color1: blue;
+$color2: yellowgreen;
+$color3: rgba(255,0,0,.5);
+$color4: #ffff00;
+```
+
+Boolean 데이터도 존재한다. true, false를 적으면 boolean 데이터로 취급이 되고, boolean 데이터를 활용할 수 있는 조건문도 있다.
+
+```CSS
+/* Booleans */
+$boolean1: true;
+$boolean2: false;
+```
+
+Null 데이터도 존재한다. Null 값을 가진 요소는 컴파일되지 않는다.
+
+```CSS
+/* Null */
+$null: null;
+```
+
+자바스크립트의 배열이나 객체데이터와 유사하게 Sass에는 리스트 데이터가 있다. ()를 통해 리스트 형태로 사용할 수 있다. 배열 데이터처럼 각각의 아이템을 반복처리하거나 인덱싱하여 처리할 수 있다. 소괄호()를 제거하더라고 리스트로 사용할 수 있다. 그리고 소괄호()를 제거하고, 쉼표(,)를 제거하더라도 리스트로 사용할 수 있다.
+
+```CSS
+/* Lists */
+/* [0, 1, 2, ,3] */
+$list1: (10px, 20px, 30px, 40px);
+$list2: 10px, 20px, 30px;
+$list2: 10px 20px 30px;
+```
+
+자바스크립트의 객체 데이터와 유사한 Maps 데이터도 존재한다. 차이점은 중괄호를 사용하지 않고 소괄호를 사용한다. 리스트 데이터와 달리 소괄호()는 생략할 수 없다.
+
+```CSS
+/* { key : value } 형태의 자바스크립트 객체데이터 */
+$map1: ( key : value );
+$map2: ( a: apple, b : banana, c : cherry );
+```
