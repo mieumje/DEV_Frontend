@@ -200,3 +200,150 @@ ul li, ol li {
 ```
 
 쉼표를 통해 다중 선택자를 사용할 수 있다. 선택된 선택자에 대해 동일하게 중첩이 적용된다.
+
+---
+
+## 변수, 데이터, 연산자 1
+변수를 선언할 때 ($)를 사용하고, 변수의 이름을 지정한 후 (:)를 (=)대신 적고 값을 추가한다.
+
+```CSS
+/* let size = 100; */
+$size: 100;
+$src: "img/logo.jpg";
+$color-blue: royalblue;
+$color-gray: #333;
+```
+
+```CSS
+/* SCSS */
+$size: 100;
+$src: "img/logo.jpg";
+$color-blue: royalblue;
+$color-gray: #333;
+$w: 100px;
+
+.box-a {
+    width: $w;
+    height: $w;
+    margin: $w;
+}
+
+/* CSS */
+.box-a {
+  width: 100px;
+  height: 100px;
+  margin: 100px;
+}
+```
+
+이렇게 변수를 활용해 재활용 할 수 있다. 변수는 유효범위를 갖고 있는데, 변수가 선언된 블록 내에서만 유효 범위를 갖는다.
+
+```CSS
+.box-a {
+    $h: 200px;
+    width: $w;
+    height: $h;
+    margin: $w;
+}
+.box-b {
+    height: $h; /* Error : Undefined variable */
+}
+```
+
+정의되지 않은 변수를 사용하고 있다는 에러가 발생한다. 변수가 선언된 블록 안에서만 사용할 수 있고, 범위 밖에선 사용할 수 없다. 자바스크립트의 let과 동일하다.
+
+Sass에서는 유효 범위를 바꿔줄 수 있는 플래그가 있다.
+
+```CSS
+/* SCSS */
+.box-a {
+    $h: 200px !global;
+    width: $w;
+    height: $h;
+    margin: $w;
+}
+.box-b {
+    height: $h;
+}
+
+/* CSS */
+.box-a {
+  width: 100px;
+  height: 200px;
+  margin: 100px;
+}
+
+.box-b {
+  height: 200px;
+}
+```
+
+!를 통해 추가하는 키워드를 플래그라고 한다. !global 플래그를 통해 범위를 전역으로 변경할 수 있다.
+
+```CSS
+/* SCSS */
+$w: 100px;
+
+.box-a {
+    $w: 777px;
+    $h: 200px !global;
+    width: $w;
+    height: $h;
+    margin: $w;
+}
+.box-b {
+    width: $w;
+    height: $h;
+}
+
+/* CSS */
+.box-a {
+  width: 777px;
+  height: 200px;
+  margin: 777px;
+}
+
+.box-b {
+  width: 100px;
+  height: 200px;
+}
+```
+
+변수를 재할당하여 사용할 수 있다. 재할당된 변수는 지역변수로 활용된다. 전역변수에는 영향이 없다.
+
+```CSS
+/* SCSS */
+$primary : blue;
+
+.box {
+    $primary: orange !default;
+    background-color: $primary;
+}
+
+/* CSS */
+.box {
+  background-color: blue;
+}
+```
+
+!default 플래그를 통해 변수에 할당된 값이 있는 경우는 해당 변수 값을 사용하겠다고 지정할 수 있다.
+
+
+```CSS
+/* SCSS */
+// 자바스크립트 보간 `Hello ${data}`
+
+$name: "github";
+$path: "-assets/images";
+
+.box {
+    background-image: url("#{$path}/#{$name}.png");
+}
+
+/* CSS */
+.box {
+  background-image: url("-assets/images/github.png");
+}
+```
+
+자바스크립트 처럼 SCSS에서는 보간을 사용할 수 있다. 자바스크립트와는 달리 ${}형태가 아닌, #{}형태로 사용할 수 있다.
