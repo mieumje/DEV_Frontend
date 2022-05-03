@@ -555,3 +555,77 @@ left라는 값에서 파악할 수 있는 100% 너비에서 50px를 제외한 �
 }
 ```
 
+---
+
+## 재활용
+
+재활용할 스타일들을 정의해서 사용하는 개념이다. 재활용할 스타일을 정의하기 위해 (@)으로 시작하는 (@mixin) 규칙을 사용할 수 있다. 함수를 만들듯이 이름을 지정할 수 있다.
+
+만들어 놓은 스타일들을 한번에 사용하고 싶다면 (@)으로 시작하는 (@include) 규칙을 통해 사용할 수 있다.
+
+```CSS
+/* SCSS */
+@mixin large-text {
+    font-size: 30px;
+    font-weight: bold;
+    font-family: sans-serif;
+    color: blue;
+}
+
+.box-a {
+    width: 100px;
+    height: 200px;
+    @include large-text;
+}
+
+/* CSS */
+.box-a {
+  width: 100px;
+  height: 200px;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: sans-serif;
+  color: blue;
+}
+```
+
+자바스크립트의 함수에서 매개변수를 활용하듯 Sass에서도 활용이 가능하다. include 규칙에서 넘겨주는 매개변수를 mixin에서 받을 때 기본 값도 지정이 가능하다.
+
+```CSS
+/* SCSS */
+@mixin large-text($size: 30px) {
+    font-size: $size;
+    font-weight: bold;
+    font-family: sans-serif;
+    color: blue;
+}
+
+.box-a {
+    width: 100px;
+    height: 200px;
+    @include large-text;
+}
+
+.box-b {
+    width: 500px;
+    @include large-text(40px);
+}
+
+/* CSS */
+.box-a {
+  width: 100px;
+  height: 200px;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: sans-serif;
+  color: blue;
+}
+
+.box-b {
+  width: 500px;
+  font-size: 40px;
+  font-weight: bold;
+  font-family: sans-serif;
+  color: blue;
+}
+```
