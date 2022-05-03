@@ -413,3 +413,145 @@ $list2: 10px 20px 30px;
 $map1: ( key : value );
 $map2: ( a: apple, b : banana, c : cherry );
 ```
+
+---
+
+## 변수, 데이터, 연산자 3
+
+
+산술 연산자 종류
+| 1 | 2 | 3 | 4 | 5 |
+|---|---|---|---|---|
+|+|-|*|/|%|
+
+
+```CSS
+/* SCSS */
+.box {
+  width: 100px + 200px;
+  height: 200px - 50px;
+  margin: 200px * 2;
+  opacity: 10 % 3;
+  top: 20px / 2;
+}
+
+/* CSS */
+.box {
+  width: 300px;
+  height: 150px;
+  margin: 400px;
+  opacity: 1;
+  top: 20px/2; /* 10이 아니라 그대로 입력된다. */
+}
+```
+
+나누기 연산자를 사용할 때 문제가 발생하는 이유는 다음과 같다.
+
+```CSS
+.box {
+  background-position: 100px 100px; /* 요소의 배경이미지의 위치값 top, left를 지정 */
+  background-size: 200px 200px; /* 요소의 배경이미지의 가로 너비, 세로 너비를 지정 */
+}
+```
+
+```CSS
+.box {
+  background-position: 100px 100px;
+  background-size: 200px 200px;
+  /* background-position과 background-size 속성은 background 단축 속성으로 지정이 가능하다 */
+  background: 100px 100px 200px 200px;
+}
+```
+
+background 단축속성으로 지정할 때 띄어쓰기로 지정하게된다. background-position, background-size 개별 속성으로 지정할 땐 구분이 가능하지만, 단축속성으로 지정한 경우 어떤 곳이 top, left 인지, 가로, 세로 너비인지 구분하기 어렵다.
+
+
+background 단축속성에서 수치를 구분하기 위해 position과 size 사이에 슬래시(/) 기호를 넣고 구분하게 된다.
+
+```CSS
+.box {
+  background: 100px 100px / 200px 200px;
+}
+```
+
+이렇게 구분하기 위해 작성하는 슬래시(/) 기호는 나누기 연산자와 중복 사용된다. 순수 CSS에서 슬래시(/)를 사용하는 문법이 있기 때문에 나머지 연산자의 사용 방법을 정확히 정의해야 한다.
+
+다시 나누기 top 속성에 대해 돌아와보면 다음과 같다.
+
+```CSS
+/* SCSS */
+.box {
+  $a: 20px;
+
+  top: (20px / 2);
+  top: $a / 2;
+  top: 20px / 2 + 1px;
+}
+
+/* CSS */
+.box {
+  top: 10px;
+  top: 10px;
+  top: 11px;
+}
+```
+
+나누기 연산자를 사용하는 3가지 방법이 있다.
+1. 나누기 연산자를 사용하는 곳을 소괄호()로 묶기
+2. 변수를 지정해 사용하기
+3. 다른 연산자와 같이 사용하기
+
+연산하려는 단위가 다른 경우 연산이 작동되지 않는다.
+
+```CSS
+.box {
+  left: 100% - 50px; /* Error : 100% and 50px have incompatible units */
+}
+```
+
+Sass에서는 단위가 다르면 연산을 할 수 없는데, CSS의 calc함수를 사용하면 연산된 결과를 사용할 수 있다.
+
+```CSS
+.box {
+  left: calc(100% - 50px);
+}
+```
+
+left라는 값에서 파악할 수 있는 100% 너비에서 50px를 제외한 나머지 너비를 통해 left에 지정할 수 있다.
+
+<br>
+
+비교 연산자 종류
+
+| 1 | 2 | 3 | 4 | 5 | 6 |
+|---|---|---|---|---|---|
+|==|!=|<|>|<=|>=|
+
+```CSS
+.box {
+    $w: 100px;
+    @if ($w == 100px) {
+        width: $w;
+    } @else {
+        width: 200px;
+    }
+}
+```
+
+논리 연산자 종류
+
+| 1 | 2 | 3 |
+|---|---|---|
+|and|or|not|
+
+```CSS
+.box {
+    $w: 100px;
+    $h: 200px;
+    @if ($w == 100px and $h > 100px) {
+        width: 100px;
+        height: 200px;
+    }
+}
+```
+
