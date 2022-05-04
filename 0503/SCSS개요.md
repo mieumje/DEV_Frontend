@@ -903,8 +903,139 @@ mixin을 사용할 때 뒤쪽에 있는 중괄호 사이의 내용을 mixin쪽�
 }
 ```
 
+extend 규칙을 통해 이미 작성한 선택자의 이름을 명시하면 선택자가 가지고 있는 스타일이 확장되어 해당 부분에 적용된다. mixin은 별도의 스타일을 따로 정의해둔 후 가져와 사용하는 방법인데, mixin과 다르게 특정한 선택자로 만들어진 부분을 가져와 사용할 수 있다.
 
+```CSS
+/* SCSS */
+.btn {
+    display: inline-block;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 4px;
+    background-color: gray;
+}
 
+.btn-primary {
+    @extend .btn;
+    background-color: blue;
+}
 
+/* CSS */
+.btn, .btn-primary {
+  display: inline-block;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 4px;
+  background-color: gray;
+}
 
+.btn-primary {
+  background-color: blue;
+}
+```
 
+extend를 사용할 때 선택자 폭발이라는 주의사항이 존재한다. 전혀 의도하지 않은 하위 중첩이 발생할 수 있다.
+
+따라서 꼭 필요한 경우가 아니라면 extend가 아니라 mixin  규칙으로 제어하여 사용하는 것이 좋다.
+
+```CSS
+/* SCSS */
+.container {
+    .item {
+        color: red;
+        .box {
+            @extend .item;
+            &::after {
+                content: "";
+                @extend .item;
+            }
+        }
+    }
+}
+
+/* CSS */
+.container .item, .container .item .box::after, .container .item .box::after .box, .container .item .box {
+  color: red;
+}
+.container .item .box::after {
+  content: "";
+}
+```
+
+(%)를 사용하는 placeholder 선택자 개념이 존재한다. 해당 선택자는 extend 규칙을 사용해서 확장해서 사용하는 용도로만 사용된다.
+
+```CSS
+/* SCSS */
+%btn {
+    display: inline-block;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 4px;
+    background-color: gray;
+}
+
+.btn-primary {
+    @extend %btn;
+    background-color: blue;
+}
+
+.btn-danger {
+    @extend %btn;
+    background-color: red;
+}
+
+.btn-success {
+    @extend %btn;
+    background-color: green;
+}
+
+/* CSS */
+.btn-success, .btn-danger, .btn-primary {
+  display: inline-block;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 4px;
+  background-color: gray;
+}
+
+.btn-primary {
+  background-color: blue;
+}
+
+.btn-danger {
+  background-color: red;
+}
+
+.btn-success {
+  background-color: green;
+}
+```
+
+placeholder 선택자를 통해 extend 규칙을 활용할 때 제한사항이 존재한다. media 규칙에서 placeholder 선택자를 통해 extend 규칙을 사용하려면 media 규칙 내부에 placeholder 선택자가 선언이 되어 있어야 사용이 가능하다. 외부의 placeholder 선택자는 확장되지 않는다.
+
+```CSS
+/* SCSS */
+%btn {
+    display: inline-block;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 4px;
+    background-color: gray;
+}
+@media all and (max-width: 1400px) {
+    .box {
+        @extend %btn;
+    }
+}
+/* 위와 같은 경우는 확장되지 않는다. */
+
+@media all and (max-width: 1400px) {
+    %box {
+        color: red;
+    }
+    .box {
+        @extend %box;
+    }
+}
+/* 이런 식으로 media 규칙 내부에 placeholder 선택자가 정의되어 있어야 extend 규칙을 활용할 수 있다.*/
+```
