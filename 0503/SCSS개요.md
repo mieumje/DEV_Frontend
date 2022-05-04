@@ -1148,3 +1148,167 @@ $columns-width: 1200px;
 }
 ```
 
+if 조건문부터 each, for, while같은 다양한 반복문이 있다.
+
+
+Saas에서 if 조건문을 사용할 때 조건을 ()소괄호로 묶지 않아도 사용이 가능하다.
+
+```CSS
+/* SCSS */
+@mixin avatar($size, $circle: false) {
+    width: $size;
+    height: $size;
+    
+    @if $circle {
+        border-radius: $size / 2;
+    }
+}
+
+.square-av {
+    @include avatar(100px, $circle: false);
+}
+
+.circle-av {
+    @include avatar(100px, $circle: true);
+}
+
+/* CSS */
+.square-av {
+  width: 100px;
+  height: 100px;
+}
+
+.circle-av {
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+}
+```
+
+기본 if 조건문 구문은 위와 같고, if-else 구문과 if-else if 구문도 사용할 수 있다.
+
+each 구문의 기본적인 사용 방법은 다음과 같다.
+
+```CSS
+/* SCSS */
+@use "sass:list";
+
+$sizes: 20px 40px 80px;
+$fruits: (apple: 'A', banana: 'B', cherry: 'C');
+
+// List
+@each $size in $sizes {
+    $index: list.index($sizes, $size);
+    .icon-#{$index} {
+        height: $size;
+        width: $size;
+    }
+}
+
+// Map
+@each $key, $value in $fruits {
+    .fruit-#{$key}::after {
+        content: $value;
+    }
+}
+
+/* CSS */
+.icon-1 {
+  height: 20px;
+  width: 20px;
+}
+
+.icon-2 {
+  height: 40px;
+  width: 40px;
+}
+
+.icon-3 {
+  height: 80px;
+  width: 80px;
+}
+
+.fruit-apple::after {
+  content: "A";
+}
+
+.fruit-banana::after {
+  content: "B";
+}
+
+.fruit-cherry::after {
+  content: "C";
+}
+```
+
+기본적인 for 구문은 다음과 같다. from-through 구문에서 through를 to로 변경할 수 있다. to로 변경하면 for(i=0; i<=3; i++)에서 <= 표시를 <로 바꾸는 것과 동일하다.
+
+```CSS
+/* SCSS */
+.list {
+    position: relative;
+    top: 0;
+    @for $i from 1 through 3 {
+        .item {
+            width: 100px * $i;
+        }
+    }
+}
+
+/* CSS */
+.list {
+  position: relative;
+  top: 0;
+}
+.list .item {
+  width: 100px;
+}
+.list .item {
+  width: 200px;
+}
+.list .item {
+  width: 300px;
+}
+```
+
+기본적인 while 구문은 다음과 같다.
+
+```CSS
+/* SCSS */
+.list {
+    position: relative;
+    .item {
+        $i: 1;
+        $n: 8;
+        @while ($n > 0) {
+            &:nth-child(#{$i}) {
+                width: 100px * $n;
+                height: 100px * $i;
+            }
+            $i: $i + 1;
+            $n: $n - 2;
+        }
+    }
+}
+
+/* CSS */
+.list {
+  position: relative;
+}
+.list .item:nth-child(1) {
+  width: 800px;
+  height: 100px;
+}
+.list .item:nth-child(2) {
+  width: 600px;
+  height: 200px;
+}
+.list .item:nth-child(3) {
+  width: 400px;
+  height: 300px;
+}
+.list .item:nth-child(4) {
+  width: 200px;
+  height: 400px;
+}
+```
