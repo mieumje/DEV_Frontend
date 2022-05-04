@@ -833,6 +833,78 @@ Sass 보간과 전개 연산자를 통해 동시에 margin과 padding의 개별 
 }
 ```
 
+매개변수 이름을 전달하는 인수에 키워드를 사용해 키워드 인수라고 한다. 키워드 인수를 사용하면 매개변수의 순서와 상관없이 원하는 값을 넘겨줄 수 있다.
+
+```CSS
+/* SCSS */
+@mixin  pos($p, $t: null, $b: null, $l: null, $r: null) {
+    position: $p;
+    top: $t;
+    bottom: $b;
+    left: $l;
+    right: $r;
+}
+
+.absolute {
+    width: 100px;
+    height: 100px;
+    @include pos(absolute, $t: 100px, $l: 50px);
+}
+
+.fiexd {
+    width: 100px;
+    height: 200px;
+    @include pos(fixed, $b: 20px, $r: 20px);
+}
+
+/* CSS */
+.absolute {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 100px;
+  left: 50px;
+}
+
+.fiexd {
+  width: 100px;
+  height: 200px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+```
+
+mixin을 사용할 때 뒤쪽에 있는 중괄호 사이의 내용을 mixin쪽으로 전달할 수 있다. 해당 내용은 mixin 내부의 (@)을 사용한 content 부분에 들어가 컴파일된다.
+
+```CSS
+/* SCSS */
+@mixin icon($url) {
+    &::after {
+        content: url($url);
+        @content;
+    }
+}
+
+.box {
+    @include icon("/images/icon.png") {
+        position: absolute;
+        top: 0;
+        left: 50px;
+    };
+}
+
+/* CSS */
+.box::after {
+  content: url("/images/icon.png");
+  position: absolute;
+  top: 0;
+  left: 50px;
+}
+```
+
+
+
 
 
 
