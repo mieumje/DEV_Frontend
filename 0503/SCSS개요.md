@@ -1322,9 +1322,13 @@ $fruits: (apple: 'A', banana: 'B', cherry: 'C');
 
 scss 폴더의 파일(sass, scss)을 css 폴더로 컴파일 하는 명령어.
 
+## import
+
 > scss, sass 파일들을 관리할 때 _ 기호 사용
 
 _ 기호를 추가하고 import 규칙을 하면, 해당하는 파일의 이름으로 별도의 css 파일로 컴파일하지 않는다.
+
+## 모듈화
 
 > 모듈화
 
@@ -1334,3 +1338,118 @@ import 규칙으로 사용한 것을 use로 변경한다. 모듈화를 통해 mi
 
 
 폴더가 다른 곳의 scss 파일을 import 또는 use로 가져와 사용할 때 가져온 파일의 모듈의 namespace를 사용할 수 없다. 범위가 해당 폴더의 파일 내부에서만 적용되기 때문이다. 이 때 사용할 수 있도록 가져올 파일에서 모듈화되어 있는 부분을 forward 규칙으로 작성해준다.
+
+## Built-in Module
+
+[sass 내장 모듈] (https://sass-lang.com/documentation/modules)
+
+```SCSS
+// darken($color, $amount) 전역함수
+@use "sass:color";
+
+$primary: orange;
+div {
+  width: 200px;
+  height: 100px;
+  background-color: $primary;
+  &:hover {
+    background-color: darken($primary, 20%);
+    background-color: color.adjust($primary, $lightness: -20%); // 내장 모듈
+  }
+}
+```
+
+```SCSS
+// lighten($color, $amount) 전역함수
+@use "sass:color";
+
+$primary: orange;
+div {
+  width: 200px;
+  height: 100px;
+  background-color: $primary;
+  &:hover {
+    background-color: lighten($primary, 20%);
+    background-color: color.adjust($primary, $lightness: 20%); // 내장 모듈
+  }
+}
+```
+
+```SCSS
+// saturate($color, $amount) 색상의 채도를 올리거나 낮추는
+@use "sass:color";
+
+$primary: brown;
+div {
+  width: 200px;
+  height: 100px;
+  background-color: $primary;
+  &:hover {
+    background-color: saturate($primary, 70%);
+    background-color: color.adjust($primary, $saturation: 70%); // 내장 모듈
+  }
+}
+
+// 채도를 낮출 경우에는 전역 함수를 desaturate()으로 활용
+// 내장 모듈을 사용할 때에는 값을 음수로 지정
+```
+
+```SCSS
+// grayscale($color)
+// color.grayscale($color)
+@use "sass:color";
+
+$primary: red;
+div {
+  width: 200px;
+  height: 100px;
+  background-color: $primary;
+  &:hover {
+    background-color: grayscale($primary);
+    background-color: color.grayscale($primary); // 내장 모듈
+  }
+}
+```
+
+```SCSS
+// invert($color) 반대라는 의미의 invert
+// color.invert($color)
+@use "sass:color";
+
+$primary: skyblue;
+div {
+  width: 200px;
+  height: 100px;
+  background-color: $primary;
+  &:hover {
+    background-color: invert($primary);
+    background-color: color.invert($primary); // 내장 모듈
+  }
+}
+```
+
+```SCSS
+// list 내장 모듈
+@use "sass:list";
+
+$fruits: apple, banan, cherry;
+
+.fruits {
+    $fruits: list.append($fruits, mango);
+    @each $name in $fruits {
+        .#{$name}::after {
+            content: $name;
+        }
+    }
+}
+
+@each $name in $fruits {
+    $index: list.index($fruits, $name);
+    .fruit:nth-child(#{$index})::after {
+        content: $name;
+    }
+}
+```
+
+list.join(첫 번째 리스트, 두 번째 리스트)를 통해 리스트를 합칠 수 있다.
+자바스크립트에서 배열에 index를 통해 접근할 수 있는데, sass에서 인덱싱할 때에는 list.nth(리스트, 인덱스)로 활용할 수 있다. 리스트의 인덱스는 1번부터 시작한다.
