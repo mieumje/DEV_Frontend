@@ -1453,3 +1453,127 @@ $fruits: apple, banan, cherry;
 
 list.join(첫 번째 리스트, 두 번째 리스트)를 통해 리스트를 합칠 수 있다.
 자바스크립트에서 배열에 index를 통해 접근할 수 있는데, sass에서 인덱싱할 때에는 list.nth(리스트, 인덱스)로 활용할 수 있다. 리스트의 인덱스는 1번부터 시작한다.
+
+
+```SCSS
+// map
+@use "sass:map";
+@use "sass:string";
+
+$font: (
+    url: "https://fonts.google.com",
+    name: "Noto Sans",
+    type: "sans-serif",
+    weight: bold,
+    large-size: true
+);
+
+.heading {
+    font-family: map.get($font, name), string.unquote(map.get($font, type));
+    line-height: map.get($font, line-height); // null인 경우 해당 속성은 컴파일되지 않는다
+    @if (map.has-key($font, large-size)) {
+        font-size: 40px;
+    }
+}
+```
+
+map.get(map data, map data에서 조회할 key 값)으로 key를 통해 값을 가져올 수 있다.
+
+string.unquote()를 통해 문자열의 ""를 제거할 수 있다.
+
+map.has-key(map data, key 값)을 통해 해당 map data에 key가 존재하는지 확인할 수 있다.
+
+```SCSS
+// map data의 key, value 활용
+@use "sass:map";
+
+$fruits: (
+    apple: "APPLE",
+    banana: "BANANA",
+    cherry: "CHERRY"
+);
+
+@each $item in map.keys($fruits) {
+    .#{$item} {
+        position: relative;
+    }
+}
+
+@each $item in map.values($fruits) {
+    .#{$item} {
+        position: absolute;
+    }
+}
+```
+
+map.merge(map data1, map data2)를 통해 새로운 map data를 만들 수 있다. merge를 할 때, 중복된 key는 허용하지 않는다. 중복이 있을 경우 뒤에 쓴 map data의 value를 덮어쓰게 된다.
+
+```SCSS
+@use "sass:map";
+
+$fruitsA: (
+    apple: "APPLE",
+    banana: "BANANA",
+    cherry: "CHERRY"
+);
+
+$fruitsB: (
+    orange: "ORANGE",
+    apple: "APPLE"
+);
+
+$fruits: map.merge($fruitsA, $fruitsB);
+
+@each $key, $value in $fruits {
+    .#{$key}::after {
+        content: $value;
+    }
+}
+```
+
+map.remove(map data, key)를 통해 key에 해당하는 value를 삭제한 후 새로운 map data를 반환한다.
+
+```SCSS
+@use "sass:map";
+
+$fruits: (
+    apple: "APPLE",
+    banana: "BANANA",
+    cherry: "CHERRY",
+    orange: "ORANGE",
+    strawberry: "STRAWBERRY"
+);
+
+$fruits: map.remove($fruits, orange);
+
+@each $key, $value in $fruits {
+    .#{$key}::after {
+        content: $value;
+    }
+}
+```
+
+자바스크립트의 math 객체를 사용하듯, sass에서도 math 내장 모듈을 사용할 수 있다. 대부분의 내용은 자바스크립트와 동일하다.
+
+is-unitless는 해당하는 데이터의 특정한 단위가 붙어있지 않은지를 파악하는 메서드이다.
+
+compatible은 두 개의 데이터를 연산할 수 있는지를 반환하는 메서드이다.
+
+```SCSS
+@use "sass:math";
+
+.box {
+    _ceil: math.ceil(10.47px); // 올림
+    _floor: math.floor(10.47px); // 내림
+    _round: math.round(10.47px); // 반올림
+    _round: math.round(10.5px);
+    _max: math.max(10px, 20px, 30px);
+    _min: math.min(10px, 20px, 30px);
+    _abs: math.abs(-20px);
+    _is-unitless: math.is-unitless(20px);
+    _is-unitless: math.is-unitless(20);
+    _compatible: math.compatible(10px, 20px);
+    _compatible: math.compatible(10px, 100%);
+}
+```
+
