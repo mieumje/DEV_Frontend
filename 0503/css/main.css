@@ -1,8 +1,15 @@
-.main {
+.your-style {
   background-color: orange;
-  border: 4px solid yellowgreen;
-  width: 200px;
-  height: 200px;
+  color: yellowgreen;
+  width: 100px;
+  height: 100px;
+}
+
+.my-style {
+  position: relative;
+  border: 4px solid orange;
+  width: 600px;
+  height: 600px;
 }
 
 /*# sourceMappingURL=main.css.map */
