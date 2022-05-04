@@ -1,7 +1,9 @@
-@import "./variables"; 
-// scss, sass 파일은 확장자 명을 적지 않아도 import가 가능
-// sass에서 import를 사용할 때, 파일 이름 앞에 _ 기호가 있는 경우 _를 생략해도 가능하다.
+@use "./variables" as var; 
+@use "./mixins";
+// use 규칙으로만 namespace를 사용할 수 있다. import 규칙은 불가능
 .main {
-  background-color: $primary;
-  border: 4px solid $success;
+  background-color: var.$primary;
+  border: 4px solid var.$success;
+  // @include square; import 규칙으로 가져오기
+  @include mixins.square(200px); // use 규칙으로 모듈화하여 가져오기
 }

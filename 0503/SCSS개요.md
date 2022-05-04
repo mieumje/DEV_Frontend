@@ -1315,10 +1315,17 @@ $fruits: (apple: 'A', banana: 'B', cherry: 'C');
 
 ## sass 설치
 > npm install -g sass
+
 전역으로 설치하여 sass 명령으로 sass, scss파일들을 css로 컴파일 할 수 있도록 설치한다.
 
 > npm scss:css
+
 scss 폴더의 파일(sass, scss)을 css 폴더로 컴파일 하는 명령어.
 
 > scss, sass 파일들을 관리할 때 _ 기호 사용
+
 _ 기호를 추가하고 import 규칙을 하면, 해당하는 파일의 이름으로 별도의 css 파일로 컴파일하지 않는다.
+
+> 모듈화
+
+import 규칙으로 사용한 것을 use로 변경한다. 모듈화를 통해 mixin이나 namesapce를 사용할 수 있다. 이름을 변경하고 싶은 경우 as로 교체하여 사용할 수 있다.
