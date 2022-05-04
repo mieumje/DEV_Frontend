@@ -1039,3 +1039,112 @@ placeholder 선택자를 통해 extend 규칙을 활용할 때 제한사항이 �
 }
 /* 이런 식으로 media 규칙 내부에 placeholder 선택자가 정의되어 있어야 extend 규칙을 활용할 수 있다.*/
 ```
+
+Sass에서 사용할 수 있는 function 규칙은 자바스크립트의 함수 개념과 동일하다. mixin 규칙과도 사용법이 매우 유사하다. 기본적인 사용법은 다음과 같다.
+
+```CSS
+/* SCSS */
+@function grid() {
+    @return 123;
+}
+
+.box1 {
+    width: grid();
+}
+
+/* CSS */
+.box1 {
+  width: 123;
+}
+```
+
+조금더 확장해보면 다음과 같이 사용할 수 있다. 그리드 시스템의 너비를 계산하는 그리드 함수를 사용하는 방법은 다음과 같다.
+
+```CSS
+/* SCSS */
+$columns-width: 1200px;
+
+@function grid($col, $total) {
+    @return $columns-width * $col / $total;
+}
+
+.box1 {
+    width: grid(1, 12);
+}
+
+.box2 {
+    width: grid(4, 12);
+}
+
+/* CSS */
+.box1 {
+  width: 100px;
+}
+
+.box2 {
+  width: 400px;
+}
+```
+
+mixin 규칙에서 사용하는 것과 동일하게 function에서도 사용이 가능하다. 그리고 커스텀 function을 사용할 때는 두 개 이상의 단어를 사용해 중복을 방지하는 것이 중요하다. grid라는 함수를 사용할 때, my-grid로 고쳐 사용하면 중복을 피할수 있다.
+
+```CSS
+/* SCSS */
+/* sass list 내장 모듈 */
+@use "sass:list";
+$columns-width: 1200px;
+
+@function my-grid($col: 1, $total: 12, $rest...) {
+    @if ($col > $total) {
+        /* throw 키워드와 동일 */
+        @error '$col must be less than $total.';
+    }
+    @if (list.length($rest) > 0){
+        @error 'Unnecessary arguments included';
+    }
+    @return $columns-width * $col / $total;
+}
+
+.box1 { width: my-grid(); }
+.box2 { width: my-grid(4, 12); }
+.box3 { width: my-grid(11); }
+.box4 { width: my-grid($total: 9); }
+.box5 { width: my-grid(7, 9); }
+.box6 {
+    $columns: 4 12;
+    width: my-grid($columns...);
+    height: my-grid(2, 9);
+    margin: calc(100% - 50px);
+    background-image: url("/images/a.png");
+    background-color: rgba(0,0,0,.2);
+}
+/* CSS */
+.box1 {
+  width: 100px;
+}
+
+.box2 {
+  width: 400px;
+}
+
+.box3 {
+  width: 1100px;
+}
+
+.box4 {
+  width: 133.3333333333px;
+}
+
+.box5 {
+  width: 933.3333333333px;
+}
+
+.box6 {
+  width: 400px;
+  height: 266.6666666667px;
+  margin: calc(100% - 50px);
+  background-image: url("/images/a.png");
+  background-color: rgba(0, 0, 0, 0.2);
+}
+```
+
