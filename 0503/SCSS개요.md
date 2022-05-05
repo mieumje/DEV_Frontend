@@ -1577,3 +1577,17 @@ compatible은 두 개의 데이터를 연산할 수 있는지를 반환하는 �
 }
 ```
 
+---
+
+## 디버그
+
+```SCSS
+.box {
+  width: 100px;
+  height: 100px;
+  @debug "";  // console.log();
+  @warn "";  // console.warn();
+  @error ""; // console.error(); 정확히는 throw와 동일하다
+}
+```
+
