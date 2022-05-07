@@ -8,20 +8,21 @@
   <script src="https://unpkg.com/vue@next"></script>
 </head>
 <body>
+  <style>
+    .orange {
+      color: orange; 
+    }
+  </style>
   <div id="app">
-    {{ counter }}
+    <div v-bind:class="{ orange: active }">{{ counter }}</div>
   </div>
   <script>
     const App = {
       data() {
         return {
-          counter: 0
+          counter: 0,
+          active: true
         }
-      },
-      mounted() {
-        setInterval(() => {
-          this.counter += 1
-        }, 1000)
       }
     }
 
