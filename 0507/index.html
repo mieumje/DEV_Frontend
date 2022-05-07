@@ -8,31 +8,25 @@
   <script src="https://unpkg.com/vue@next"></script>
 </head>
 <body>
-  <style>
-    .orange {
-      color: orange; 
-    }
-  </style>
   <div id="app">
-    <div v-bind:class="{ orange: active }">{{ counter }}</div>
-    <button v-on:click="increase">Click me!</button>
+    <div v-if="active">Hello Vue!</div>
+    <button v-on:click="toggle">Toggle</button>
   </div>
+
   <script>
     const App = {
       data() {
         return {
-          counter: 0,
-          active: true
+          active: false,
         }
       },
       methods: {
-        increase() {
-          this.counter += 1
+        toggle() {
+          this.active = !this.active
         }
       }
     }
-
-    const app = Vue.createApp(App).mount('#app')
+    Vue.createApp(App).mount('#app')
   </script>
 </body>
 </html>
