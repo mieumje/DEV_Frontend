@@ -10,7 +10,10 @@
 <body>
   <div id="app">
     <ul>
-      <fruit-item fruit-name="Orange"></fruit-item>
+      <fruit-item 
+        v-for="fruit in fruits" 
+        v-bind:fruit-name="fruit">
+      </fruit-item>
     </ul>
   </div>
 
