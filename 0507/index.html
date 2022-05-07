@@ -15,6 +15,7 @@
   </style>
   <div id="app">
     <div v-bind:class="{ orange: active }">{{ counter }}</div>
+    <button v-on:click="increase">Click me!</button>
   </div>
   <script>
     const App = {
@@ -22,6 +23,11 @@
         return {
           counter: 0,
           active: true
+        }
+      },
+      methods: {
+        increase() {
+          this.counter += 1
         }
       }
     }
