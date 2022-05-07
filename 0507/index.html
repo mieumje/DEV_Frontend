@@ -9,20 +9,25 @@
 </head>
 <body>
   <div id="app">
-    <div v-if="active">Hello Vue!</div>
-    <button v-on:click="toggle">Toggle</button>
+    <ul>
+      <fruit-item fruit-name="Orange"></fruit-item>
+    </ul>
   </div>
 
   <script>
+    const FruitItem = {
+      template: '<li>{{ fruitName }}</li>',
+      props: ['fruitName']
+    }
     const App = {
+      components: {
+        FruitItem
+      },
       data() {
         return {
-          active: false,
-        }
-      },
-      methods: {
-        toggle() {
-          this.active = !this.active
+          fruits: [
+            'Apple', 'Banana', 'Cherry'
+          ]
         }
       }
     }
