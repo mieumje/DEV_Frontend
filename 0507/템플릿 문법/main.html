@@ -8,24 +8,15 @@
   <script src="https://unpkg.com/vue@next"></script>
 </head>
 <body>
-  <style>
-    .active {
-      color: red;
-    }
-  </style>
   <div id="app">
-    <h1 v-bind:class="name">Hello Vue!</h1>
-    <input type="text" value="Hello Vue!" v-bind:disabled="disabled">
-    <div>{{ count + 2 }}</div>
+    <h1 v-bind:[attr]="'active'">Hello Vue!</h1>
   </div>
 
   <script>
     const App = {
       data() {
         return {
-          name: 'active',
-          disabled: true,
-          count: 0
+          attr: 'class'
         }
       }
     }
