@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+  <div id="app">
+    <h1>{{ count }}</h1>
+  </div>
+  
+  <script>
+    const App = {
+      // data: function ()으로 function keyword를 사용하는 일반 함수 선언으로 만들어져 있다. function keyword와 콜론 기호를 생략할 수 있다. 화살표 함수 개념이 아니다.
+      data() { // 컴포넌트 -> 재활용 할 수 있다.
+        return {  // 데이터는 함수여야 한다.
+          count: 0
+        }
+      }
+    }
+
+    const app = Vue.createApp(App);
+    const vm = app.mount('#app');
+
+    console.log(vm.count);
+    console.log(vm.$data.count);
+  </script>
+</body>
+</html>
