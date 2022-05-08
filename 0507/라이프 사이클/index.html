@@ -18,14 +18,12 @@
         return {
           msg: 'Hello Vue!'
         }
-      }, // 아래 두 라이프 사이클은 데이터를 수정하면 동작하게 된다.
-      beforeUpdate() {
-        console.log('beforeUpdate !', this.msg);
-        console.log(document.querySelector('h1').textContent);
       },
-      updated() {
-        console.log('updated !', this.msg);
-        console.log(document.querySelector('h1').textContent);
+      beforeUnmount() {
+        console.log('beforeUnmount !');
+      },
+      unmounted() {
+        console.log('unmounted !');
       }
     }
 
