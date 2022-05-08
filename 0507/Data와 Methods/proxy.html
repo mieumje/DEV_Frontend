@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const app = {
+      data: {
+        count: 0
+      }
+    }
+
+    // 첫 번째 인수 : 감시할 타겟 객체, 두 번째 인수 : 핸들러 객체
+    const proxyA = new Proxy(app.data, {
+      get() {
+        console.log('Getter')
+      },
+      set() {
+        console.log('Setter')
+      }
+    }); // ES6 버전에 나온 Proxy 생성자, Proxy 인스턴스가 생성된다.
+  </script>
+</body>
+</html>
