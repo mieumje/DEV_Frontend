@@ -20,16 +20,16 @@
         }
       },
       beforeCreate() { // vue 애플리케이션이 만들어기 직전에 실행된다.
-        console.log('befreCreate !')
+        console.log('befreCreate !', this.msg)
       },
       created() { // vue 애플리케이션이 만들어진 직후에 실행된다.
-        console.log('created !')
+        console.log('created !', this.msg)
       },
       beforeMount() { // 만들어진 vue 애플리케이션이 html 구조와 연결되기 직전에 실행된다.
-        console.log('beforeMount !')
+        console.log('beforeMount !', this.msg)
       },
       mounted() { // 만들어진 vue 애플리케이션이 html에 연결된 직후에 실행된다.
-        console.log('mounted !')
+        console.log('mounted !', this.msg)
       }
     }
 
