@@ -11,13 +11,15 @@
   <div id="app">
     <h1>{{ msg }}</h1>
     <h2 v-once>{{ msg }}</h2>
+    <div v-html="rawHTML"></div>
   </div>
 
   <script>
     const App = {
       data() {
         return {
-          msg: "hellow Vue.js !"
+          msg: "hellow Vue.js !",
+          rawHTML: '<h3 style="color: red;">Raw HTML</h3>'
         }
       }
     };
