@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+  <div id="app">
+    <h1>{{ msg }}</h1>
+  </div>
+
+  <script>
+    const App = {
+      data() {
+        return {
+          msg: 'Hello Vue!'
+        }
+      },
+      beforeCreate() { // vue 애플리케이션이 만들어기 직전에 실행된다.
+        console.log('befreCreate !')
+      },
+      created() { // vue 애플리케이션이 만들어진 직후에 실행된다.
+        console.log('created !')
+      },
+      beforeMount() { // 만들어진 vue 애플리케이션이 html 구조와 연결되기 직전에 실행된다.
+        console.log('beforeMount !')
+      },
+      mounted() { // 만들어진 vue 애플리케이션이 html에 연결된 직후에 실행된다.
+        console.log('mounted !')
+      }
+    }
+
+    const app = Vue.createApp(App); // createApp을 통해 애플리케이션 객체를 반환
+    const vm = app.mount('#app') // mount를 통해 html과 연결(id가 app인 요소를 찾아 연결), 연결하고 나면 vue 인스턴스가 반환
+  </script>
+</body>
+</html>
