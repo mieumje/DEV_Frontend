@@ -9,9 +9,7 @@
 </head>
 <body>
   <div id="app">
-    <h1>{{ fullName }}</h1>
-    <h2>{{ firstName }}</h2>
-    <h2>{{ lastName }}</h2>
+    <h1>{{ user.age }}</h1>
   </div>
 
   <script>
@@ -19,29 +17,20 @@
     const App = {
       data() {
         return {
-          firstName: 'Leon',
-          lastName: 'Miler'
-        }
-      },
-      computed: {
-        fullName: {
-          get() {
-            return `${this.firstName} ${this.lastName}`
-          },
-          set(newValue) {
-            console.log(newValue) // "Jacob Smith"
-            const [ newFirstName, newLastName ] = newValue.split(' ');
-            this.firstName = newFirstName
-            this.lastName = newLastName
+          user: {
+            name: 'MJ',
+            age: 27
           }
         }
       },
-      watch: { // 반응형 데이터를 감시, 반응형 데이터가 바뀌면 watch 옵션에 지정해 놓은 함수가 동작할 수 있다.
-        firstName() { // 감시하고 싶은 데이터를 watch 옵션에 동일한 이름으로 만들어주면 된다.
-          console.log('watch:', this.firstName)
-        },
-        fullName() {
-          console.log('watch:', this.fullName)
+      watch: {
+        user: {
+          handler(newValue, oldValue) {
+            console.log(newValue, oldValue)
+          },
+          deep: true  // user 참조형 데이터를 더 깊게 감시한다는 의미
+          // user 데이터 객체를 수정해야 감시를 했는데,
+          // user 안의 name이나 age 속성을 변경해도 deep 옵션이 있어 제대로 감시가 된다.
         }
       }
     }
