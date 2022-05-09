@@ -22,11 +22,8 @@
     }
   </style>
   <div id="app">
-    <!-- <div @click="log" class="parent">
-      <div @click="log" class="child"></div>
-    </div> -->
-    <div @click="log" class="parent">
-      <div @click.stop="log" class="child"></div>
+    <div @click.self="log" class="parent">
+      <div class="child"></div>
     </div>
   </div>
 
@@ -34,7 +31,7 @@
     const App = {
       methods: {
         log(e) {
-          console.log(e.currentTarget)
+          console.log(e.currentTarget, e.target)
         }
       }
     }
