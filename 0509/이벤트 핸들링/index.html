@@ -20,18 +20,14 @@
     }
   </style>
   <div id="app">
-    <div @wheel.passive="log" class="parent">
-      <div v-for="i in 15" class="child">
-        {{ i }}
-      </div>
-    </div>
+    <input @keyup.alt.arrow-down='log'/>
   </div>
 
   <script>
     const App = {
       methods: {
         log(e) {
-          console.log('wheel')
+          console.log('keyup')
         }
       }
     }
