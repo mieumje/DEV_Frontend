@@ -24,9 +24,17 @@
         }
       },
       computed: {
-        fullName() { // 계산헤서 출력하는 데이터라 직접 수정 X, vm.fullName = 'temp' (X)
-          return `${this.firstName} ${this.lastName}`
-        }    
+        fullName: {
+          get() {
+            return `${this.firstName} ${this.lastName}`
+          },
+          set(newValue) {
+            console.log(newValue) // "Jacob Smith"
+            const [ newFirstName, newLastName ] = newValue.split(' ');
+            this.firstName = newFirstName
+            this.lastName = newLastName
+          }
+        }
       }
     }
 
