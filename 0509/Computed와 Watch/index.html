@@ -35,6 +35,14 @@
             this.lastName = newLastName
           }
         }
+      },
+      watch: { // 반응형 데이터를 감시, 반응형 데이터가 바뀌면 watch 옵션에 지정해 놓은 함수가 동작할 수 있다.
+        firstName() { // 감시하고 싶은 데이터를 watch 옵션에 동일한 이름으로 만들어주면 된다.
+          console.log('watch:', this.firstName)
+        },
+        fullName() {
+          console.log('watch:', this.fullName)
+        }
       }
     }
 
