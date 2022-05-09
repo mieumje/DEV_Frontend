@@ -9,7 +9,12 @@
 </head>
 <body>
   <div id="app">
-    <h1>{{ user.age }}</h1>
+    <button @click="capitalize">Capitalize</button>
+    <ul>
+      <li v-for="item in fruits">
+        {{ item.name }}
+      </li>
+    </ul>
   </div>
 
   <script>
@@ -20,7 +25,12 @@
           user: {
             name: 'MJ',
             age: 27
-          }
+          },
+          fruits: [
+            { id: 1, name: 'Apple' },
+            { id: 2, name: 'Banana' },
+            { id: 3, name: 'Cherry' }
+          ]
         }
       },
       watch: {
@@ -31,6 +41,19 @@
           deep: true  // user 참조형 데이터를 더 깊게 감시한다는 의미
           // user 데이터 객체를 수정해야 감시를 했는데,
           // user 안의 name이나 age 속성을 변경해도 deep 옵션이 있어 제대로 감시가 된다.
+        },
+        fruits: {
+          handler() {
+            console.log(this.fruits)
+          },
+          deep: true
+        }
+      },
+      methods: {
+        capitalize() {
+          this.fruits.forEach(fruit => {
+            fruit.name = fruit.name.toUpperCase()
+          })
         }
       }
     }
