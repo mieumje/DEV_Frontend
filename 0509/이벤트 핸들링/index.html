@@ -8,17 +8,33 @@
   <script src="https://unpkg.com/vue@next"></script>
 </head>
 <body>
+  <style>
+    .parent {
+      width: 200px;
+      height: 100px;
+      background-color: aqua;
+      padding: 20px;
+    }
+    .child {
+      width: 100px;
+      height: 80px;
+      background-color: orange;
+    }
+  </style>
   <div id="app">
-    <a href="https://google.com" 
-       target="_blank"
-       @click.prevent.once="log">Google</a>
+    <!-- <div @click="log" class="parent">
+      <div @click="log" class="child"></div>
+    </div> -->
+    <div @click="log" class="parent">
+      <div @click.stop="log" class="child"></div>
+    </div>
   </div>
 
   <script>
     const App = {
       methods: {
         log(e) {
-          console.log(e.target)
+          console.log(e.currentTarget)
         }
       }
     }
