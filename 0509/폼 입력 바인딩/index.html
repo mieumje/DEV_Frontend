@@ -9,19 +9,14 @@
 </head>
 <body>
   <div id="app">
-    <h1>{{ msg }}</h1>
-    <input type="text"
-           v-model="msg" />
-    <!-- <input type="text"
-           :value="msg" 
-           @input="msg = $event.target.value" /> -->
+    <input v-model="checked" type="checkbox" checked/>
   </div>
 
   <script>
     const App = {
       data() {
         return {
-          msg: 'hello vue!'
+          checked: false
         }
       }
     }
