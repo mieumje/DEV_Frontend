@@ -11,12 +11,16 @@
   <div id="app">
     <a href="https://google.com" 
        target="_blank"
-       @click.prevent>Google</a>
+       @click.prevent.once="log">Google</a>
   </div>
 
   <script>
     const App = {
-
+      methods: {
+        log(e) {
+          console.log(e.target)
+        }
+      }
     }
 
     const app = Vue.createApp(App)
