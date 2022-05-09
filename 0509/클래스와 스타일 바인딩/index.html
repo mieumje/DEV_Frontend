@@ -9,46 +9,28 @@
 </head>
 <body>
   <style>
-    .title {
+    .title--large{
       font-size: 60px;
-      color: blue;
     }
-    .active {
-      color: red;
-    }
-    .title--small {
-      font-size: 40px;
-    }
-    .color--orange {
-      color: orange;
-    }
-
   </style>
   <div id="app">
-    <button @click="toggle">Toggle</button>
-    <h1 :class="classObject" class="title">{{ msg }}</h1>
+    <h1 :class="[active, title]"
+        @click="changeTitle">
+      Hello Vue!
+    </h1>
   </div>
 
   <script>
     const App = {
       data() {
         return {
-          msg: 'Hello Vue!',
-          active: false,
-          small: true,
-        }
-      },
-      computed: {
-        classObject() {
-          return {
-            active: this.active,
-            'title--small color--orange': this.small,
-          }
+          active: 'active',
+          title: 'title'
         }
       },
       methods: {
-        toggle() {
-          this.active = !this.active
+        changeTitle() {
+          this.title = 'title--large'
         }
       }
     }
