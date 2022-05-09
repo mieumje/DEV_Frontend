@@ -16,14 +16,17 @@
     .active {
       color: red;
     }
-    .small {
+    .title--small {
       font-size: 40px;
+    }
+    .color--orange {
+      color: orange;
     }
 
   </style>
   <div id="app">
     <button @click="toggle">Toggle</button>
-    <h1 :class="{ active: isActive, small: isSmall }" class="title">{{ msg }}</h1>
+    <h1 :class="{ active, 'title--small color--orange': small }" class="title">{{ msg }}</h1>
   </div>
 
   <script>
@@ -31,13 +34,13 @@
       data() {
         return {
           msg: 'Hello Vue!',
-          isActive: false,
-          isSmall: true
+          active: false,
+          small: true
         }
       },
       methods: {
         toggle() {
-          this.isActive = !this.isActive
+          this.active = !this.active
         }
       }
     }
