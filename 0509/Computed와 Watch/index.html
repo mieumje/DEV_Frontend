@@ -9,11 +9,9 @@
 </head>
 <body>
   <div id="app">
-    <ul>
-      <li v-for="todo in upperTodos">
-        {{ todo.title }}
-      </li>
-    </ul>
+    <h1>{{ user.name }}</h1>
+    <h2>{{ user.age }}</h2>
+    <h2>{{ doubleAge }}</h2>
   </div>
 
   <script>
@@ -21,24 +19,18 @@
     const App = {
       data() {
         return {
-          todos: []
+          user: {
+            name: 'MJ',
+            age: 27,
+            email: 'mieumje@kakao.com'
+          }
         }
       },
       computed: {
-        upperTodos() {
-          return this.todos.map(todo => ({
-            ...todo,
-              title: todo.title.toUpperCase(),
-          }))
+        doubleAge() {
+          console.log('Double !')
+          return this.user.age * 2
         }
-      },
-      created() { // Vue.js 애플리케이션이 생성된 직후 실행, 애플리케이션이 html과 연결되기 전의 라이프사이클
-        fetch('https://jsonplaceholder.typicode.com/todos')
-          .then(res => res.json()) // promise로 반환, response
-          .then(res => {  // result
-            console.log(res)
-            this.todos = res  // title, id  
-          })
       }
     }
 
