@@ -8,16 +8,21 @@
   <script src="https://unpkg.com/vue@next"></script>
 </head>
 <body>
+  <style>
+    [v-clock] {
+      display: none;
+    }
+  </style>
   <div id="app">
     <button @click="toggle">Toggle</button>
-    <h1 v-show="isShow">Hello v-show!</h1>
-    <h1 v-if="isShow">Hello v-if!</h1>
+    <h1 v-show="isShow" v-cloak>{{ msg }}</h1>
   </div>
 
   <script>
     const App = {
       data() {
         return {
+          msg: "Hello vue!",
           isShow: true
         }
       },
