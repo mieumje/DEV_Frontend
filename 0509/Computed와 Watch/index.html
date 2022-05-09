@@ -9,9 +9,9 @@
 </head>
 <body>
   <div id="app">
-    <h1>{{ user.name }}</h1>
-    <h2>{{ user.age }}</h2>
-    <h2>{{ doubleAge }}</h2>
+    <h1>{{ fullName }}</h1>
+    <h2>{{ firstName }}</h2>
+    <h2>{{ lastName }}</h2>
   </div>
 
   <script>
@@ -19,18 +19,14 @@
     const App = {
       data() {
         return {
-          user: {
-            name: 'MJ',
-            age: 27,
-            email: 'mieumje@kakao.com'
-          }
+          firstName: 'Leon',
+          lastName: 'Miler'
         }
       },
       computed: {
-        doubleAge() {
-          console.log('Double !')
-          return this.user.age * 2
-        }
+        fullName() { // 계산헤서 출력하는 데이터라 직접 수정 X, vm.fullName = 'temp' (X)
+          return `${this.firstName} ${this.lastName}`
+        }    
       }
     }
 
