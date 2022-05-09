@@ -10,9 +10,11 @@
 <body>
   <div id="app">
     <h1>{{ msg }}</h1>
-    <input type="text" 
+    <input type="text"
+           v-model="msg" />
+    <!-- <input type="text"
            :value="msg" 
-           @input="msg = $event.target.value" />
+           @input="msg = $event.target.value" /> -->
   </div>
 
   <script>
