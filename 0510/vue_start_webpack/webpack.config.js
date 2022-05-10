@@ -21,5 +21,8 @@ module.exports = {
     new HtmlPlugin({
       template: './src/index.html'
     })
-  ]
+  ],
+  devServer: {
+    port: 1234,
+  }
 }
