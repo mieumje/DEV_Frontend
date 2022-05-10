@@ -1,6 +1,10 @@
 <template>
-  <h1>{{ msg }}</h1>
-  <Hello />
+  <div>
+    <h1>
+      {{ msg }}
+    </h1>
+    <Hello />
+  </div>
 </template>
 
 <script>
@@ -12,8 +16,8 @@ export default {
   },
   data() {
     return {
-      msg: "hello webpack.."
-    }
+      msg: 'hello webpack..'
+    };
   }
-}
+};
 </script>
