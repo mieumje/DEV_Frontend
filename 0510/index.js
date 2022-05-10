@@ -9,8 +9,9 @@ const App = {
     }
   },
   methods: {
-    toUpper(upperName) {
-      console.log(upperName)
+    toUpper(fruit, upperName) {
+      console.log(fruit, upperName)
+      fruit.name = upperName
     }
   }
 };

@@ -13,7 +13,7 @@
       v-for="fruit in fruits"
       :key="fruit.id"
       :name="fruit.name"
-      @to-upper="toUpper">
+      @to-upper="toUpper(fruit, $event)">
 
     </upper-name>
   </div>
