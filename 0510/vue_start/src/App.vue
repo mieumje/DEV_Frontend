@@ -6,8 +6,15 @@
 export default {
   data() {
     return {
-      msg: 'Hello !@#'
+      msg: 'Hello !'
     }
   }
 }
 </script>
+
+<style lang="scss">
+$color: orange;
+h1 {
+  color: $color;
+}
+</style>

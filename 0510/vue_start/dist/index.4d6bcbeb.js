@@ -9690,6 +9690,7 @@ let initialize = ()=>{
     script = require('script:./App.vue');
     if (script.__esModule) script = script.default;
     script.render = require('template:./App.vue').render;
+    script.__cssModules = require('style:./App.vue').default;
     require('custom:./App.vue').default(script);
     script.__scopeId = 'data-v-863cd1';
     script.__file = "C:\\Users\\82105\\Desktop\\데브코스\\0510\\vue_start\\src\\App.vue";
@@ -9706,13 +9707,13 @@ if (module.hot) {
 }
 exports.default = script;
 
-},{"script:./App.vue":"iiJmB","template:./App.vue":"evi43","custom:./App.vue":"h0MjM","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iiJmB":[function(require,module,exports) {
+},{"script:./App.vue":"iiJmB","template:./App.vue":"evi43","custom:./App.vue":"h0MjM","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","style:./App.vue":"1aWWh"}],"iiJmB":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 exports.default = {
     data () {
         return {
-            msg: 'Hello !@#'
+            msg: 'Hello !'
         };
     }
 };
@@ -9736,6 +9737,6 @@ parcelHelpers.defineInteropFlag(exports);
 let NOOP = ()=>{};
 exports.default = (script)=>{};
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["aOoxC","gLLPy"], "gLLPy", "parcelRequire1829")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1aWWh":[function() {},{}]},["aOoxC","gLLPy"], "gLLPy", "parcelRequire1829")
 
 //# sourceMappingURL=index.4d6bcbeb.js.map
