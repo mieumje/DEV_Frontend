@@ -67,7 +67,13 @@ node.js에서 사용할 수 있는 여러 패키지들을 관리해주는 node.j
 
 > npm -v
 
+> npm init -y
 
+package.json 파일을 생성한다. package.json 파일을 생성하고 나면 프로젝트에 패키지들을 하나씩 설치할 수 있다.
+
+> npm install vue
+
+기존에 html 파일에서 cdn을 통해 원격의 Vue.js를 가져왔었는데, 위 명령어를 통해 직접 로컬 환경에 설치를 진행하는 것이다.
 
 
 
