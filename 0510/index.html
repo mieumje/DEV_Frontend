@@ -12,7 +12,8 @@
     <upper-name 
       v-for="fruit in fruits"
       :key="fruit.id"
-      :name="fruit.name">
+      :name="fruit.name"
+      @to-upper="toUpper">
 
     </upper-name>
   </div>
