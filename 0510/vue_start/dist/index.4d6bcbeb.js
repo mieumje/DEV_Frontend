@@ -9712,7 +9712,7 @@ parcelHelpers.defineInteropFlag(exports);
 exports.default = {
     data () {
         return {
-            msg: 'Hello vue!'
+            msg: 'Hello !@#'
         };
     }
 };
