@@ -9,9 +9,12 @@
 </head>
 <body>
   <div id="app">
-    <upper-name name="apple"></upper-name>
-    <upper-name name="banana"></upper-name>
-    <upper-name name="cherry"></upper-name>
+    <upper-name 
+      v-for="fruit in fruits"
+      :key="fruit.id"
+      :name="fruit.name">
+
+    </upper-name>
   </div>
   <script src="./index.js"></script>
 </body>

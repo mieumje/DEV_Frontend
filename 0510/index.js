@@ -1,5 +1,13 @@
 const App = {
-  
+  data() {
+    return {
+      fruits: [
+        { id: '1', name: 'apple'},
+        { id: '2', name: 'banana'},
+        { id: '3', name: 'cherry'}
+      ]
+    }
+  }
 };
 
 const app = Vue.createApp(App);
