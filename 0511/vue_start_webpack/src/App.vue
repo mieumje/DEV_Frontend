@@ -1,11 +1,13 @@
 <template>
   <h1>{{ msg }}</h1>
   <Hello>
-    <h2>Hello Vue?</h2>
-    <p>The brown fox</p>
+    <template #abc>
+      <h2>ABC</h2>
+    </template>
+    <template #xyz>
+      <h2>XYZ</h2>
+    </template>
   </Hello>
-  <Btn>click me</Btn>
-  <Btn />
 </template>
 
 <script>
