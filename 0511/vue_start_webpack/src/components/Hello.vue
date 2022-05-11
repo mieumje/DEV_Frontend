@@ -1,10 +1,16 @@
 <template>
-  <h2>Hello Vue!</h2>
+  <h1>{{ message }}</h1>
 </template>
 
-<style lang="scss">
+<script>
+export default {
+  props: ['message']
+};
+</script>
+
+<style scoped lang="scss">
 $color: skyblue;
-h2 {
+h1 {
   color: $color;
 }
 </style>

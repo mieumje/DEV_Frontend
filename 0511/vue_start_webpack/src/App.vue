@@ -1,8 +1,9 @@
 <template>
   <div>
-    <h1>Hello Vue!</h1>
-    <Btn />
-    <Hello />
+    <button @click="reverseMsg">
+      Click
+    </button>
+    <Hello :message="msg" />
   </div>
 </template>
 
@@ -12,6 +13,16 @@ import Hello from '~/components/Hello';
 export default {
   components: {
     Hello
+  },
+  data() {
+    return {
+      msg: 'Hello Vue!'
+    };
+  },
+  methods: {
+    reverseMsg() {
+      this.msg = this.msg.split('').reverse().join('');
+    }
   }
 };
 </script>
