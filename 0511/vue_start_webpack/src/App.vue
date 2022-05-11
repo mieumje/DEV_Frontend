@@ -1,7 +1,10 @@
 <template>
-  <h1 @click="currentComponent = 'World'">
-    {{ msg }}
-  </h1>
+  <button @click="currentComponent = 'Hello'">
+    Hello!
+  </button>
+  <button @click="currentComponent = 'World'">
+    World!
+  </button>
   <component :is="currentComponent" />
 </template>
 
