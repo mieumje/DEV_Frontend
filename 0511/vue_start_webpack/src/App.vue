@@ -1,9 +1,6 @@
 <template>
   <h1>{{ msg }}</h1>
-  <h1>{{ name }}</h1>
-  <Hello
-    v-model:message="msg"
-    v-model:name="name" />
+  <Hello>Hello Vue?</Hello>
 </template>
 
 <script>
@@ -15,7 +12,6 @@ export default {
   data() {
     return {
       msg: 'Hello Vue!',
-      name: 'minje'
     };
   }
 };

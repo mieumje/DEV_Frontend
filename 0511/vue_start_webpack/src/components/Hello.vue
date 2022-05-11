@@ -1,28 +1,11 @@
 <template>
-  <label>
-    <input 
-      :value="message"
-      @input="$emit('update:message', $event.target.value)">
-  </label>
-  <label>
-    <input 
-      :value="name"
-      @input="$emit('update:name', $event.target.value)">
-  </label>
+  <h1>hello</h1>
+  <slot></slot>
 </template>
 
 <script>
 export default {
-  props: {
-    message: {
-      type: String,
-      default: ''
-    },
-    name: {
-      type: String,
-      default: ''
-    }
-  }
+  
 };
 </script>
 
