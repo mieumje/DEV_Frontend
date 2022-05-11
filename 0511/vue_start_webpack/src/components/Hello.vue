@@ -1,7 +1,9 @@
 <template>
   <div>
     <h1>A</h1>
-    <h1>B</h1>
+    <h1 @click="$emit('click')">
+      B
+    </h1>
   </div>
 </template>
 
