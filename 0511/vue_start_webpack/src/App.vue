@@ -1,9 +1,10 @@
 <template>
-  <div>
-    <Hello v-bind="post" />
-  </div>
+  <h1>{{ msg }}</h1>
+  <Hello
+    class="hello"
+    style="font-size: 100px"
+    @click="msg += '!'" />
 </template>
-
 
 <script>
 import Hello from '~/components/Hello';
@@ -13,10 +14,7 @@ export default {
   },
   data() {
     return {
-      post: {
-        id: 2,
-        title: 'Hello Vue!'
-      }
+      msg: 'Hello Vue!'
     };
   }
 };

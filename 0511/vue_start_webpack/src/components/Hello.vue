@@ -1,19 +1,11 @@
 <template>
-  <div>
-    <h1>{{ id }} / {{ title }} / {{ email }}</h1>
-  </div>
+  <h1>Hello</h1>
+  <h2>Haha?!</h2>
 </template>
 
 <script>
 export default {
-  props: {
-    id: Number,
-    title: String,
-    email: {
-      type: String,
-      default: 'mieumje@kakao.com'
-    }
-  }
+  
 };
 </script>
 
