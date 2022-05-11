@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{ id }} / {{ title }}</h1>
+    <h1>{{ id }} / {{ title }} / {{ email }}</h1>
   </div>
 </template>
 
@@ -8,7 +8,11 @@
 export default {
   props: {
     id: Number,
-    title: String
+    title: String,
+    email: {
+      type: String,
+      default: 'mieumje@kakao.com'
+    }
   }
 };
 </script>
