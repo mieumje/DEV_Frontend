@@ -3,7 +3,9 @@
     <button @click="reverseMsg">
       Click
     </button>
-    <Hello :message="msg" />
+    <Hello 
+      :message="msg"
+      name="Hello" />
   </div>
 </template>
 
