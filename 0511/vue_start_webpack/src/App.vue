@@ -1,23 +1,38 @@
 <template>
-  <h1>
+  <div v-if="!isEdit">
     {{ msg }}
-  </h1>
-  <Hello ref="hello" />
+    <button @click="onEdit">
+      Edit
+    </button>
+  </div>
+  <div v-else>
+    <input
+      ref="editor"
+      v-model="msg"
+      type="text"
+      @keyup.enter="isEdit = false">
+  </div>
 </template>
 
 <script>
-import Hello from '~/components/Hello';
+
 export default {
-  components: {
-    Hello
-  },
   data() {
     return {
+      isEdit: false,
       msg: 'Hello Vue!'
     };
   },
-  mounted() {
-    console.log(this.$refs.hello.$refs.world);
+  methods: {
+    onEdit() {
+      this.isEdit = true;
+      // setTimeout(() => {
+      //   this.$refs.editor.focus();
+      // });
+      this.$nextTick(() => {
+        this.$refs.editor.focus();
+      });
+    }
   }
 };
 </script>
