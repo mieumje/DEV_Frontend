@@ -1,6 +1,6 @@
 <template>
   <h1>{{ msg }}</h1>
-  <Hello v-model="msg" />
+  <Hello v-model:message="msg" />
 </template>
 
 <script>
