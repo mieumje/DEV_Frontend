@@ -1,6 +1,12 @@
 <template>
-  <h1>Hello</h1>
-  <h2>Haha?!</h2>
+  <h1
+    :class="$attrs.class"
+    :style="$attrs.style">
+    Hello
+  </h1>
+  <h2 @click="$attrs.onClick">
+    Haha?!
+  </h2>
 </template>
 
 <script>
