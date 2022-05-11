@@ -1,11 +1,10 @@
 <template>
   <h1>{{ msg }}</h1>
   <Hello>
-    <template #abc>
-      <h2>ABC</h2>
-    </template>
-    <template #xyz>
-      <h2>XYZ</h2>
+    <!-- <template #default="{ hello }">
+      <h2>{{ hello }}</h2> -->
+    <template #default="slotProps">
+      <h2>{{ slotProps.hello }}</h2>
     </template>
   </Hello>
 </template>
