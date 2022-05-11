@@ -5,7 +5,9 @@
   <button @click="currentComponent = 'World'">
     World!
   </button>
-  <component :is="currentComponent" />
+  <keep-alive>
+    <component :is="currentComponent" />
+  </keep-alive>
 </template>
 
 <script>
