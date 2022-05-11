@@ -1,15 +1,8 @@
 <template>
-  <h1 @click="slotName = 'abc'">
+  <h1 @click="currentComponent = 'World'">
     {{ msg }}
   </h1>
-  <Hello>
-    <template #default="slotProps">
-      <h2>{{ slotProps.hello }}</h2>
-    </template>
-    <template #[slotName]>
-      <h2>ABC</h2>
-    </template>
-  </Hello>
+  <component :is="currentComponent" />
 </template>
 
 <script>
@@ -21,7 +14,7 @@ export default {
   data() {
     return {
       msg: 'Hello Vue!',
-      slotName: 'xyz'
+      currentComponent: 'Hello'
     };
   }
 };

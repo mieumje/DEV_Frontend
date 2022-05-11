@@ -1,7 +1,5 @@
 <template>
-  <h1>hello</h1>
-  <slot :hello="123"></slot>
-  <slot name="abc"></slot>
+  <h1>hello!</h1>
 </template>
 
 <script>
