@@ -11,7 +11,7 @@
 export default {
   props: {
     message: String,
-    name: String
+    name: [String, Number]
   },
   data() {
     return {

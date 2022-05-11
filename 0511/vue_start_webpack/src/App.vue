@@ -5,7 +5,7 @@
     </button>
     <Hello 
       :message="msg"
-      name="Hello" />
+      :name="123" />
   </div>
 </template>
 
