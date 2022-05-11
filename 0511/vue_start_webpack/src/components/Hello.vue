@@ -1,15 +1,12 @@
 <template>
-  <h1 v-bind="$attrs">
+  <h1>
     Hello
   </h1>
-  <h2>
-    Haha?!
-  </h2>
 </template>
 
 <script>
 export default {
-  
+  inheritAttrs: false // props가 아닌 속성들을 상속받는 것을 한다/하지 않는다.
 };
 </script>
 
