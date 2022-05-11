@@ -9,7 +9,10 @@
 
 <script>
 export default {
-  props: ['message', 'name'],
+  props: {
+    message: String,
+    name: String
+  },
   data() {
     return {
       newMessage: this.message
