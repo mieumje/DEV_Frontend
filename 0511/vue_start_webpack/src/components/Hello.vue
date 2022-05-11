@@ -1,16 +1,12 @@
 <template>
-  <h1 ref="hello">
+  <h1>
     hello!
   </h1>
 </template>
 
 <script>
 export default {
-  mounted() {
-    //const h1El = document.querySelector('#hello');
-    const h1El = this.$refs.hello;
-    console.log(h1El);
-  }
+  
 };
 </script>
 

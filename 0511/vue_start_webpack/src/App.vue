@@ -2,7 +2,7 @@
   <h1>
     {{ msg }}
   </h1>
-  <Hello />
+  <Hello ref="hello" />
 </template>
 
 <script>
@@ -15,6 +15,9 @@ export default {
     return {
       msg: 'Hello Vue!'
     };
+  },
+  mounted() {
+    console.log(this.$refs.hello.$el);
   }
 };
 </script>
