@@ -1,8 +1,8 @@
 <template>
   <h1>{{ msg }}</h1>
   <Hello
-    @click="msg += '?!'"
-    @please="msg += '~~'" />
+    :message="msg"
+    @update="msg = $event" />
 </template>
 
 <script>
