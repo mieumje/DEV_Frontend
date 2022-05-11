@@ -17,7 +17,7 @@ export default {
     };
   },
   mounted() {
-    console.log(this.$refs.hello.$el);
+    console.log(this.$refs.hello.$refs.world);
   }
 };
 </script>
