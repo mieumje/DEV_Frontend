@@ -1,10 +1,8 @@
 <template>
-  <h1
-    :class="$attrs.class"
-    :style="$attrs.style">
+  <h1 v-bind="$attrs">
     Hello
   </h1>
-  <h2 @click="$attrs.onClick">
+  <h2>
     Haha?!
   </h2>
 </template>
