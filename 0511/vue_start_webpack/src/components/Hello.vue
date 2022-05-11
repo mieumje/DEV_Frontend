@@ -1,28 +1,15 @@
 <template>
-  <h1 @click="updateMessage">
-    {{ newMessage }}
-  </h1>
-  <h2>
-    {{ name }}
-  </h2>
+  <div>
+    <h1>{{ id }} / {{ title }}</h1>
+  </div>
 </template>
 
 <script>
 export default {
   props: {
-    message: String,
-    name: [String, Number]
-  },
-  data() {
-    return {
-      newMessage: this.message
-    };
-  },
-  methods: {
-    updateMessage() {
-      this.newMessage = 'Good!';
-    }
-  },
+    id: Number,
+    title: String
+  }
 };
 </script>
 

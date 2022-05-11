@@ -21,9 +21,7 @@
       "svg": "always",
       "math": "always"
     }],
-    "vue/multi-word-component-names": ["error", {
-      "ignores": []
-    }],
+    "vue/multi-word-component-names": 0,
     "semi": ["error", "always"],
     "quotes": ["error", "single"]
   }

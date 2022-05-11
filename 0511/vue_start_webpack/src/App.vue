@@ -1,11 +1,8 @@
 <template>
   <div>
-    <button @click="reverseMsg">
-      Click
-    </button>
-    <Hello 
-      :message="msg"
-      :name="123" />
+    <Hello
+      :id="post.id"
+      :title="post.title" />
   </div>
 </template>
 
@@ -18,13 +15,11 @@ export default {
   },
   data() {
     return {
-      msg: 'Hello Vue!'
+      post: {
+        id: 1,
+        title: 'Hello Vue!'
+      }
     };
-  },
-  methods: {
-    reverseMsg() {
-      this.msg = this.msg.split('').reverse().join('');
-    }
   }
 };
 </script>
