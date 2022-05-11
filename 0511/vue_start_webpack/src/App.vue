@@ -1,10 +1,12 @@
 <template>
-  <h1>{{ msg }}</h1>
+  <h1 @click="slotName = 'abc'">
+    {{ msg }}
+  </h1>
   <Hello>
     <template #default="slotProps">
       <h2>{{ slotProps.hello }}</h2>
     </template>
-    <template #abc>
+    <template #[slotName]>
       <h2>ABC</h2>
     </template>
   </Hello>
@@ -19,6 +21,7 @@ export default {
   data() {
     return {
       msg: 'Hello Vue!',
+      slotName: 'xyz'
     };
   }
 };
