@@ -1,12 +1,17 @@
 <template>
-  <h1>
-    Hello
+  <h1 @click="$emit('please')">
+    {{ message }}
   </h1>
 </template>
 
 <script>
 export default {
-  inheritAttrs: false // props가 아닌 속성들을 상속받는 것을 한다/하지 않는다.
+  props: {
+    message: {
+      type: String,
+      default: ''
+    }
+  }
 };
 </script>
 

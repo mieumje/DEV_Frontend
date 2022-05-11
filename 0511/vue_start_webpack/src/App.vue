@@ -1,9 +1,8 @@
 <template>
   <h1>{{ msg }}</h1>
   <Hello
-    class="hello"
-    style="font-size: 100px"
-    @click="msg += '!'" />
+    :message="msg"
+    @please="reverseMsg" />
 </template>
 
 <script>
@@ -16,6 +15,11 @@ export default {
     return {
       msg: 'Hello Vue!'
     };
+  },
+  methods: {
+    reverseMsg() {
+      this.msg = this.msg.split('').reverse().join('');
+    }
   }
 };
 </script>
