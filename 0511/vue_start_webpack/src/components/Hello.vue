@@ -1,14 +1,15 @@
 <template>
-  <h1>hello!</h1>
+  <h1 ref="hello">
+    hello!
+  </h1>
 </template>
 
 <script>
 export default {
-  created() {
-    console.log('Hello created');
-  },
-  unmounted() {
-    console.log('Hello unmounted');
+  mounted() {
+    //const h1El = document.querySelector('#hello');
+    const h1El = this.$refs.hello;
+    console.log(h1El);
   }
 };
 </script>
