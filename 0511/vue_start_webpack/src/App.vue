@@ -1,8 +1,6 @@
 <template>
   <div>
-    <Hello
-      :id="post.id"
-      :title="post.title" />
+    <Hello v-bind="post" />
   </div>
 </template>
 
@@ -16,7 +14,7 @@ export default {
   data() {
     return {
       post: {
-        id: 1,
+        id: 2,
         title: 'Hello Vue!'
       }
     };
