@@ -1,6 +1,6 @@
 <template>
   <button @click="log">
-    Click me!
+    <slot>MINJE</slot>
   </button>
 </template>
 
@@ -13,3 +13,13 @@ export default {
   }
 };
 </script>
+
+<style scoped lang="scss">
+button {
+  padding: 10px 20px;
+  &:hover {
+    background-color: royalblue;
+    transform: scale(1.2);
+  }
+}
+</style>

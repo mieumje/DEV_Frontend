@@ -4,6 +4,8 @@
     <h2>Hello Vue?</h2>
     <p>The brown fox</p>
   </Hello>
+  <Btn>click me</Btn>
+  <Btn />
 </template>
 
 <script>
