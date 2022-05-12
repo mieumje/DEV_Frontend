@@ -1,23 +1,22 @@
 <template>
   <h1>{{ msg }}</h1>
+  <h1>{{ count }}</h1>
+  <Hello />
 </template>
 
 <script>
+import Hello from '~/components/Hello';
+import sampleMixins from '~/mixins/sample';
 
 export default {
+  components: {
+    Hello
+  },
+  mixins: [sampleMixins],
   data() {
     return {
       msg: 'Hello Vue!!!'
     };
   },
-  created() {
-    this.init();
-  },
-  methods: {
-    async init() {
-      const res = await this.$myName('https://jsonplaceholder.typicode.com/todos/1');
-      console.log(res, 'Done');
-    }
-  }
 };
 </script>
