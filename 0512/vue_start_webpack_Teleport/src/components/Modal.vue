@@ -41,7 +41,22 @@ export default {
     }
   },
   emits: ['update:modelValue'],
+  watch: {
+    modelValue(newValue) {
+      if (newValue) {
+        window.addEventListener('keyup', this.keyupHandler);
+      } else {
+        window.removeEventListener('keyup', this.keyupHandler); // keyup event handler를 제거
+      }
+    }
+  },
   methods: {
+    keyupHandler(event) {
+      if (event.key === 'Escape') {
+        console.log('ESC!');
+        this.offModal();
+      }
+    },
     onModal() {
       //this.isShow = !this.isShow;
       this.$emit('update:modelValue', true);
