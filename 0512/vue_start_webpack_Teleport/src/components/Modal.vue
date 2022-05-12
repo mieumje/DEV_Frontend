@@ -10,6 +10,12 @@
           :style="{ width: `${parseInt(width, 10)}px `}" 
           class="modal__inner" 
           @click.stop>
+          <button 
+            v-if="closeable" 
+            class="close"
+            @click="offModal">
+            x
+          </button>
           <slot></slot>
         </div>
       </div>
@@ -24,6 +30,10 @@ export default {
     width: {
       type: [String, Number],
       default: 400
+    },
+    closeable: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -58,6 +68,12 @@ export default {
   &__inner {
     background-color: white;
     padding: 20px;
+    border-radius: 6px;
+    box-shadow: 0 10px 10px rgba(black, .2);
+    
+    button.close {
+      float: right;
+    }
   }
 }
 </style>

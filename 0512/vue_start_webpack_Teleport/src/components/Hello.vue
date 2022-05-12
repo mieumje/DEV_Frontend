@@ -1,6 +1,6 @@
 <template>
   <!-- eslint-disable -->
-  <Modal>
+  <Modal closeable>
     <template #activator>
       <h1>Hello!</h1>
     </template>
