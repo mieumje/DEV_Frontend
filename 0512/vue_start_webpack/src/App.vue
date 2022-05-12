@@ -9,11 +9,13 @@
     :items="field.items" />
 
   <h1>결과</h1>
+  <!-- eslint-disable -->
   <div
     v-for="field in fields"
     :key="'result- ' + field.title">
     {{ field.value }}
   </div>
+  <!-- eslint-enable -->
 </template>
 
 <script>

@@ -5,6 +5,7 @@
       <li
         v-for="item in items"
         :key="item">
+        <!-- eslint-disable -->
         <label>
           <input
             type="radio"
@@ -13,6 +14,7 @@
             @input="$emit('update:modelValue', $event.target.value)">
           {{ item }}
         </label>
+        <!-- eslint-enable -->
       </li>
     </ul>
   </div>
