@@ -12,12 +12,11 @@
 
 <script>
 import Hello from '~/components/Hello';
-import Modal from '~/components/Modal';
+// import Modal from '~/components/Modal';
 
 export default {
   components: {
     Hello,
-    Modal
   },
   data() {
     return {
