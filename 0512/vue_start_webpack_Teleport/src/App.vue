@@ -1,12 +1,14 @@
 <template>
   <!-- eslint-disable -->
-  <Modal width="300px">
-    <template #activator>
-      <button>On Modal!</button>
-    </template>
+  <div style="transform: scale(1)">
+    <Modal width="300px">
+      <template #activator>
+        <button>On Modal!</button>
+      </template>
     <h3>App.vue</h3>
-  </Modal>
-  <Hello />
+    </Modal>
+    <Hello />
+  </div>
   <!-- eslint-enable -->
 </template>
 
