@@ -1,6 +1,6 @@
 <template>
   <!-- eslint-disable -->
-  <Modal>
+  <Modal width="300px">
     <template #activator>
       <button>On Modal!</button>
     </template>

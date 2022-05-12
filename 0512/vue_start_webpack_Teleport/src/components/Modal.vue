@@ -5,7 +5,10 @@
   </div>
   <template v-if="isShow">
     <div class="modal" @click="offModal">
-      <div class="modal__inner" @click.stop>
+      <div 
+        :style="{ width: `${parseInt(width, 10)}px `}" 
+        class="modal__inner" 
+        @click.stop>
         <slot></slot>
       </div>
     </div>
@@ -15,6 +18,12 @@
 
 <script>
 export default {
+  props: {
+    width: {
+      type: [String, Number],
+      default: 400
+    }
+  },
   data() {
     return {
       isShow: false
