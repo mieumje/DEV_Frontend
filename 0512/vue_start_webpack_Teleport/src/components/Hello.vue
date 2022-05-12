@@ -44,4 +44,9 @@ export default {
 h1 {
   color: royalblue;
 }
+textarea {
+  width: 100%;
+  height: 100px;
+  box-sizing: border-box;
+}
 </style>
