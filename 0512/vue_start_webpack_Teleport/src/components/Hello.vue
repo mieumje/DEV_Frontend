@@ -7,7 +7,7 @@
       <h1>Hello!</h1>
     </template>
     <h3>Hello.vue</h3>
-    <textarea v-model="msg"></textarea>
+    <textarea ref="editor" v-model="msg"></textarea>
     <button @click="submit">
       Submit!
     </button>
@@ -22,6 +22,15 @@ export default {
       msg: 'Please enter the text.',
       isShow: false
     };
+  },
+  watch: {
+    isShow(newValue) {
+      if (newValue) {
+        this.$nextTick(() => {
+          this.$refs.editor.focus();
+        });
+      }
+    }
   },
   methods: {
     submit() {
