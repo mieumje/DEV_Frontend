@@ -19,13 +19,11 @@
 </template>
 
 <script>
-import TextField from '~/components/fields/TextField';
-import SimpleRadio from '~/components/fields/SimpleRadio';
+import * as FieldComponents from '~/components/fields/index.js';
 
 export default {
   components: {
-    TextField,
-    SimpleRadio
+    ...FieldComponents
   },
   data() {
     return {
