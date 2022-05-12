@@ -1,5 +1,12 @@
 <template>
-  <h1>Hello Vue!</h1>
+  <!-- eslint-disable -->
+  <Modal>
+    <template #activator>
+      <h1>Hello!</h1>
+    </template>
+    <h3>Hello.vue</h3>
+  </Modal>
+  <!-- eslint-enable -->
 </template>
 
 <script>
