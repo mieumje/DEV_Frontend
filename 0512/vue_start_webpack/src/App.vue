@@ -1,21 +1,52 @@
 <template>
-  <h1>{{ msg }}</h1>
-  <h1>{{ count }}</h1>
-  <Hello />
+  <h1>설문조사</h1>
+  <!-- <TextField
+    v-model="fields[0].value"
+    :title="fields[0].title" />
+  <SimpleRadio
+    v-model="fields[1].value"
+    :title="fields[1].title"
+    :items="fields[1].items" /> -->
+  <component
+    :is="field.component"
+    v-for="field in fields"
+    :key="field.title" 
+    v-model="field.value"
+    :title="field.title"
+    :items="field.items" />
+
+  <h1>결과</h1>
+  <div
+    v-for="field in fields"
+    :key="field.title">
+    {{ field.value }}
+  </div>
 </template>
 
 <script>
-import Hello from '~/components/Hello';
-import sampleMixins from '~/mixins/sample';
+import TextField from '~/components/fields/TextField';
+import SimpleRadio from '~/components/fields/SimpleRadio';
 
 export default {
   components: {
-    Hello
+    TextField,
+    SimpleRadio
   },
-  mixins: [sampleMixins],
   data() {
     return {
-      msg: 'Hello Vue!!!'
+      fields: [
+        {
+          component: 'TextField',
+          title: '이름',
+          value: ''
+        },
+        {
+          component: 'SimpleRadio',
+          title: '나이대',
+          value: '',
+          items: ['20대', '30대', '40대', '50대']
+        }
+      ]
     };
   },
 };
