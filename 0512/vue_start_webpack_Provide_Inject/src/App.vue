@@ -1,6 +1,8 @@
 <template>
   <!-- eslint-disable -->
-  <h1>{{ msg }}</h1>
+  <h1 @click="msg += '!!'">
+    {{ msg }}
+  </h1>
   <Parent />
   <!-- eslint-enable -->
 </template>
