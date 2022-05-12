@@ -15,6 +15,9 @@
     :key="'result- ' + field.title">
     {{ field.value }}
   </div>
+  <button @click="submit">
+    제출!
+  </button>
   <!-- eslint-enable -->
 </template>
 
@@ -42,5 +45,16 @@ export default {
       ]
     };
   },
+  methods: {
+    submit() {
+      const results = this.fields.map((field) => {
+        return {
+          title: field.title,
+          value: field.value
+        };
+      });
+      console.log(results);
+    }
+  }
 };
 </script>
