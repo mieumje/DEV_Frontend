@@ -9,17 +9,8 @@
 </template>
 
 <script>
+import fieldMixin from './mixin';
 export default {
-  props: {
-    title: {
-      type: String,
-      default: ''
-    },
-    modelValue: {
-      type: String,
-      default: ''
-    }
-  },
-  emits: ['update:modelValue']
+  mixins: [fieldMixin]
 };
 </script>
