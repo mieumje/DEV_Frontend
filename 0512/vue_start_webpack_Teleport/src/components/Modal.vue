@@ -4,7 +4,7 @@
     <slot name="activator"></slot>
   </div>
   <teleport to='body'>
-    <template v-if="isShow">
+    <template v-if="modelValue">
       <div class="modal" @click="offModal">
         <div 
           :style="{ width: `${parseInt(width, 10)}px `}" 
@@ -27,6 +27,10 @@
 <script>
 export default {
   props: {
+    modelValue: {
+      type: Boolean,
+      default: false
+    },
     width: {
       type: [String, Number],
       default: 400
@@ -36,19 +40,17 @@ export default {
       default: false
     }
   },
-  data() {
-    return {
-      isShow: false
-    };
-  },
+  emits: ['update:modelValue'],
   methods: {
     onModal() {
-      this.isShow = !this.isShow;
+      //this.isShow = !this.isShow;
+      this.$emit('update:modelValue', true);
     },
     offModal() {
-      this.isShow = !this.isShow;
+      //this.isShow = !this.isShow;
+      this.$emit('update:modelValue', false);
     }
-  }
+  },
 };
 </script>
 
