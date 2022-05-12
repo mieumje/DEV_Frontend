@@ -1,8 +1,52 @@
 <template>
   <!-- eslint-disable -->
-  <div>
+  <div @click="onModal">
     <slot name="activator"></slot>
   </div>
-  <slot></slot>
+  <template v-if="isShow">
+    <div class="modal" @click="offModal">
+      <div class="modal__inner">
+        <slot></slot>
+      </div>
+    </div>
+  </template>
   <!-- eslint-enable -->
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      isShow: false
+    };
+  },
+  methods: {
+    onModal() {
+      this.isShow = !this.isShow;
+    },
+    offModal() {
+      this.isShow = !this.isShow;
+    }
+  }
+};
+</script>
+
+<style scoped lang="scss">
+.modal {
+  background-color: rgba(black, .5);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__inner {
+    background-color: white;
+    padding: 20px;
+  }
+}
+</style>
