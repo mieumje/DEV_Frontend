@@ -3,16 +3,18 @@
   <div @click="onModal">
     <slot name="activator"></slot>
   </div>
-  <template v-if="isShow">
-    <div class="modal" @click="offModal">
-      <div 
-        :style="{ width: `${parseInt(width, 10)}px `}" 
-        class="modal__inner" 
-        @click.stop>
-        <slot></slot>
+  <teleport to='body'>
+    <template v-if="isShow">
+      <div class="modal" @click="offModal">
+        <div 
+          :style="{ width: `${parseInt(width, 10)}px `}" 
+          class="modal__inner" 
+          @click.stop>
+          <slot></slot>
+        </div>
       </div>
-    </div>
-  </template>
+    </template>
+  </teleport>
   <!-- eslint-enable -->
 </template>
 
