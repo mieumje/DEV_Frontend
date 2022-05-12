@@ -1,10 +1,18 @@
 <template>
-  <h1>hello!</h1>
+  <h1>{{ msg }}</h1>
+  <h1>{{ count }}</h1>
 </template>
 
 <script>
+import sampleMixins from '~/mixins/sample';
+
 export default {
-  
+  mixins: [sampleMixins],
+  data() {
+    return {
+      msg: 'Hello Vue~~'
+    };
+  }
 };
 </script>
 
