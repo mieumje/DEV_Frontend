@@ -7,12 +7,12 @@
 export default {
   data() {
     return {
-      msg: 'Hello Vue!'
+      msg: 'Hello Vue!!!'
     };
   },
-  created() {
-    this.$fetch('https://jsonplaceholder.typicode.com/todos/1')
-      .then(res => console.log(res));
+  async created() {
+    const res = await this.$fetch('https://jsonplaceholder.typicode.com/todos/1');
+    console.log(res);
   }
 };
 </script>
