@@ -9,6 +9,7 @@
 
 <script>
 import Parent from '~/components/Parent';
+import { computed } from 'vue'; // computed 옵션이 아니라 원하는 곳에서 계산된 데이터를 만들 수 있다.
 
 export default {
   components: {
@@ -16,7 +17,7 @@ export default {
   },
   provide() {
     return {
-      msg: this.msg
+      msg: computed(() => this.msg)
     };
   },
   data() {
