@@ -5,7 +5,7 @@
   </div>
   <template v-if="isShow">
     <div class="modal" @click="offModal">
-      <div class="modal__inner">
+      <div class="modal__inner" @click.stop>
         <slot></slot>
       </div>
     </div>
