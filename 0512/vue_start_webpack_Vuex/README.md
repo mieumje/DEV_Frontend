@@ -45,3 +45,15 @@ const app = createApp({ /* your root component */ })
 // Install the store instance as a plugin
 app.use(store) // plugin을 사용하는 것과 동일하게 use 메서드를 통해 사용한다.
 ```
+
+> npm info vuex
+
+위 명령어를 통해 vuex 버전을 확인 할 수 있다. 가장 최신 버전을 @next를 통해 설치해준다. 설치가 되고 나면 package.json의 의존성에 설치된 버전이 명시된다.
+
+```json
+"dependencies": {
+  "vue": "^3.2.33",
+  "vuex": "^4.0.2"
+}
+```
+
