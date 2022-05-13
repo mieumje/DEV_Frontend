@@ -5,6 +5,12 @@ export const state = reactive({
   count: 1
 });
 
+export const getters = {
+  reversedMsg() {
+    return state.msg.split('').reverse().join('');
+  }
+};
+
 export const mutations = {
   increaseCount() {
     state.count += 1;
