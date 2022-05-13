@@ -6,5 +6,10 @@ export default createStore({ // 중앙 집중식 저장소(Store) 생성
       msg: 'Hello Vuex!',
       count: 1
     };
+  },
+  mutations: {
+    increaseCount(state) {  // 매개 변수를 통해 해당하는 state를 참조할 수 있다.
+      state.count += 1;
+    }
   }
 });
