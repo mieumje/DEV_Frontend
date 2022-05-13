@@ -4,6 +4,16 @@
 ## 설치
 
 > npm install vue-router@4
+> npm install vue-router@next
+
+설치가 완료되면 package.json의 dependecies 부분에 추가가 된다.
+```json
+"dependencies": {
+    "vue": "^3.2.33",
+    "vue-router": "^4.0.13",
+    "vuex": "^4.0.2"
+  }
+```
 
 ## HTML 구조
 
