@@ -3,6 +3,7 @@
   <Hello />
   <button @click="increaseCount">Increase</button>
   <World />
+  <button @click="fetchTodo">Update MSG</button>
   <!-- eslint-enable -->
 </template>
 
@@ -18,6 +19,9 @@ export default {
   methods: {
     increaseCount() {
       this.$store.commit('increaseCount');
+    },
+    fetchTodo() {
+      this.$store.dispatch('fetchTodo'); // actions의 메서드를 실행할 땐, dispatch를 사용한다.
     }
   }
 };
