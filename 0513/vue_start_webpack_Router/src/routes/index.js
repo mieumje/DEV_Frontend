@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory} from 'vue-router';
 import Home from './Home';
 import About from './About';
 import NotFound from './NotFound';
+import Docs from './Docs';
 
 export default createRouter({
   history: createWebHashHistory(),
@@ -13,6 +14,10 @@ export default createRouter({
     {
       path: '/about',
       component: About
+    },
+    {
+      path: '/documents/:id',  // 콜론 기호를 사용하고 내용을 작성하면
+      component: Docs
     },
     {
       path: '/:notFound(.*)', // 지정한 경로를 제외한 나머지 경로에 해당
