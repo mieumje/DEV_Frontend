@@ -4,6 +4,8 @@
   <div>{{ count }}</div>
   <button @click="increaseCount">+</button>
   <button @click="decreaseCount">-</button>
+  <div>{{ message }} / {{ reversedMessage }}</div>
+  <button @click="fetchTodo">Update Message</button>
 </template>
 
 <script>
@@ -16,6 +18,12 @@ export default {
   computed: {
     count() {
       return this.$store.state.count.count;
+    },
+    message() {
+      return this.$store.state.message.message;
+    },
+    reversedMessage() {
+      return this.$store.getters['message/reversedMessage'];
     }
   },
   methods: {
@@ -24,6 +32,9 @@ export default {
     },
     decreaseCount() {
       this.$store.commit('count/decreaseCount');
+    },
+    fetchTodo() {
+      this.$store.dispatch('message/fetchTodo');
     }
   }
 };
