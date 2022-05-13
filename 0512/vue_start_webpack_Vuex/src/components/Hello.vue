@@ -2,8 +2,8 @@
   <!-- eslint-disable -->
   <h1>Hello.vue</h1>
   <div>{{ count }}</div>
-  <button @click="$store.commit('count/increaseCount')">+</button>
-  <button @click="$store.commit('count/decreaseCount')">-</button>
+  <button @click="increaseCount">+</button>
+  <button @click="decreaseCount">-</button>
 </template>
 
 <script>
@@ -16,6 +16,14 @@ export default {
   computed: {
     count() {
       return this.$store.state.count.count;
+    }
+  },
+  methods: {
+    increaseCount() {
+      this.$store.commit('count/increaseCount');
+    },
+    decreaseCount() {
+      this.$store.commit('count/decreaseCount');
     }
   }
 };
