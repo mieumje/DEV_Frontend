@@ -7,17 +7,19 @@
   <div @click="increaseCount">
     {{ count }}
   </div>
+  <button @click="fetchTodo">Get todo</button>
 </template>
 
 <script>
-import { state, mutations } from '~/store/index';
+import { state, mutations, actions } from '~/store/index';
 
 export default {
   data() {
     return state;
   },
   methods: {
-    increaseCount: mutations.increaseCount
+    increaseCount: mutations.increaseCount,
+    fetchTodo: actions.fetchTodo
   } 
 };
 </script>
