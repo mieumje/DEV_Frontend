@@ -1,27 +1,30 @@
 <template>
   <!-- eslint-disable -->
+  <h1>
+    {{ msg }}
+  </h1>
+  <h2>
+    {{ storeMsg }}
+  </h2>
   <Hello />
-  <button @click="increaseCount">Increase</button>
-  <World />
-  <button @click="fetchTodo">Update MSG</button>
   <!-- eslint-enable -->
 </template>
 
 <script>
 import Hello from '~/components/Hello';
-import World from '~/components/World';
 
 export default {
   components: {
-    Hello,
-    World
+    Hello
   },
-  methods: {
-    increaseCount() {
-      this.$store.commit('increaseCount');
-    },
-    fetchTodo() {
-      this.$store.dispatch('fetchTodo'); // actions의 메서드를 실행할 땐, dispatch를 사용한다.
+  data() {
+    return {
+      msg: 'hello vue!'
+    };
+  },
+  computed: {
+    storeMsg() {
+      return this.$store.state.msg;
     }
   }
 };
