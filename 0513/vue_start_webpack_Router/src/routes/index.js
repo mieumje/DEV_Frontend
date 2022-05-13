@@ -19,12 +19,10 @@ export default createRouter({
     {
       path: '/documents',
       component: Docs,
-      children: [
-        {
-          path: ':id',  // children 경로에서는 '/'를 사용하면 안된다. '/'는 루트 경로를 의미함.
-          component: DocsId
-        }
-      ]
+    },
+    {
+      path: '/documents/:id',  // children 경로에서는 '/'를 사용하면 안된다. '/'는 루트 경로를 의미함.
+      component: DocsId
     },
     {
       path: '/:notFound(.*)', // 지정한 경로를 제외한 나머지 경로에 해당
