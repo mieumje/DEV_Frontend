@@ -24,6 +24,7 @@ export default createRouter({
     },
     {
       path: '/documents/:id',  // children 경로에서는 '/'를 사용하면 안된다. '/'는 루트 경로를 의미함.
+      name: 'docsId',
       component: DocsId
     },
     {
