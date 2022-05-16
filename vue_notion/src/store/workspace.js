@@ -16,8 +16,19 @@ export default {
     }
   },
   actions: {
-    createWorkspace() {
-
+    async createWorkspace(context, payload = {}) {
+      const { parentId } = payload;
+      await fetch('https://kdt-frontend.programmers.co.kr/documents/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-username': 'mieumje'
+        },
+        body: JSON.stringify({
+          title: '',
+          parent: parentId
+        })
+      }).then(res => res.json());
     },
     async readWorkspaces(context) {
       const workspaces = await fetch('https://kdt-frontend.programmers.co.kr/documents', {
@@ -38,8 +49,15 @@ export default {
     updateWorkspace() {
 
     },
-    deleteWorkspace() {
-
+    async deleteWorkspace(context, payload) {
+      const { id } = payload;
+      await fetch(`https://kdt-frontend.programmers.co.kr/documents/${id}`,{
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-username': 'mieumje'
+        }
+      }).then(res => res.json());
     }
   },
 };
