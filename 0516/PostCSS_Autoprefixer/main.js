@@ -1,0 +1,1 @@
+import './main.css'; // 자바스크립트에서 css를 import하는데, webpack으로 제어해 프로젝트를 생성한다.
