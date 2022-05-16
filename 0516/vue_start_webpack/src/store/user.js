@@ -27,6 +27,10 @@ export default {
     },
     logOut(context) {
       context.commit('updateLoggedIn', false);
+      const requiredAuth = router.currentRoute.value.meta.requiredAuth;
+      if (requiredAuth) {
+        router.push('/');
+      }
     }
   }
 };
