@@ -1,13 +1,16 @@
 <template>
   <li>
-    <div class="title">
+    <div 
+      :style="{ paddingLeft: `${14 * depth}px`}"
+      class="title">
       {{ workspace.title }}
     </div>
     <ul v-if="hasChildren">
       <WorkspaceItem
         v-for="ws in workspace.documents"
         :key="ws.id"
-        :workspace="ws" />
+        :workspace="ws"
+        :depth="depth + 1" />
     </ul>
   </li>
 </template>
@@ -18,6 +21,10 @@ export default {
     workspace: {
       type: Object,
       default: () => ({})
+    },
+    depth: {
+      type: Number,
+      default: 1
     }
   },
   computed: {
