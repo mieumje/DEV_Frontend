@@ -13,9 +13,15 @@ export default {
     }
   },
   actions: {
+    initialize(context) {
+      if (localStorage.getItem('isLoggedIn')) {
+        context.commit('updateLoggedIn', true);
+      }
+    },
     logIn(context, payload) {
       const { id, pw } = payload;
       if (id && pw) {
+        localStorage.setItem('isLoggedIn', true);
         context.commit('updateLoggedIn', true);
         const redirect = router.currentRoute.value.query.redirect;
         if (redirect) {
@@ -26,6 +32,7 @@ export default {
       }
     },
     logOut(context) {
+      localStorage.removeItem('isLoggedIn');
       context.commit('updateLoggedIn', false);
       const requiredAuth = router.currentRoute.value.meta.requiredAuth;
       if (requiredAuth) {
