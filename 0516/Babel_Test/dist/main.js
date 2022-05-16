@@ -12,4 +12,4 @@ var increase = function increase(num) {
 };
 
 var arr = [];
-(0, _includes["default"])(arr).call(arr, 'a');
+console.log((0, _includes.default)(arr).call(arr, 'a'));
