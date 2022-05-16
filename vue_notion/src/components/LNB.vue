@@ -10,7 +10,15 @@
         :key="workspace.id"
         :workspace="workspace" />
     </ul>
-    <div class="actions"></div>
+    <div class="actions">
+      <div class="action">
+        <span
+          class="material-icons"
+          @click="$store.dispatch('workspace/createWorkspace')">add
+        </span>
+        새로운 페이지
+      </div>
+    </div>
   </nav>
 </template>
 
@@ -37,6 +45,9 @@ nav {
   width: 240px;
   height: 100%;
   background-color: $color-background;
+  display: flex;
+  flex-direction: column;
+
   .header {
     padding: 14px;
     font-weight: 700;
@@ -54,11 +65,31 @@ nav {
   }
 
   ul {
-
+    flex-grow: 1;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 
   .actions {
+    border-top: 1px solid $color-border;
 
+    .action {
+      height: 45px;
+      display: flex;
+      align-items: center;
+      padding: 0 14px;
+      color: $color-icon;
+      cursor: pointer;
+      
+      &:hover {
+        background-color: $color-background--hover1;
+      };
+
+      .material-icons {
+        margin-right: 4px;
+        color: $color-icon;
+      }
+    }
   }
 }
 </style>
