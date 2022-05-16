@@ -1,2 +1,2 @@
-const a = {};
-const b = a.name;
+var a = {};
+var b = a.name;
