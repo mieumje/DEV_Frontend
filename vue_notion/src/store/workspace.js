@@ -29,6 +29,8 @@ export default {
           parent: parentId
         })
       }).then(res => res.json());
+
+      await context.dispatch('readWorkspaces');
     },
     async readWorkspaces(context) {
       const workspaces = await fetch('https://kdt-frontend.programmers.co.kr/documents', {
@@ -58,6 +60,8 @@ export default {
           'x-username': 'mieumje'
         }
       }).then(res => res.json());
+
+      context.dispatch('readWorkspaces');
     }
   },
 };
