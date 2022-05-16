@@ -4,6 +4,11 @@ import About from  './About';
 
 export default createRouter({
   history: createWebHistory(),
+  scrollBehavior() {
+    return {
+      top: 1000
+    };
+  },
   routes: [
     {
       path: '/',
