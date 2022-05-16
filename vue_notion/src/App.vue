@@ -22,11 +22,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-* {
-  border: 1px solid;
-  box-sizing: border-box;
-}
-
 .app__inner {
   display: flex;
   height: 100vh;
