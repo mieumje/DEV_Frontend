@@ -1,6 +1,8 @@
-var a = {};
-var b = a.name;
+"use strict";
 
-var increase = function (num) {
-  return num + 1;
+var c = {};
+var d = c.name;
+
+var increase = function increase(num) {
+  return num + 2;
 };

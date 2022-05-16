@@ -1,5 +1,5 @@
-const a = {};
-const b = a.name;
+const c = {};
+const d = c.name;
 
 
-const increase = num => num + 1
+const increase = num => num + 2
