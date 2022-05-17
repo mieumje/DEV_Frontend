@@ -53,6 +53,10 @@ export default {
       context.commit('assignState', {
         workspaces
       });
+
+      if (!workspaces.length) {
+        context.dispatch('createWorkspace');
+      }
     },
     async readWorkspace(context, payload) {
       const { id } = payload;
