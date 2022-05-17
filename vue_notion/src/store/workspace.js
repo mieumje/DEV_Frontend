@@ -5,7 +5,8 @@ export default {
   state() {
     return {
       workspaces: [],
-      currentWorkspace: {}
+      currentWorkspace: {},
+      currentWorkspacePath: [],
     };
   },
   getters: {},
@@ -43,6 +44,8 @@ export default {
       context.commit('assignState', {
         workspaces
       });
+
+      context.dispatch('findWorkspacePath');
 
       if (!workspaces.length) {
         context.dispatch('createWorkspace');
@@ -93,6 +96,22 @@ export default {
           }
         });
       }
+    },
+    findWorkspacePath(context) {
+      const currentWorkspaceId = parseInt(router.currentRoute.value.params.id, 10);
+      function _find(workspace, parents) {
+        if (currentWorkspaceId === workspace.id) {
+          context.commit('assignState', {
+            currentWorkspacePath: [...parents, workspace]
+          });
+        }
+
+        if (workspace.documents) {
+          workspace.documents.forEach(ws => _find(ws, [...parents, workspace]));
+        }
+      }
+
+      context.state.workspaces.forEach(workspace => _find(workspace, []));
     }
   },
 };
