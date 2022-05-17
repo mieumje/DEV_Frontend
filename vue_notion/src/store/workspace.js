@@ -94,7 +94,18 @@ export default {
         }
       }).then(res => res.json());
 
-      context.dispatch('readWorkspaces');
+      await context.dispatch('readWorkspaces');
+
+      console.log(router.currentRoute.value.params.id);
+
+      if (id === parseInt(router.currentRoute.value.params.id, 10)) {
+        router.push({
+          name: 'Workspace',
+          params: {
+            id: context.state.workspaces[0].id
+          }
+        });
+      }
     }
   },
 };
