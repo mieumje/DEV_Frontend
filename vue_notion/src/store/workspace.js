@@ -1,3 +1,5 @@
+import router from '~/routes';
+
 export default {
   namespaced: true,
   state() {
@@ -19,7 +21,7 @@ export default {
   actions: {
     async createWorkspace(context, payload = {}) {
       const { parentId } = payload;
-      await fetch('https://kdt-frontend.programmers.co.kr/documents/', {
+      const workspace = await fetch('https://kdt-frontend.programmers.co.kr/documents/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -32,6 +34,12 @@ export default {
       }).then(res => res.json());
 
       await context.dispatch('readWorkspaces');
+      router.push({
+        name: 'Workspace',
+        params: {
+          id: workspace.id
+        }
+      });
     },
     async readWorkspaces(context) {
       const workspaces = await fetch('https://kdt-frontend.programmers.co.kr/documents', {
