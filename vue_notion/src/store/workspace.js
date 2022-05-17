@@ -73,6 +73,8 @@ export default {
           content
         })
       }).then(res => res.json());
+
+      context.dispatch('readWorkspaces');
     },
     async deleteWorkspace(context, payload) {
       const { id } = payload;
