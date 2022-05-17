@@ -60,17 +60,21 @@ export default {
     },
     async readWorkspace(context, payload) {
       const { id } = payload;
-      const workspace = await fetch(`https://kdt-frontend.programmers.co.kr/documents/${id}`, {
+      try {
+        const workspace = await fetch(`https://kdt-frontend.programmers.co.kr/documents/${id}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
           'x-username': 'mieumje'
         }
-      }).then(res => res.json());
+        }).then(res => res.json());
 
-      context.commit('assignState', {
-        currentWorkspace: workspace
-      });
+        context.commit('assignState', {
+          currentWorkspace: workspace
+        });
+      } catch (error) {
+        router.push('/error');
+      }
     },
     async updateWorkspace(context, payload) {
       const { id, title, content} = payload;
