@@ -1,9 +1,10 @@
 import { useState } from 'react'
-const Pagination = ({ defaultPage, limit, total }) => {
+const Pagination = ({ defaultPage, limit, total, onChange }) => {
   const [page, setPage] = useState(defaultPage);
   const totalPage = Math.ceil(total / limit);
 
   const handleChangePage = (newPage) => {
+    onChange(newPage);
     setPage(newPage);
   }
 
