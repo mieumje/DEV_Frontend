@@ -1,27 +1,19 @@
-// 요구사항
-// 1. Counter 컴포넌트 구현하기
-// 2. 모든 Counter 컴포넌트의 합 구하기
+// useEffect는 무언가 변화가 있을 때
+// 감지하여 반응하는 훅
 
-// 무엇을 배우는 가?
-// 1. 컴포넌트에서 지역 상태 관리하는 법
-// 2. 컴포넌트에 이벤트 바인딩하기
-// 3. 부모 컴포넌트에게 메시지 전달하기
-import { useState } from "react";
-import Counter from "./components/Counter";
+import { useEffect, useState } from "react";
 
 function App() {
-  const [totalCount, setTotalCount] = useState(0);
+  const [count, setCount] = useState(0);
+
+  useEffect(() => { // 첫 번째 파라미터 = 반응하는 부분, 두 번째 파라미터 = 어떤 것을 감지?(리스트)
+    console.log(`Click ${count} times.`);
+  }, [count]);
+
   return (
     <div>
-      TotalCount : {totalCount}
-      <Counter 
-        onIncrease={(count) => {setTotalCount(totalCount + 1);}}
-        onDecrease={(count) => {setTotalCount(totalCount - 1);}}
-      />
-      <Counter 
-        onIncrease={(count) => {setTotalCount(totalCount + 1);}}
-        onDecrease={(count) => {setTotalCount(totalCount - 1);}}
-      />
+      <div>You clicked {count} times.</div>
+      <button onClick={() => setCount(count + 1)}>+</button>
     </div>
   );
 }
