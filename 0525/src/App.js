@@ -6,10 +6,14 @@
 // 1. 컴포넌트에서 지역 상태 관리하는 법
 // 2. 컴포넌트에 이벤트 바인딩하기
 // 3. 부모 컴포넌트에게 메시지 전달하기
+import Counter from "./components/Counter";
+
 
 function App() {
   return (
-    <div></div>
+    <div>
+      <Counter />
+    </div>
   );
 }
 
