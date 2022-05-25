@@ -6,6 +6,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Logo size="100px"/>
+        <Logo />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
