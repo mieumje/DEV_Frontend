@@ -14,10 +14,21 @@ function App() {
     console.log('Component Loaded');
   }, []);
 
+  useEffect(() => {
+    console.log('Component Loaded');
+    const handleScroll = () => {
+      console.log(window.scrollY);
+    };
+
+    document.addEventListener("scroll", handleScroll);
+    return () => document.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div>
       <div>You clicked {count} times.</div>
       <button onClick={() => setCount(count + 1)}>+</button>
+      <div style={{height: 100000}}></div>
     </div>
   );
 }
