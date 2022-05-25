@@ -12,7 +12,7 @@ const Pagination = ({ defaultPage, limit, total }) => {
       <button onClick={() => page !==0 && handleChangePage(page - 1)}>Prev</button>
       {Array.from(new Array(totalPage), (_, i) => i)
         .map(i => (
-          <button key={i} style={{ backgroundColor: page === i ? 'skyblue' : ''}}>{i + 1}</button>
+          <button key={i} onClick={() => handleChangePage(i)} style={{ backgroundColor: page === i ? 'skyblue' : ''}}>{i + 1}</button>
       ))}
       <button onClick={() => page + 1 !== totalPage && handleChangePage(page + 1)}>Next</button>
     </div>
