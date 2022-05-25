@@ -35,7 +35,9 @@ function App() {
       {visible ? (
         <h1>삼항 연산자를 통해 쉽게 JSX 렌더링 여부를 결정할 수 있다.</h1>
       ) : null}
-      <Board articles={articles}/>
+      {visible ? (
+        <Board articles={articles}/>
+      ) : <p>게시판을 보려면 Toggle 하세요</p>}
     </div>
   );
 }
