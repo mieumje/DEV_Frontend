@@ -7,12 +7,20 @@ import { useState } from 'react'
 function Counter() {
   const [count, setCount] = useState(0); // 첫 번째 = 상태, 두 번째 = 상태를 업데이트 하기 위한 함수
 
+  const handleIncrease = () => {
+    setCount(count + 1);
+  };
+
+  const handelDecrease = () => {
+    setCount(count - 1);
+  }
+
   return (
     <div>
       <span style={{fontSize : 40}}>{count}</span>
       <br />
-      <button>+</button>
-      <button>-</button>
+      <button onClick={handleIncrease}>+</button>
+      <button onClick={handelDecrease}>-</button>
     </div>
   )
 }
