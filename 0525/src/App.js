@@ -3,6 +3,28 @@ import Board from './components/Board';
 
 function App() {
   const [visible, setVisible] = useState(false);
+  const articles = [
+    {
+      id: 1,
+      title: '안녕하세요 1',
+      author: 'MJ'
+    },
+    {
+      id: 2,
+      title: '안녕하세요 2',
+      author: 'MINJE'
+    },
+    {
+      id: 3,
+      title: '안녕하세요 3',
+      author: 'MieumJe'
+    },
+    {
+      id: 4,
+      title: '안녕하세요 4',
+      author: 'MinJe'
+    }
+  ]
 
   return (
     <div>
@@ -13,7 +35,7 @@ function App() {
       {visible ? (
         <h1>삼항 연산자를 통해 쉽게 JSX 렌더링 여부를 결정할 수 있다.</h1>
       ) : null}
-      <Board></Board>
+      <Board articles={articles}/>
     </div>
   );
 }
