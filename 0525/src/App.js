@@ -10,6 +10,10 @@ function App() {
     console.log(`Click ${count} times.`);
   }, [count]);
 
+  useEffect(() => {
+    console.log('Component Loaded');
+  }, []);
+
   return (
     <div>
       <div>You clicked {count} times.</div>
