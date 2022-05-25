@@ -1,15 +1,15 @@
 import './App.css';
 import Logo from './components/Logo'
+import Paragraph from './components/Paragraph';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Logo size="100px"/>
         <Logo />
-        <p>
+        <Paragraph>
           Edit <code>src/App.js</code> and save to reload.
-        </p>
+        </Paragraph>
         <a
           className="App-link"
           href="https://reactjs.org"
