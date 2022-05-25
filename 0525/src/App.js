@@ -4,13 +4,14 @@
 // useState는 값이 변경될 때 다시 렌더링을 한다.
 // useRef는 값이 변경되더라도 다시 렌더링을 하지 않는다.
 import { useRef } from "react";
+import Input from "./components/input";
 
 function App() {
   const inputRef = useRef();
 
   return (
     <div>
-      <input ref={inputRef} />
+      <Input ref={inputRef}/>
       <button onClick={() => inputRef.current.focus()}>Focus</button>
     </div>
   );
