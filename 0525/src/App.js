@@ -1,34 +1,17 @@
-// useEffect는 무언가 변화가 있을 때
-// 감지하여 반응하는 훅
-
-import { useEffect, useState } from "react";
+// useRef
+// 1. DOM에 직접 접근할 때 사용한다.
+// 2. 지역 변수로 사용할 때 사용한다. useState와 큰 차이가 있기 때문에 사용한다.
+// useState는 값이 변경될 때 다시 렌더링을 한다.
+// useRef는 값이 변경되더라도 다시 렌더링을 하지 않는다.
+import { useRef } from "react";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => { // 첫 번째 파라미터 = 반응하는 부분, 두 번째 파라미터 = 어떤 것을 감지?(리스트)
-    console.log(`Click ${count} times.`);
-  }, [count]);
-
-  useEffect(() => {
-    console.log('Component Loaded');
-  }, []);
-
-  useEffect(() => {
-    console.log('Component Loaded');
-    const handleScroll = () => {
-      console.log(window.scrollY);
-    };
-
-    document.addEventListener("scroll", handleScroll);
-    return () => document.removeEventListener('scroll', handleScroll);
-  }, []);
+  const inputRef = useRef();
 
   return (
     <div>
-      <div>You clicked {count} times.</div>
-      <button onClick={() => setCount(count + 1)}>+</button>
-      <div style={{height: 100000}}></div>
+      <input ref={inputRef} />
+      <button onClick={() => inputRef.current.focus()}>Focus</button>
     </div>
   );
 }
