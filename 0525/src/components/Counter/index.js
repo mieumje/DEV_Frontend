@@ -5,20 +5,20 @@ import { useState } from 'react'
 import PropTypes from 'prop-types'
 
 
-function Counter({ onChange }) {
+function Counter({ onIncrease, onDecrease }) {
   const [count, setCount] = useState(0); // 첫 번째 = 상태, 두 번째 = 상태를 업데이트 하기 위한 함수
 
   const handleIncrease = () => {
     setCount(count + 1);
-    if (onChange) {
-      onChange(count + 1);
+    if (onIncrease) {
+      onIncrease(count + 1);
     }
   };
 
   const handelDecrease = () => {
     setCount(count - 1);
-    if (onChange) {
-      onChange(count - 1);
+    if (onDecrease) {
+      onDecrease(count - 1);
     }
   }
 
@@ -33,7 +33,8 @@ function Counter({ onChange }) {
 }
 
 Counter.propTypes = {
-  onChange: PropTypes.func
+  onIncrease: PropTypes.func,
+  onDecrease: PropTypes.func
 }
 
 export default Counter;

@@ -14,9 +14,14 @@ function App() {
   return (
     <div>
       TotalCount : {totalCount}
-      <Counter onChange={(count) => {
-        setTotalCount(count);
-      }}/>
+      <Counter 
+        onIncrease={(count) => {setTotalCount(totalCount + 1);}}
+        onDecrease={(count) => {setTotalCount(totalCount - 1);}}
+      />
+      <Counter 
+        onIncrease={(count) => {setTotalCount(totalCount + 1);}}
+        onDecrease={(count) => {setTotalCount(totalCount - 1);}}
+      />
     </div>
   );
 }
