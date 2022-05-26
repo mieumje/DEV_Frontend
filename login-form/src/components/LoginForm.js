@@ -1,21 +1,9 @@
-import styled from "@emotion/styled";
 import useForm from "../hooks/useForm";
 import Button from "./Button";
 import ErrorText from "./ErrorText";
 import Input from "./Input";
-
-const CardForm = styled.form`
-  padding: 16px;
-  width: 400px;
-  background-color: white;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
-  box-sizing: border-box;
-`;
-
-const Title = styled.h1`
-  font-size: 24px;
-  text-align: center;
-`;
+import CardForm from "./CardForm";
+import Title from "./Title";
 
 const sleep = () => {
   return new Promise((resolve) => {
