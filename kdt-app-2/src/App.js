@@ -1,20 +1,20 @@
-// 1. 함수 컴포넌트는 자신의 상태가 변경될 때 리렌더링
-// 2. 부모 컴포넌트로 부터 받는 props이 변경될 때 리렌더링
-// 3. 부모 컴포넌트의 상태가 변경되면 리렌더링
-// 부모 컴포넌트가 변경되었는데, 자식 컴포넌트가 리렌더링 되는 것은 불합리해 보인다.
-// 이 때 사용할 수 있는 것이 React.memo
-
 import { useState } from "react";
-import Box from "./components/Box";
-
+import Checkbox from "./components/Checkbox";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [catOn, setCatOn] = useState(false);
+  const [hong3On, setHong3On] = useState(false);
+  const [hongsamOn, setHongsamOn] = useState(false);
+
+  const catChange = (e) => setCatOn(e.target.checked);
+  const hong3Change = (e) => setHong3On(e.target.checked);
+  const hongsamChange = (e) => setHongsamOn(e.target.checked);
+  
   return (
     <div>
-      {count}
-      <button onClick={() => setCount(count + 1)}>+</button>
-      <Box />
+      <Checkbox label="cat" on={catOn} onChange={catChange}/>
+      <Checkbox label="hong3" on={hong3On} onChange={hong3Change}/>
+      <Checkbox label="hongsam" on={hongsamOn} onChange={hongsamChange}/>
     </div>
   );
 }
