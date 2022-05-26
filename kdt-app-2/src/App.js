@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import Checkbox from "./components/Checkbox";
 
 function App() {
@@ -6,9 +6,9 @@ function App() {
   const [hong3On, setHong3On] = useState(false);
   const [hongsamOn, setHongsamOn] = useState(false);
 
-  const catChange = (e) => setCatOn(e.target.checked);
-  const hong3Change = (e) => setHong3On(e.target.checked);
-  const hongsamChange = (e) => setHongsamOn(e.target.checked);
+  const catChange = useCallback((e) => setCatOn(e.target.checked), []);
+  const hong3Change = useCallback((e) => setHong3On(e.target.checked), []);
+  const hongsamChange = useCallback((e) => setHongsamOn(e.target.checked), []);
   
   return (
     <div>
