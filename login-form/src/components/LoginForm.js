@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import useForm from "../hooks/useForm";
 import Button from "./Button";
+import ErrorText from "./ErrorText";
 import Input from "./Input";
 
 const CardForm = styled.form`
@@ -23,15 +24,12 @@ const sleep = () => {
 };
 
 const LoginForm = ({ onSubmit }) => {
-  const { values, errors, isLoading, handleChange, handleSubmit } = useForm({
+  const { errors, isLoading, handleChange, handleSubmit } = useForm({
     initialValues: {
       name: '',
       password: ''
     },
-    onSubmit: async () => {
-      await sleep();
-      console.log('Submit');
-    },
+    onSubmit,
     validate: ({ name, password}) => {
       const newErrors = {};
       if (!name) newErrors.name = '이름을 입력해주세요.';
@@ -40,8 +38,6 @@ const LoginForm = ({ onSubmit }) => {
     }
   });
 
-  console.log(values, errors);
-  
   return (
     <CardForm onSubmit={handleSubmit}>
       <Title>Login</Title>
@@ -50,12 +46,14 @@ const LoginForm = ({ onSubmit }) => {
         name="name" 
         placeholder="name"
         onChange={handleChange}/>
+      {errors.name && <ErrorText>{errors.name}</ErrorText>}
       <Input 
         type="password" 
         name="password" 
         placeholder="password" 
         style={{ marginTop: 16 }}
         onChange={handleChange}/>
+      {errors.password && <ErrorText>{errors.password}</ErrorText>}
       <Button type="submit" disabled={isLoading} style={{ marginTop : 16 }}>Login</Button>
     </CardForm>
   )
