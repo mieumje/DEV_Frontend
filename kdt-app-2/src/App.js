@@ -3,7 +3,7 @@ import Box from "./components/Box";
 function App() {
   return (
     <div>
-      <Box />
+      <Box bgColor="red"/>
     </div>
   );
 }

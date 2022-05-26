@@ -1,7 +1,7 @@
 import "./Box.css"
 
-const Box = () => {
-  return <div className="box"/>
+const Box = ({ bgColor }) => {
+  return <div className="box" style={{ backgroundColor : bgColor}}/>
 }
 
 export default Box;
