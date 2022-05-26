@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import Button from "./Button";
 import Input from "./Input";
 
 const CardForm = styled.form`
@@ -25,7 +26,7 @@ const LoginForm = ({ onSubmit }) => {
       <Title>Login</Title>
       Name : <Input type="text" name="name"/>
       Password : <Input type="password" name="password"/>
-      <button type="submit">Login</button>
+      <Button type="submit">Login</Button>
     </CardForm>
   )
 };
