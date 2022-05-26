@@ -1,4 +1,6 @@
-const Box = () => {
+import React from 'react';
+
+const Box = React.memo(() => {
   console.log('Render Box Component');
   const style = {
     width: 100,
@@ -10,6 +12,6 @@ const Box = () => {
       <div style={style} />
     </div>
   );
-}
+})
 
 export default Box;
