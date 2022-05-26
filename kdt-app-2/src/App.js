@@ -4,12 +4,16 @@
 // 부모 컴포넌트가 변경되었는데, 자식 컴포넌트가 리렌더링 되는 것은 불합리해 보인다.
 // 이 때 사용할 수 있는 것이 React.memo
 
+import { useState } from "react";
 import Box from "./components/Box";
 
 
 function App() {
+  const [count, setCount] = useState(0);
   return (
     <div>
+      {count}
+      <button onClick={() => setCount(count + 1)}>+</button>
       <Box />
     </div>
   );
