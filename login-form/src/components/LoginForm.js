@@ -1,3 +1,5 @@
+import Input from "./Input";
+
 const LoginForm = ({ onSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -6,7 +8,7 @@ const LoginForm = ({ onSubmit }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input />
+      <Input type="text" />
       <button type="submit">Login</button>
     </form>
   )
