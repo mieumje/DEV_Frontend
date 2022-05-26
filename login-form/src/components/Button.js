@@ -19,6 +19,10 @@ const Button = styled.button`
   &:active {
     background-color: #18b4f2;
   }
+
+  &:disabled {
+    background-color: red;
+  }
 `
 
 export default Button;
