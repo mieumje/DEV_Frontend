@@ -6,9 +6,11 @@ export default {
   title: 'Example/Box',
   component: Box,
   
-  // argTypes: {
-  //   backgroundColor: { control: 'color' },
-  // }, prop을 넘기고 있지 않아 주석 처리
+  argTypes: {
+    width: { control: 'number' },
+    height: { control: 'number' },
+    backgroundColor: { control: 'color' },
+  },
 };
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
