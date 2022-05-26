@@ -24,9 +24,9 @@ const LoginForm = ({ onSubmit }) => {
   return (
     <CardForm onSubmit={handleSubmit}>
       <Title>Login</Title>
-      Name : <Input type="text" name="name"/>
-      Password : <Input type="password" name="password"/>
-      <Button type="submit">Login</Button>
+      <Input type="text" name="name" placeholder="name"/>
+      <Input type="password" name="password" placeholder="password" style={{ marginTop: 16 }}/>
+      <Button type="submit" style={{ marginTop : 16 }}>Login</Button>
     </CardForm>
   )
 };
