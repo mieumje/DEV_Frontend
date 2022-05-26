@@ -1,13 +1,10 @@
-import React from 'react';
-
-const Checkbox = React.memo(({ label, on, onChange}) => {
-  console.log(label, on);
+const Checkbox = ({ label = 'Label', checked = false, onChange}) => {
   return (
     <label>
       {label}
-      <input type="checkBox" defaultChecked={on} onChange={onChange}/>
+      <input type="checkBox" defaultChecked={checked} onChange={onChange}/>
     </label>
   )
-});
+};
 
 export default Checkbox;
