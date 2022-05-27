@@ -1,7 +1,7 @@
 import Text from '../components/Text/Text';
 
 export default {
-  name: 'Component/Text',
+  title: 'Component/Text',
   component: Text,
   argTypes: {
     size: { control: 'number' },
