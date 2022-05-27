@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 
-const Image = ({ src, width, height, alt, mode, ...props }) => {
+const Image = ({ src, block, width, height, alt, mode, ...props }) => {
   const imageStyle = {
+    display: block ? 'block' : undefined,
     width,
     height,
     objectFit: mode // cover, fill, contain
