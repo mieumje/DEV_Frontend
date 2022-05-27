@@ -23,6 +23,11 @@ export default {
     alt: {
       name: 'alt',
       control: { type: 'string' }
+    },
+    mode: {
+      defaultValue: 'cover',
+      options: ['cover', 'fill', 'contain'],
+      control: { type: 'inline-radio' }
     }
   }
 };
