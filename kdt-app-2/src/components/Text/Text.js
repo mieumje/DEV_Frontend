@@ -1,4 +1,5 @@
 import './Text.css';
+import { PropTypes } from 'prop-types';
 
 const Text = ({ block, paragraph, children, size, strong, underline, delete: del, color, mark, code, ...props }) => {
   const Tag = block ? 'div' : paragraph ? 'p' : 'span';
@@ -25,6 +26,18 @@ const Text = ({ block, paragraph, children, size, strong, underline, delete: del
   return (
     <Tag className={typeof size === 'string' ? `Text--size-${size}` : undefined} style={{...props.style, ...fontStyle}}>{children}</Tag>
   )
+};
+
+Text.propTypes = {
+  children: PropTypes.node.isRequired,
+  size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  block: PropTypes.bool,
+  paragraph: PropTypes.bool,
+  delete: PropTypes.bool,
+  code: PropTypes.bool,
+  mark: PropTypes.bool,
+  strong: PropTypes.bool,
+  color: PropTypes.string,
 };
 
 export default Text;
