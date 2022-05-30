@@ -23,3 +23,13 @@ export const Default = (args) => {
     </Badge>
   );
 };
+
+export const Dot = () => {
+  return (
+    <Badge dot>
+      <Image 
+        src="https://picsum.photos/40" 
+        width={40} />
+    </Badge>
+  );
+};
