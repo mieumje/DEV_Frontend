@@ -29,10 +29,6 @@ const TaskList = (props) => {
           />
         ))
       }
-      <Task content={"Test"} />
-      <Task content={"Test"} />
-      <Task content={"Test"} />
-      <Task content={"Test"} />
     </UnorderedList>
   )
 };
