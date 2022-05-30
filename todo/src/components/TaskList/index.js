@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 import Task from "../Task/index.js";
 
 const UnorderedList = styled.ul`
@@ -15,7 +15,7 @@ const UnorderedList = styled.ul`
 
 const TaskList = (props) => {
   return (
-    <UnorderedList>
+    <UnorderedList {...props}>
       <Task content={"Test"} />
       <Task content={"Test"} />
       <Task content={"Test"} />

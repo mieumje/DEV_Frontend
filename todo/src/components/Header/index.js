@@ -1,4 +1,4 @@
-import styled from '@Emotion/styled';
+import styled from '@emotion/styled';
 
 const Header = styled.h1`
   text-align: center;
