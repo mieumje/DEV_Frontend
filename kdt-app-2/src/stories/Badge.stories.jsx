@@ -6,7 +6,9 @@ export default {
   component: Badge,
   argTypes: {
     count: { defaultValue: 10, control: "number"},
-    maxCount: { defaultValue: 100, control: "number"}
+    maxCount: { defaultValue: 100, control: "number"},
+    backgroundColor: { control: "color"},
+    textColor: { control: "color"},
   }
 };
 

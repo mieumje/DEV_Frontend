@@ -20,11 +20,16 @@ const Supper = styled.sup`
   transform: translate(50%, -50%);
 `
 
-const Badge = ({ children, count, maxCount, ...props}) => {
+const Badge = ({ children, count, maxCount, backgroundColor, textColor, ...props}) => {
+  const colorStyle = {
+    backgroundColor,
+    color: textColor
+  };
+
   return (
     <BadgeContainer>
       {children}
-      <Supper>{maxCount && count > maxCount ? `${maxCount}+` : `${count}`}</Supper>
+      <Supper style={colorStyle}>{maxCount && count > maxCount ? `${maxCount}+` : `${count}`}</Supper>
     </BadgeContainer>
   )
 };
