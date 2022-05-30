@@ -39,18 +39,9 @@ const ToggleInput = styled.input`
   &:checked + div:after {
     left: calc(100% - 26px);
   }
-
-  &:disabled + div {
-    opacity: 0.7;
-    cursor: not-allowed;
-
-    &:after {
-      opacity: 0.7;
-    }
-  }
 `;
 
-const Toggle = ({ name, on = false, disabled, onChange, ...props }) => {
+const Toggle = ({ on = false, onChange, ...props }) => {
   const [checked, toggle] = useToggle(on);
 
   const handleChange = (e) => {
@@ -60,7 +51,7 @@ const Toggle = ({ name, on = false, disabled, onChange, ...props }) => {
   
   return (
     <ToggleContainer {...props}>
-      <ToggleInput type="checkbox" name={name} checked={checked} disabled={disabled} onChange={handleChange} />
+      <ToggleInput type="checkbox" checked={checked} onChange={handleChange} />
       <ToggleSwitch />
     </ToggleContainer>
   );
