@@ -5,7 +5,8 @@ export default {
   title: 'Component/Badge',
   component: Badge,
   argTypes: {
-    count: { defaultValue: 10, control: "number"}
+    count: { defaultValue: 10, control: "number"},
+    maxCount: { defaultValue: 100, control: "number"}
   }
 };
 

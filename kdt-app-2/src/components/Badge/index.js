@@ -20,11 +20,11 @@ const Supper = styled.sup`
   transform: translate(50%, -50%);
 `
 
-const Badge = ({ children, count, ...props}) => {
+const Badge = ({ children, count, maxCount, ...props}) => {
   return (
     <BadgeContainer>
       {children}
-      <Supper>{count}</Supper>
+      <Supper>{maxCount && count > maxCount ? `${maxCount}+` : `${count}`}</Supper>
     </BadgeContainer>
   )
 };
