@@ -9,6 +9,7 @@ export default {
     maxCount: { defaultValue: 100, control: "number"},
     backgroundColor: { control: "color"},
     textColor: { control: "color"},
+    showZero: { defaultValue: false, control: "boolean"},
   }
 };
 
