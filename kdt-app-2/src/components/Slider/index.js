@@ -70,14 +70,17 @@ const Slider = ({
       const sliderWidth = sliderRef.current.offsetWidth;
 
       const track = handleOffset / sliderWidth;
+      let newValue;
       if (track < 0) {
-        setValue(min);
+        newValue = min;
       } else if (track > 1) {
-        setValue(max);
+        newValue = max;
       } else {
-        const newValue = min + (max - min) * track;
-        setValue(newValue);
+        newValue = Math.round((min + (max - min) * track) / step) * step;
       }
+      
+      setValue(newValue);
+      onChange && onChange(newValue);
     };
 
     document.addEventListener('mousemove', handleMouseMove);
@@ -87,7 +90,7 @@ const Slider = ({
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseup', handleMouseUp);
     }
-  }, [value, min, max, dragging, sliderRef, handleMouseUp]);
+  }, [onChange, value, min, max, dragging, sliderRef, handleMouseUp, step]);
 
   const percentage = ((value - min) / (max - min)) * 100;
 
