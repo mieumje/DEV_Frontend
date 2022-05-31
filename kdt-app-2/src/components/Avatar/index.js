@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 import ImageComponent from '../Image';
+import AvatarGroup from './AvatarGroup';
 
 const ShapeToCssValue = {
   circle: '50%',
@@ -30,6 +31,7 @@ const Avatar = ({
   placeholder,
   alt,
   mode = "dover",
+  __TYPE,
   ...props
 }) => {
   const [loaded, setLoaded] = useState(false);
@@ -56,6 +58,16 @@ const Avatar = ({
       />
     </AvatarWrapper>
   );
+};
+
+Avatar.Group = AvatarGroup;
+
+Avatar.defaultProps = {
+  __TYPE: 'Avatar'
+};
+
+Avatar.propTypes = {
+  __TYPE: 'Avatar'
 };
 
 export default Avatar;

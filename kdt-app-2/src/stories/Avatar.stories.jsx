@@ -1,4 +1,5 @@
 import Avatar from "../components/Avatar";
+import Toggle from "../components/Toggle";
 
 export default {
   title: 'Component/Avatar',
@@ -25,3 +26,14 @@ export default {
 export const Default = (args) => {
   return <Avatar {...args}></Avatar>
 };
+
+export const Group = () => {
+  return (
+    <Avatar.Group size={40}>
+      <Avatar src="https://picsum.photos/200?1" />
+      <Avatar src="https://picsum.photos/200?2" />
+      <Avatar src="https://picsum.photos/200?3" />
+      <Avatar src="https://picsum.photos/200?4" />
+    </Avatar.Group>
+  );
+}
