@@ -30,6 +30,16 @@ const Handle = styled.div`
   cursor: grab;
 `;
 
+const Track = styled.div`
+  position: absolute;
+  top: 6px;
+  left: 0;
+  width: 0;
+  height: 4px;
+  border-radius: 2px;
+  background-color: #44a;
+`;
+
 const Slider = ({
   min = 0,
   max = 100,
@@ -84,6 +94,7 @@ const Slider = ({
   return (
     <SliderContainer ref={sliderRef} {...props}>
       <Rail />
+      <Track style={{ width : `${percentage}%`}}/>
       <Handle onMouseDown={handleMouseDown} style={{ left : `${percentage}%`}}/>
     </SliderContainer>
   )
