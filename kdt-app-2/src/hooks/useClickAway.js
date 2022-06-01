@@ -4,6 +4,11 @@ const events = ['mousedown', 'touchstart'];
 
 const useClickAway = (handler) => {
   const ref = useRef(null);
+  const savedHandler = useRef(handler);
+
+  useEffect(() => {
+    savedHandler.current = handler;
+  }, [handler]);
 
   useEffect(() => {
     const element = ref.current;
@@ -11,7 +16,7 @@ const useClickAway = (handler) => {
     if(!element) return;
 
     const handleEvent = (e) => {
-      !element.contains(e.target) && handler(e);
+      !element.contains(e.target) && savedHandler(e);
     };
 
     for (const eventName of events) {
@@ -23,7 +28,7 @@ const useClickAway = (handler) => {
         document.removeEventListener(eventName, handleEvent);
       }
     };
-  }, [ref, handler]);
+  }, [ref]);
 
   return ref;
 };
