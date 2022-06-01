@@ -24,12 +24,17 @@ const Box = () => {
 
 export const Default = () => {
   return (
-    <Row>
+    <Row gutter={[8, 8]}>
       <Col span={4}><Box /></Col>
       <Col span={2}><Box /></Col>
       <Col span={2}><Box /></Col>
       <Col span={2}><Box /></Col>
       <Col span={2}><Box /></Col>
+      <Col span={4}><Box /></Col>
+      <Col span={2}><Box /></Col>
+      <Col span={4}><Box /></Col>
+      <Col span={2}><Box /></Col>
+      <Col offset={4} span={2}><Box /></Col>
     </Row>
   )
 };

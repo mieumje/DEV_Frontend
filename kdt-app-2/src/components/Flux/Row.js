@@ -1,4 +1,6 @@
 import styled from '@emotion/styled';
+import { useMemo } from 'react';
+import FluxProvider from './FluxProvider';
 
 const AlignToCSSValue = {
   top: 'flex-start',
@@ -18,11 +20,32 @@ const StyledRow = styled.div`
 
 
 
-const Row = ({ children, justify, align, ...props}) => {
+const Row = ({ children, justify, align, gutter, ...props}) => {
+  const gutterStyle = useMemo(() => {
+    if (Array.isArray(gutter)) {
+      const horizontalGutter = gutter[0];
+      const verticalGutter = gutter[1];
+      return {
+        marginTop: `-${verticalGutter / 2}px`,
+        marginBottom: `-${verticalGutter / 2}px`,
+        marginLeft: `-${horizontalGutter / 2}px`,
+        marginRight: `-${horizontalGutter / 2}px`
+      };
+    } else {
+      return {
+        marginLeft: `-${gutter / 2}px`,
+        marginRight: `-${gutter / 2}px`
+      };
+    }
+    
+  }, [gutter]);
+
   return (
-    <StyledRow {...props} align={align} justify={justify}>
-      {children}
-    </StyledRow>
+    <FluxProvider gutter={gutter}>
+      <StyledRow {...props} align={align} justify={justify} style={{...props.style, ...gutterStyle}}>
+        {children}
+      </StyledRow>
+    </FluxProvider>
   )
 };
 
