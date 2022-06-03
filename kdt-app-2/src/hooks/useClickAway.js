@@ -1,6 +1,6 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
 
-const events = ['mousedown', 'touchstart'];
+const events = ["mousedown", "touchstart"];
 
 const useClickAway = (handler) => {
   const ref = useRef(null);
@@ -12,11 +12,10 @@ const useClickAway = (handler) => {
 
   useEffect(() => {
     const element = ref.current;
-
-    if(!element) return;
+    if (!element) return;
 
     const handleEvent = (e) => {
-      !element.contains(e.target) && savedHandler(e);
+      !element.contains(e.target) && savedHandler.current(e);
     };
 
     for (const eventName of events) {
