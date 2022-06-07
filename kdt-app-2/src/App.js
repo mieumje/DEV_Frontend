@@ -23,13 +23,43 @@
 // }
 
 // export default App;
-import Paint from "./components/Paint";
+// import Paint from "./components/Paint";
+
+// const App = () => {
+//   return (
+//     <div>
+//       <Paint style={{border: '1px solid black'}}/>
+//     </div>
+//   );
+// };
+
+// export default App;
+
+import axios from 'axios';
+import useAsync from './hooks/useAsync';
+import Header from './components/Header/Index';
+import Spinner from './components/Spinner';
 
 const App = () => {
+  const initialPost =  useAsync(async () => {
+    return await axios
+      .get('https://jsonplaceholder.typicode.com/posts')
+      .then((response) => response.data);
+  }, []);
+
   return (
-    <div>
-      <Paint style={{border: '1px solid black'}}/>
-    </div>
+    <>
+      <Header>Posts</Header>
+      <ul>
+        {initialPost.isLoading ? ( 
+          <Spinner /> 
+        ) : (
+          (initialPost.value || []).map((post) => (
+            <li key={post.id}>{post.title}</li>
+          ))
+        )}
+      </ul>
+    </>
   );
 };
 
