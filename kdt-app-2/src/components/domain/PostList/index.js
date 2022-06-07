@@ -9,6 +9,7 @@ const PostItem = ({ post }) => {
       <Text>
         {post.body}
       </Text>
+      <button>Delete</button>
     </li>
   );
 };
