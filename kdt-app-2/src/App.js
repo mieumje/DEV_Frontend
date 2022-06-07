@@ -38,9 +38,10 @@
 import axios from 'axios';
 import { useAsync } from './hooks';
 import { Header, Spinner } from './components';
+import PostList from './components/domain/PostItem';
 
 const App = () => {
-  const initialPost =  useAsync(async () => {
+  const initialPosts =  useAsync(async () => {
     return await axios
       .get('https://jsonplaceholder.typicode.com/posts')
       .then((response) => response.data);
@@ -49,15 +50,11 @@ const App = () => {
   return (
     <>
       <Header>Posts</Header>
-      <ul>
-        {initialPost.isLoading ? ( 
-          <Spinner /> 
+        {initialPosts.isLoading ? (
+          <Spinner />
         ) : (
-          (initialPost.value || []).map((post) => (
-            <li key={post.id}>{post.title}</li>
-          ))
+          <PostList initialPosts={initialPosts.value || []} />
         )}
-      </ul>
     </>
   );
 };
