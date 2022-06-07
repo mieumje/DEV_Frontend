@@ -1,17 +1,19 @@
-import { Header, Text } from '../..';
+import { usePostContext } from "../../../contexts/PostProvider";
+import PostItem from "../PostItem";
 
-const PostItem = ({ post }) => {
+const PostList = () => {
+  const { posts } = usePostContext();
+  
   return (
-    <li>
-      <Header strong level={3}>
-        {post.title}
-      </Header>
-      <Text>
-        {post.body}
-      </Text>
+    <ul>
+      {
+        posts.map((post) => (
+          <PostItem key={post.id} post={post} />
+        ))
+      }
       <button>Delete</button>
-    </li>
+    </ul>
   );
 };
 
-export default PostItem;
+export default PostList;
