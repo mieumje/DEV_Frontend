@@ -36,12 +36,12 @@
 // export default App;
 
 import axios from 'axios';
-import { useAsync } from './hooks';
-import { Header, Spinner } from './components';
-import PostList from './components/domain/PostList';
-import PostProvider from './contexts/PostProvider';
+import { useAsync } from '@hooks';
+import { Header, Spinner } from '@components';
+import PostList from '@components/domain/PostList';
+import PostProvider from '@contexts/PostProvider';
 import { useCallback } from 'react';
-import PostAddForm from './components/domain/PostAddForm';
+import PostAddForm from '@components/domain/PostAddForm';
 
 // 컴포넌트는 최대한 순수할수록 좋다.
 // 1. 사이드 이펙트를 걱정하지 않아도 된다.
