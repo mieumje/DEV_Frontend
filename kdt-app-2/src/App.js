@@ -35,7 +35,7 @@
 
 // export default App;
 import { Routes, Route } from "react-router-dom"; // v5에서는 Switch
-import { PostsPage, PostPage } from "@pages";
+import { PostsPage, PostPage, NotFoundPage } from "@pages";
 import DefaultTemplate from "@components/template/DefaultTemplate";
 
 const App = () => {
@@ -45,6 +45,7 @@ const App = () => {
         <Route path="/" exact element={<h1>Home</h1>} />
         <Route path="/posts" exact element={ <PostsPage /> } />
         <Route path="/posts/:id" exact element={ <PostPage /> } />
+        <Route path="*" exact element={ <NotFoundPage /> } />
       </Routes>
     </DefaultTemplate>
   );
