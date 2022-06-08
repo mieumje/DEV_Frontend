@@ -35,16 +35,17 @@
 
 // export default App;
 import { Routes, Route } from "react-router-dom"; // v5에서는 Switch
-import { PostsPage } from "./pages";
+import { PostsPage } from "@pages";
+import DefaultTemplate from "@components/template/DefaultTemplate";
 
 const App = () => {
   return (
-    <div>
+    <DefaultTemplate>
       <Routes>
         <Route path="/" exact element={<h1>Home</h1>} />
         <Route path="/posts" exact element={ <PostsPage /> } />
       </Routes>
-    </div>
+    </DefaultTemplate>
   );
 };
 
