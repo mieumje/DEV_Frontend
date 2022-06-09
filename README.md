@@ -30,20 +30,20 @@
 body
 ```
 #### 1. header
-- > hrader는 완성형 문장으로 작성한다. <br />
-- > ❌ feat: 로그인 기능 추가 <br />
-- > ✅ feat: 로그인 기능을 추가했다.
+hrader는 완성형 문장으로 작성한다. <br />
+❌ feat: 로그인 기능 추가 <br />
+✅ feat: 로그인 기능을 추가했다.
 
 #### 2. types
-- > type은 소문자로만 작성한다. <br />
-- > 콜론(:) 기호로 type과 description을 구분한다. <br />
-- > 콜론(:) 이후에 한 칸 띄어쓰기 후 description을 작성한다.
-- > ❌ feat:로그인 기능 추가했다. <br />
-- > ✅ feat: 로그인 기능을 추가했다.
+type은 소문자로만 작성한다. <br />
+콜론(:) 기호로 type과 description을 구분한다. <br />
+콜론(:) 이후에 한 칸 띄어쓰기 후 description을 작성한다.
+❌ feat:로그인 기능 추가했다. <br />
+✅ feat: 로그인 기능을 추가했다.
 
 ##### 3. body
-- > ❌ refactor: 로그인 함수를 분리했다. <br />
-- > ✅ refactor: 로그인 함수를 분리했다. <br />
+❌ refactor: 로그인 함수를 분리했다. <br />
+✅ refactor: 로그인 함수를 분리했다. <br />
 기존 로그인 함수를 로그인 정보 입력 양식 확인 함수와 로그인 정보 인증 함수로 분리했다.
 
 ### Code Rules
