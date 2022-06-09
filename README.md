@@ -1,8 +1,17 @@
 # Gamebu(껨부)
 
 ## 목차
+1. [프로젝트 소개](#프로젝트-소개)
+2. [Ground Rules](#Ground-rules)
+3. [기술 스택](#기술-스택)
+4. [커뮤니케이션](#커뮤니케이션)
+5. [Contributors](#Contributors)
 
----
+## 프로젝트 소개
+
+껨부는 기존의 한 게임의 특정 콘텐츠의 유저만을 모집하는 것이 아닌, 여러 게임, 여러 콘텐츠를 함께 즐길 유저를 모집하는 종합 게임 파티원 구인 서비스를 목표로 합니다.
+
+여러 게임의 커뮤니티를 하나하나 찾아다닐 필요 없이, 여러 게임과 콘텐츠를 함께 즐길 사람을 종합적으로 구하는 서비스를 이용할 수 있는 SNS 플랫폼입니다.
 
 ## Ground Rules
 ### Git Branch
@@ -73,8 +82,6 @@ let element;
 - 리뷰어가 확실히 알아볼 수 있도록 코드 작성자가 PR을 상세하게 적는다.
 - 리뷰가 끝나고 merge가 되었다면, 핵심 기능은 따로 문서화 한다.
 
----
-
 ## 기술 스택
 <div align=center> 
   <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black" />
@@ -87,7 +94,6 @@ let element;
   
 </div>
 
----
 
 ## 커뮤니케이션
 <div align=center> 
@@ -95,3 +101,8 @@ let element;
   <img src="https://img.shields.io/badge/Discord-292841?style=for-the-badge&logo=Discord&logoColor=#5865F2" />
   
 </div>
+
+## Contributors
+|조채우|고광필|김동언|박민제|이상진
+|--|--|--|--|--|
+|[Github](https://github.com/JoChaeWoo)|[Github](https://github.com/feel0321)|[Github](https://github.com/960817)|[Github](https://github.com/mieumje)|[Github](https://github.com/sangjin149)|
