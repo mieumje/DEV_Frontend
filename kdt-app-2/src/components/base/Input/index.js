@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import RefInput from './refInput';
 
 const Wrapper = styled.div`
   display: ${({ block }) => block ? 'block' : 'inline-block'};
@@ -40,4 +41,7 @@ const Input = ({
   )
 };
 
-export default Input;
+export {
+  Input,
+  RefInput,
+}
