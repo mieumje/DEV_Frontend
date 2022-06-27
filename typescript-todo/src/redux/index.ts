@@ -6,9 +6,20 @@ import { combineReducers, createStore, applyMiddleware } from 'redux';
 import { tasks } from './tasks';
 import logger from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { persistReducer, persistStore } from 'redux-persist';
+import session from 'redux-persist/lib/storage/session';
 
-const rootReducer = combineReducers({ tasks });
+const persistConfig = {
+  key: 'root',
+  storage: session,
+  whitelist: ['tasks'],
+}
+
+const combinedReducers = combineReducers({ tasks });
+
+const rootReducer = persistReducer(persistConfig, combinedReducers);
 
 export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(logger)));
+export const persistor = persistStore(store as any)// 스토리지에 빼오기 위한 저장소
 
 export type RootState = ReturnType<typeof rootReducer>;
