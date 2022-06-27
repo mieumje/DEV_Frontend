@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import Toggle from "./Toggle";
 
 interface Props {
   id?: string;
@@ -41,6 +42,7 @@ const RemoveButton = styled.button`
 function Task({ id, content, complete, ...props }: Props) {
   return (
     <ListItem {...props}>
+      <Toggle />
       <Content complete={complete}>{content}</Content>
       <RemoveButton>Remove</RemoveButton>
     </ListItem>
