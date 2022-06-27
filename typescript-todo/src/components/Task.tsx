@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
-import { useTask } from "../context/TaskProvider";
+// import { useTask } from "../context/TaskProvider";
+import { useDispatch } from 'react-redux';
+import { removeTask, updateTask } from "../redux/tasks";
 import Toggle from "./Toggle";
 
 interface Props {
@@ -41,13 +43,14 @@ const RemoveButton = styled.button`
 `;
 
 function Task({ id, content, complete, ...props }: Props) {
-  const { updateTask, removeTask } = useTask();
+  // const { updateTask, removeTask } = useTask();
+  const dispatch = useDispatch();
   
   return (
     <ListItem {...props}>
-      <Toggle on={complete} onChange={(e) => updateTask(id, e.target.checked)} />
+      <Toggle on={complete} onChange={(e) => dispatch(updateTask(id, content, e.target.checked))} />
       <Content complete={complete}>{content}</Content>
-      <RemoveButton onClick={() => removeTask}>Remove</RemoveButton>
+      <RemoveButton onClick={() => dispatch(removeTask(id))}>Remove</RemoveButton>
     </ListItem>
   )
 }
