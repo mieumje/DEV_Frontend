@@ -14,13 +14,14 @@ const UnorderedList = styled.div`
   }
 `
 
-function TaskList() {
+function TaskList(props: any) {
   const { tasks } = useTask();
   return (
     <UnorderedList>
       {
         tasks.map(item => (
           <Task 
+            {...props}
             key={item.id}
             id={item.id}
             content={item.content}
