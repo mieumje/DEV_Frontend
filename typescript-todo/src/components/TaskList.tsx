@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
-import { useTask } from "../context/TaskProvider";
+// import { useTask } from "../context/TaskProvider";
+import { useSelector } from 'react-redux';
+import { RootState } from "../redux";
 import Task from "./Task";
 
 const UnorderedList = styled.div`
@@ -15,7 +17,8 @@ const UnorderedList = styled.div`
 `
 
 function TaskList(props: any) {
-  const { tasks } = useTask();
+  // const { tasks } = useTask();
+  const tasks = useSelector((store: RootState) => store.tasks);
   return (
     <UnorderedList>
       {

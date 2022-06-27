@@ -47,7 +47,7 @@ function Task({ id, content, complete, ...props }: Props) {
     <ListItem {...props}>
       <Toggle on={complete} onChange={(e) => updateTask(id, e.target.checked)} />
       <Content complete={complete}>{content}</Content>
-      <RemoveButton onClick={() => removeTask(id)}>Remove</RemoveButton>
+      <RemoveButton onClick={() => removeTask}>Remove</RemoveButton>
     </ListItem>
   )
 }
