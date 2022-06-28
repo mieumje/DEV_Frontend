@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import Link from "next/link";
 
 const Box = styled.div`
   width: 100px;
@@ -11,6 +12,9 @@ const About = () => {
     <div>
       About
       <Box />
+      <Link href={'/'}>
+        Go to home
+      </Link>
     </div>
   )
 }
