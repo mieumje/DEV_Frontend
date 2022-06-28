@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Link from 'next/link';
 import { Post } from '../interface/Post';
 
 export const getServerSideProps = async () => {
@@ -20,7 +21,11 @@ const HomePage = ({ posts }: Props) => {
       <ul>
         {
           posts.map(post => (
-            <li key={post.id}>{post.title}</li>
+            <Link key={post.id} href='/posts/[id]' as={`/posts/${post.id}`} passHref>
+              <a>
+                <li>{post.title}</li>
+              </a>
+            </Link>
           ))
         }
       </ul>
