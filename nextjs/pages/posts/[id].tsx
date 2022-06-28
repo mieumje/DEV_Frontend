@@ -1,14 +1,28 @@
-import { useRouter } from "next/router";
+import axios from "axios";
+import { NextPageContext } from "next";
+import { Post } from "../../interface/Post";
 
-const Post = () => {
-  const router = useRouter();
+interface Props {
+  post: Post;
+}
+
+export const getServerSideProps = async (context: NextPageContext) => {
+  const postId = context.query.id;
+  const { data: post } = await axios.get(`https://jsonplaceholder.typicode.com/posts/${postId}`)
+
+  return {
+    props: { post }
+  }
+}
+
+const PostPage = ({ post }: Props) => {
 
   return (
     <div>
-      Post {router.query.id}
-      <button onClick={() => router.push('/about')}>Go to about</button>
+      <h1>{post.title}</h1>
+      <p>{post.body}</p>
     </div>
   )
 }
 
-export default Post;
+export default PostPage;
