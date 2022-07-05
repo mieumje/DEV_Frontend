@@ -61,6 +61,9 @@
       <circle class="violet" r="25" cx="150" cy="30" fill="violet" />
       <circle r="25" cx="210" cy="30" fill="lightblue" />
     </svg>
+
+    <svg id="bargraph" width="400" height="100"></svg>
+    <button onclick="sortData()">Sort</button>
     <script>
       /* 
       - selection.insert
@@ -108,6 +111,63 @@
         d3.select(".lowerSVG")
           .selectAll("circle")
           .attr("cx", (d, i) => 30 + i * 60);
+      }
+
+      /*
+        selection.sort(compare function)
+        - DOM에서 compare function을 기반으로 선택한 selection의 위치를 변경
+        - select.sort메소드는 바인딩된 데이터를 기반으로 selection 요소들을 정렬
+        - compare function을 수행한 다음 새로 정렬된 순서로 요소들을 DOM에 다시 삽입
+        - compare function은 직접 정의하거나, D3에서 제공하는 비교자들을 사용할 수 있다
+          (ex: d3.ascending, d3.descending) 
+        
+        compare function : function(a,b)
+        - function이 음수를 return, 첫 번째 요소가 두 번째 요소 앞에 위치
+        - function이 양수를 return, 첫 번째 요소가 두 번째 요소 뒤에 위치
+        - function이 0을 return, 요소의 정렬이 변경되지 않는다
+      */
+
+      const homelessData = [
+        { state: "캘리포니아", population: 134278 },
+        { state: "플로리다", population: 32190 },
+        { state: "워싱턴", population: 21112 },
+        { state: "뉴욕", population: 89503 },
+        { state: "텍사스", population: 23548 },
+      ];
+
+      const barGroup = d3.select("#bargraph").append("g");
+
+      barGroup
+        .selectAll("rect")
+        .data(homelessData)
+        .enter()
+        .append("rect")
+        .attr("height", 19)
+        .attr("width", (d) => d.population / 500)
+        .attr("x", 100)
+        .attr("y", (d, i) => i * 20)
+        .attr("fill", "pink");
+
+      barGroup
+        .selectAll("text")
+        .data(homelessData)
+        .enter()
+        .append("text")
+        .text((d) => d.state)
+        .attr("x", 96)
+        .attr("y", (d, i) => i * 20 + 17)
+        .attr("text-anchor", "end");
+
+      function sortData() {
+        d3.select("#bargraph")
+          .selectAll("rect")
+          .sort((a, b) => d3.ascending(a.population, b.population))
+          .attr("y", (d, i) => i * 20);
+
+        d3.select("#bargraph")
+          .selectAll("text")
+          .sort((a, b) => d3.ascending(a.population, b.population))
+          .attr("y", (d, i) => i * 20 + 17);
       }
     </script>
   </body>
