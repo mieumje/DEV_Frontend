@@ -64,6 +64,7 @@
 
     <svg id="bargraph" width="400" height="100"></svg>
     <button onclick="sortData()">Sort</button>
+    <button onclick="getNode()">Node</button>
     <script>
       /* 
       - selection.insert
@@ -168,6 +169,22 @@
           .selectAll("text")
           .sort((a, b) => d3.ascending(a.population, b.population))
           .attr("y", (d, i) => i * 20 + 17);
+      }
+
+      /*
+        selection.nodes()
+        - 해당 selection의 모든 요소를 배열로 반환
+        - Array.from(selection)
+
+        selection.node()
+        - 해당 selection의 첫 번째 요소를 반환
+        - selection이 비어 있으면 null을 반환
+      */
+
+      function getNode() {
+        const barRect = d3.select("#bargraph").selectAll("rect");
+        console.log(barRect.nodes());
+        console.log(barRect.node());
       }
     </script>
   </body>
