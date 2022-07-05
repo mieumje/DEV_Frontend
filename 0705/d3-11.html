@@ -45,6 +45,14 @@
       <div class="box pink-box"></div>
       <div class="box pink-box"></div>
     </div>
+
+    <button onclick="raise()">Raise</button>
+    <svg class="raiseSVG" width="300" height="60">
+      <circle r="25" cx="30" cy="30" fill="lightblue" />
+      <circle class="pink" r="25" cx="90" cy="30" fill="pink" />
+      <circle class="violet" r="25" cx="150" cy="30" fill="violet" />
+      <circle r="25" cx="210" cy="30" fill="lightblue" />
+    </svg>
     <script>
       /* 
       - selection.insert
@@ -66,6 +74,19 @@
         d3.selectAll("#cloneBox div")
           .clone(false) // 자식노드 까지 필요하지 않기 때문에 false
           .classed("box aqua-box", true);
+      }
+
+      /* 
+      - selection.raise
+      - selection의 요소를 헤당 부모의 마지막 자식으로 DOM에 다시 삽입한다.
+      */
+
+      function raise() {
+        d3.select(".raiseSVG").selectAll(".pink,.violet").raise();
+
+        d3.select(".raiseSVG")
+          .selectAll("circle")
+          .attr("cx", (d, i) => 30 + i * 60);
       }
     </script>
   </body>
