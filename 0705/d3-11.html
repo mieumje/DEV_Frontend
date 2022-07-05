@@ -38,6 +38,13 @@
       <div class="box pink-box"></div>
       <div class="box pink-box"></div>
     </div>
+
+    <button onclick="cloneBoxes()">Clone</button>
+    <div id="cloneBox">
+      <div class="box pink-box"></div>
+      <div class="box pink-box"></div>
+      <div class="box pink-box"></div>
+    </div>
     <script>
       /* 
       - selection.insert
@@ -52,6 +59,12 @@
       function insertBox2() {
         d3.selectAll("#insertBox2 > div")
           .insert("div")
+          .classed("box aqua-box", true);
+      }
+
+      function cloneBoxes() {
+        d3.selectAll("#cloneBox div")
+          .clone(false) // 자식노드 까지 필요하지 않기 때문에 false
           .classed("box aqua-box", true);
       }
     </script>
