@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Documents</title>
+  </head>
+  <body>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script>
+      async function getData() {
+        const csvData = await d3.csv("./data/movie.csv");
+        console.log("csv", csvData);
+
+        const tsvData = await d3.csv("./data/movie.tsv");
+        console.log("tsv", tsvData);
+
+        // const textData = d3.text("./data/movie.text");
+        // console.log(textData);
+
+        const xmlData = await d3.xml("./data/movie.xml");
+        console.log("xml", xmlData);
+
+        const htmlData = await d3.html("./data/movie.html");
+        console.log("html", htmlData);
+
+        const jsonData = await d3.json("./data/movie.json");
+        console.log("json", jsonData);
+      }
+
+      getData();
+    </script>
+  </body>
+</html>
