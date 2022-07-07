@@ -4,14 +4,14 @@ import Heading from "./Heading";
 import Post from "./Post";
 
 const StyledLi = styled.li`
-  list-style: none;
+  cursor: pointer;
 `;
 
 export default function PostsList({ posts }) {
   return (
     <>
       <Heading level={1}>Posts List</Heading>
-      <ul>
+      <ol>
         {posts &&
           posts.map((post) => {
             return (
@@ -20,7 +20,7 @@ export default function PostsList({ posts }) {
               </StyledLi>
             );
           })}
-      </ul>
+      </ol>
     </>
   );
 }
