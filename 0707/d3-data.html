@@ -37,111 +37,90 @@
   <body>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script>
-      const data = [
-        {
-          name: "극한직업",
-          value: 16264984,
-        },
-        {
-          name: "어벤져스:엔드게임",
-          value: 13977602,
-        },
-        {
-          name: "겨울왕국2",
-          value: 13747792,
-        },
-        {
-          name: "알라딘",
-          value: 12551371,
-        },
-        {
-          name: "기생충",
-          value: 10083172,
-        },
-        {
-          name: "엑시트",
-          value: 9414388,
-        },
-        {
-          name: "스파이더맨:파 프롬 홈",
-          value: 8021290,
-        },
-      ];
+      async function makeChart() {
+        const data = await d3.json("./data/movie.json");
 
-      const nameList = data.map((d) => d.name);
-      const valueList = data.map((d) => d.value);
+        const nameList = data.map((d) => d.name);
+        const valueList = data.map((d) => d.value);
 
-      const margin = { top: 30, right: 50, bottom: 0, left: 150 };
-      const width = 400;
-      const height = 170;
+        const margin = { top: 30, right: 50, bottom: 0, left: 150 };
+        const width = 400;
+        const height = 170;
 
-      const x = d3 // x 척도
-        .scaleLinear()
-        .domain([0, d3.max(valueList)])
-        .range([0, width]);
+        const x = d3 // x 척도
+          .scaleLinear()
+          .domain([0, d3.max(valueList)])
+          .range([0, width]);
 
-      const y = d3 // y 척도
-        .scaleBand()
-        .domain(nameList)
-        .range([0, height])
-        .paddingInner(0.2);
+        const y = d3 // y 척도
+          .scaleBand()
+          .domain(nameList)
+          .range([0, height])
+          .paddingInner(0.2);
 
-      const xAxis = d3 // x 축
-        .axisTop(x)
-        .ticks(4)
-        .tickFormat((d, i) => {
-          return `${!!d ? Math.floor(d / 10000) : d}만명`;
-        });
+        const xAxis = d3 // x 축
+          .axisTop(x)
+          .ticks(4)
+          .tickFormat((d, i) => {
+            return `${!!d ? Math.floor(d / 10000) : d}만명`;
+          });
 
-      const yAxis = d3.axisLeft(y); // y 축
+        const yAxis = d3.axisLeft(y); // y 축
 
-      const body = d3.select("body");
-      body.append("h2").text("2019년 1000만 관객 기록한 영화 관객수 TOP7");
+        const body = d3.select("body");
+        body.append("h2").text("2019년 1000만 관객 기록한 영화 관객수 TOP7");
 
-      body
-        .append("div")
-        .attr("class", "top-label movie-label")
-        .append("p")
-        .text("영화");
+        body
+          .append("div")
+          .attr("class", "top-label movie-label")
+          .append("p")
+          .text("영화");
 
-      body.append("div").attr("class", "top-label").append("p").text("관객수");
+        body
+          .append("div")
+          .attr("class", "top-label")
+          .append("p")
+          .text("관객수");
 
-      body.append("div").attr("class", "clearfix");
+        body.append("div").attr("class", "clearfix");
 
-      const svgGroup = body
-        .append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform", `translate(${margin.left}, ${margin.top})`);
+        const svgGroup = body
+          .append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-      const barGroup = svgGroup.append("g").attr("class", "bar");
+        const barGroup = svgGroup.append("g").attr("class", "bar");
 
-      const barHeight = 20,
-        barGap = 5,
-        barSpacing = barHeight + barGap;
+        const barHeight = 20,
+          barGap = 5,
+          barSpacing = barHeight + barGap;
 
-      barGroup
-        .selectAll("rect")
-        .data(data)
-        .join("rect")
-        .attr("x", "0")
-        .attr("y", (d, i) => {
-          return y(d.name);
-        })
-        .attr("height", barHeight)
-        .attr("width", (d) => {
-          return x(d.value);
-        });
+        barGroup
+          .selectAll("rect")
+          .data(data)
+          .join("rect")
+          .attr("x", "0")
+          .attr("y", (d, i) => {
+            return y(d.name);
+          })
+          .attr("height", barHeight)
+          .attr("width", (d) => {
+            return x(d.value);
+          });
 
-      const tickHeight = -10;
-      const tickGap = -5;
-      const axisData = [0, 5601256, 11202506, 16803759];
+        const tickHeight = -10;
+        const tickGap = -5;
+        const axisData = [0, 5601256, 11202506, 16803759];
 
-      const xScale = svgGroup.append("g").attr("class", "axis-label");
+        const xScale = svgGroup.append("g").attr("class", "axis-label");
 
-      svgGroup.append("g").call(xAxis).attr("class", "x-axis");
-      svgGroup.append("g").call(yAxis).attr("class", "y-axis");
+        svgGroup.append("g").call(xAxis).attr("class", "x-axis");
+        svgGroup.append("g").call(yAxis).attr("class", "y-axis");
+      }
+
+      makeChart();
     </script>
   </body>
 </html>
