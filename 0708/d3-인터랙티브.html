@@ -35,6 +35,7 @@
       .button {
         float: left;
         margin-left: 10px;
+        cursor: pointer;
       }
       .selected {
         font-weight: bold;
@@ -92,6 +93,10 @@
             } else {
               return "button";
             }
+          })
+          .on("click", function (d) {
+            d3.select(".selected").classed("selected", false); // 기존 요소들의 selected를 비활성화
+            d3.select(this).classed("selected", true); // click 이벤트가 발생한 요소의 selected를 활성화
           });
 
         body
