@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { addNewPost } from "../api/posts/addNewPost";
 import Heading from "../components/Heading";
+import { useDispatch } from "react-redux";
+import { addPost } from "../actions/posts";
 
 const NewPostWrapper = styled.div`
   display: flex;
@@ -50,8 +52,11 @@ export default function AddPostPage() {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
+  const dispatch = useDispatch();
+
   const onSubmitHandler = (e) => {
     e.preventDefault();
+    dispatch(addPost(1, title, body));
     addNewPost(title, body);
     navigate("/posts");
   };

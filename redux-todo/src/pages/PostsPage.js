@@ -4,11 +4,9 @@ import PostsList from "../components/PostsList";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { initFetch } from "../actions/posts";
-import { useSelector } from "react-redux";
 
 export default function PostsPage() {
   const dispatch = useDispatch();
-  const posts = useSelector((state) => state);
 
   useEffect(() => {
     const getPosts = async () => {
@@ -24,7 +22,7 @@ export default function PostsPage() {
       <Link to="/newPost">
         <button>글 쓰기</button>
       </Link>
-      <PostsList posts={posts} />
+      <PostsList />
     </>
   );
 }
