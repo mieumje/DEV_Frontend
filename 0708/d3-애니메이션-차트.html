@@ -40,6 +40,16 @@
       .selected {
         font-weight: bold;
       }
+      .play-button {
+        margin-left: 10px;
+        margin-bottom: 15px;
+        font-style: italic;
+        cursor: pointer;
+        color: grey;
+      }
+      .play-button:hover {
+        color: black;
+      }
     </style>
   </head>
   <body>
@@ -81,6 +91,11 @@
 
         const body = d3.select("body");
         body.append("h2").text(year + title);
+
+        const playAll = body // play 버튼
+          .append("div")
+          .attr("class", "play-button")
+          .text("▶ PLAY ALL YEARS");
 
         const button = body
           .append("div")
@@ -148,6 +163,18 @@
 
         button.on("click", function (el, d) {
           update(d);
+        });
+
+        playAll.on("click", function (el, d) {
+          let i = 0;
+          const playInterval = setInterval(() => {
+            update(years[i]);
+            i += 1;
+
+            if (i > years.length - 1) {
+              clearInterval(playInterval);
+            }
+          }, 1500);
         });
 
         function update(updateYear) {
