@@ -6,12 +6,16 @@ const StyledLi = styled.li`
   width: 400px;
 `;
 
-export default function TodosList() {
+const StyledOl = styled.ol`
+  color: ${(props) => props.color};
+`;
+
+export default function TodosList({ theme }) {
   const todos = useSelector((state) => state.todos);
 
   return (
     <>
-      <ol>
+      <StyledOl color={`${theme ? "white" : "#1a1a1a"}`}>
         {todos &&
           todos.map((todo) => {
             return (
@@ -25,7 +29,7 @@ export default function TodosList() {
               </StyledLi>
             );
           })}
-      </ol>
+      </StyledOl>
     </>
   );
 }

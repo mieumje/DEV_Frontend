@@ -1,5 +1,11 @@
 import Heading from "../components/Heading";
+import { useSelector } from "react-redux";
 
 export default function HomePage() {
-  return <Heading level={1}>Home</Heading>;
+  const theme = useSelector((state) => state.theme);
+  return (
+    <Heading level={1} color={`${theme ? "white" : "#1a1a1a"}`}>
+      Home
+    </Heading>
+  );
 }

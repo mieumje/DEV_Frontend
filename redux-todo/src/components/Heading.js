@@ -1,5 +1,8 @@
-export default function Heading({ level, children, ...props }) {
+export default function Heading({ level, children, color }) {
   const Tag = `h${level}`;
+  const TagStyles = {
+    color: color,
+  };
 
-  return <Tag>{children}</Tag>;
+  return <Tag style={TagStyles}>{children}</Tag>;
 }

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { addNewPost } from "../api/posts/addNewPost";
 import Heading from "../components/Heading";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addPost } from "../actions/posts";
 
 const NewPostWrapper = styled.div`
@@ -22,6 +22,7 @@ const StyledForm = styled.form`
 const StyledLabel = styled.label`
   font-size: 1.5rem;
   font-weight: bold;
+  color: ${(props) => props.color};
 `;
 
 const StyledInput = styled.input`
@@ -31,6 +32,8 @@ const StyledInput = styled.input`
   border-radius: 0.4rem;
   margin: 1rem 0;
   font-size: 1rem;
+  color: ${(props) => props.color};
+  background-color: ${(props) => props.bgColor};
 `;
 
 const StyledTextarea = styled.textarea`
@@ -40,7 +43,9 @@ const StyledTextarea = styled.textarea`
   border-radius: 0.4rem;
   resize: none;
   margin: 1rem 0;
-  font-size: 1rem;
+  font-size: 1.5rem;
+  color: ${(props) => props.color};
+  background-color: ${(props) => props.bgColor};
 `;
 
 const StyledButton = styled.button`
@@ -53,6 +58,7 @@ export default function AddPostPage() {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const dispatch = useDispatch();
+  const theme = useSelector((state) => state.theme);
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
@@ -72,11 +78,22 @@ export default function AddPostPage() {
   return (
     <>
       <NewPostWrapper>
-        <Heading level={1}>글 쓰기</Heading>
+        <Heading level={1} color={`${theme ? "white" : "#1a1a1a"}`}>
+          글 쓰기
+        </Heading>
         <StyledForm action="submit" onSubmit={onSubmitHandler}>
-          <StyledLabel>제목</StyledLabel>
-          <StyledInput type="text" onChange={onTitleChangeHandler} />
-          <StyledLabel>내용</StyledLabel>
+          <StyledLabel color={`${theme ? "white" : "#1a1a1a"}`}>
+            제목
+          </StyledLabel>
+          <StyledInput
+            type="text"
+            onChange={onTitleChangeHandler}
+            bgColor={`${theme ? "#808080" : "white"}`}
+            color={`${theme ? "white" : "#1a1a1a"}`}
+          />
+          <StyledLabel color={`${theme ? "white" : "#1a1a1a"}`}>
+            내용
+          </StyledLabel>
           <StyledTextarea
             name="newpost"
             cols="30"
@@ -84,6 +101,8 @@ export default function AddPostPage() {
             placeholder="내용을 입력하세요"
             value={body}
             onChange={onBodyChangeHandler}
+            bgColor={`${theme ? "#808080" : "white"}`}
+            color={`${theme ? "white" : "#1a1a1a"}`}
           ></StyledTextarea>
           <StyledButton>완료</StyledButton>
         </StyledForm>

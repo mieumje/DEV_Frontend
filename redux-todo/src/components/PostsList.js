@@ -1,20 +1,22 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import Heading from "./Heading";
 import Post from "./Post";
 
 const StyledLi = styled.li`
   width: 400px;
 `;
 
-export default function PostsList() {
+const StyledOl = styled.ol`
+  color: ${(prop) => prop.color};
+`;
+
+export default function PostsList({ theme }) {
   const selector = useSelector((state) => state.posts);
 
   return (
     <>
-      <Heading level={1}>Posts List</Heading>
-      <ol>
+      <StyledOl color={`${theme ? "white" : "#1a1a1a"}`}>
         {selector &&
           selector.map((post) => {
             return (
@@ -23,7 +25,7 @@ export default function PostsList() {
               </StyledLi>
             );
           })}
-      </ol>
+      </StyledOl>
     </>
   );
 }
