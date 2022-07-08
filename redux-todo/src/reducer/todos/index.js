@@ -6,7 +6,13 @@ const todoReducer = (state = initialState, action) => {
       return action.payload;
     }
     case "TOGGLE_TODO": {
-      return [...state, action.payload];
+      const updateTodo = action.payload;
+      console.log(updateTodo);
+      const nextState = state.map((todo) =>
+        todo.id === updateTodo.id ? updateTodo : todo
+      );
+
+      return nextState;
     }
     default: {
       return state;

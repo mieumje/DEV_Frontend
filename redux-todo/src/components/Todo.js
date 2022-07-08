@@ -1,4 +1,7 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import toggleTodo from "../actions/todos/toggleTodo";
 import useToggle from "../hooks/useToggle";
 
 const TodoWrapper = styled.div`
@@ -23,13 +26,26 @@ const TodoTitle = styled.div`
   white-space: nowrap;
 `;
 
-export default function Todo({ children, completed }) {
+export default function Todo({ children, userId, id, title, completed }) {
   const [state, onToggle] = useToggle(completed);
+  const dispatch = useDispatch();
+
+  const onClickHandler = () => {
+    onToggle();
+    dispatch(
+      toggleTodo({
+        userId,
+        id,
+        title,
+        completed: !state,
+      })
+    );
+  };
 
   return (
     <TodoWrapper>
       <TodoTitle completed={state}>{children}</TodoTitle>
-      <StyledButton onClick={() => onToggle()}>Complete</StyledButton>
+      <StyledButton onClick={onClickHandler}>Complete</StyledButton>
     </TodoWrapper>
   );
 }

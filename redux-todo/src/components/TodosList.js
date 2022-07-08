@@ -1,21 +1,33 @@
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import Todo from "./Todo";
 
 const StyledLi = styled.li`
-  list-style: none;
+  width: 400px;
 `;
 
-export default function TodosList({ todos }) {
+export default function TodosList() {
+  const todos = useSelector((state) => state.todos);
+
   return (
-    <ul>
-      {todos &&
-        todos.map((todo) => {
-          return (
-            <StyledLi key={todo.id}>
-              <Todo completed={todo.completed}>{todo.title}</Todo>
-            </StyledLi>
-          );
-        })}
-    </ul>
+    <>
+      <ol>
+        {todos &&
+          todos.map((todo) => {
+            return (
+              <StyledLi key={todo.id}>
+                <Todo
+                  userId={todo.userId}
+                  id={todo.id}
+                  title={todo.title}
+                  completed={todo.completed}
+                >
+                  {todo.title}
+                </Todo>
+              </StyledLi>
+            );
+          })}
+      </ol>
+    </>
   );
 }
