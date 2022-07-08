@@ -162,6 +162,10 @@
           // 막대 길이 적용
           bars
             .data(selectedData)
+            .transition()
+            .duration(500)
+            .delay(200)
+            .ease(d3.easeBounce)
             .attr("y", (d) => y(d.name))
             .attr("width", (d) => x(d.value));
 
