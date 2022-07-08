@@ -81,7 +81,7 @@
         const body = d3.select("body");
         body.append("h2").text("2019년 1000만 관객 기록한 영화 관객수 TOP7");
 
-        body
+        const button = body
           .append("div")
           .attr("class", "buttons-container")
           .selectAll("div") // 셀렉션으로 버튼(연도)이 담길 div 생성
@@ -94,10 +94,6 @@
             } else {
               return "button";
             }
-          })
-          .on("click", function (d) {
-            d3.select(".selected").classed("selected", false); // 기존 요소들의 selected를 비활성화
-            d3.select(this).classed("selected", true); // click 이벤트가 발생한 요소의 selected를 활성화
           });
 
         body
@@ -148,6 +144,15 @@
 
         svgGroup.append("g").call(xAxis).attr("class", "x-axis");
         svgGroup.append("g").call(yAxis).attr("class", "y-axis");
+
+        button.on("click", function (el, d) {
+          // (해당 요소의 데이터 포인터, 해당 요소의 값)
+          d3.select(".selected").classed("selected", false); // 기존 요소들의 selected를 비활성화
+          d3.select(this).classed("selected", true); // click 이벤트가 발생한 요소의 selected를 활성화
+
+          year = d;
+          selectedData = data.filter((el) => el.year === year);
+        });
       }
 
       makeChart();
