@@ -1,28 +1,22 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import HomePage from "./pages";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import HomePage from "./pages/Homepage";
 import TodosPage from "./pages/TodosPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import PostsPage from "./pages/PostsPage";
+import PostDetailPage from "./pages/PostDetailPage";
+import Navbar from "./pages";
 
 function App() {
   return (
     <BrowserRouter>
-      <nav>
-        <button>
-          <Link to="/">Home</Link>
-        </button>
-        <button>
-          <Link to="/todos">Todos</Link>
-        </button>
-        <button>
-          <Link to="/posts">Posts</Link>
-        </button>
-      </nav>
       <Routes>
-        <Route path="/" element={<HomePage />}></Route>
-        <Route path="/posts" element={<PostsPage />}></Route>
-        <Route path="/todos" element={<TodosPage />}></Route>
+        <Route path="/" element={<Navbar />}>
+          <Route index element={<HomePage />} />
+          <Route path="/posts" element={<PostsPage />} />
+          <Route path="/posts/:id" element={<PostDetailPage />} />
+          <Route path="/todos" element={<TodosPage />}></Route>
+        </Route>
         <Route path="*" element={<NotFoundPage />}></Route>
       </Routes>
     </BrowserRouter>

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const PostWrapper = styled.div`
   width: 500px;
@@ -15,6 +16,10 @@ const PostsTitle = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  cursor: pointer;
+  &:hover {
+    background-color: skyblue;
+  }
 `;
 
 const StyledButton = styled.button`
@@ -25,10 +30,12 @@ const StyledButton = styled.button`
 export default function Post({ children, id }) {
   return (
     <PostWrapper>
-      <PostsTitle>{children}</PostsTitle>
-      <StyledButton onClick={() => console.log(`move to here ${id}`)}>
-        Details
-      </StyledButton>
+      <PostsTitle>
+        <Link to={`/posts/${id}`}>{children}</Link>
+      </PostsTitle>
+      <Link to={`/posts/${id}`}>
+        <StyledButton>Details</StyledButton>
+      </Link>
     </PostWrapper>
   );
 }

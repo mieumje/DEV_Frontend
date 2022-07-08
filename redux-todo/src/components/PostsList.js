@@ -4,7 +4,7 @@ import Heading from "./Heading";
 import Post from "./Post";
 
 const StyledLi = styled.li`
-  cursor: pointer;
+  width: 400px;
 `;
 
 export default function PostsList({ posts }) {
