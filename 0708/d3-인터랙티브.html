@@ -36,6 +36,9 @@
         float: left;
         margin-left: 10px;
       }
+      .selected {
+        font-weight: bold;
+      }
     </style>
   </head>
   <body>
@@ -75,6 +78,7 @@
         const body = d3.select("body");
         body.append("h2").text("2019년 1000만 관객 기록한 영화 관객수 TOP7");
 
+        let year = "2019";
         body
           .append("div")
           .attr("class", "buttons-container")
@@ -82,7 +86,13 @@
           .data(years) // data 메소드로 years 데이터를 넣고
           .join("div") // join 메소드로 요소를 결합시킨다.
           .text((d) => d) // 각 div 요소에 text(연도)가 표기되도록 한다.
-          .attr("class", "button");
+          .attr("class", (d) => {
+            if (d === year) {
+              return "button selected";
+            } else {
+              return "button";
+            }
+          });
 
         body
           .append("div")
