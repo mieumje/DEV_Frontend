@@ -46,10 +46,12 @@
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script>
       async function makeChart() {
-        const data = await d3.json("./data/movie.json");
+        const data = await d3.json("./data/movie2.json");
+        let year = "2019";
+        let selectedData = data.filter((el) => el.year === year);
 
-        const nameList = data.map((d) => d.name);
-        const valueList = data.map((d) => d.value);
+        const nameList = selectedData.map((d) => d.name);
+        const valueList = selectedData.map((d) => d.value);
         const years = ["2020", "2019", "2018", "2017", "2016", "2015"]; // 연도 정보를 담을 배열
 
         const margin = { top: 30, right: 50, bottom: 0, left: 150 };
@@ -79,7 +81,6 @@
         const body = d3.select("body");
         body.append("h2").text("2019년 1000만 관객 기록한 영화 관객수 TOP7");
 
-        let year = "2019";
         body
           .append("div")
           .attr("class", "buttons-container")
@@ -128,7 +129,7 @@
 
         barGroup
           .selectAll("rect")
-          .data(data)
+          .data(selectedData)
           .join("rect")
           .attr("x", "0")
           .attr("y", (d, i) => {
