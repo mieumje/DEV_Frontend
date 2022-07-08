@@ -1,18 +1,23 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { fetchPosts } from "../api/posts/fetchPosts";
 import PostsList from "../components/PostsList";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { initFetch } from "../actions/posts";
+import { useSelector } from "react-redux";
 
 export default function PostsPage() {
-  const [posts, setPosts] = useState([]);
-  const getPosts = async () => {
-    const data = await fetchPosts();
-    setPosts(data);
-  };
+  const dispatch = useDispatch();
+  const posts = useSelector((state) => state);
 
   useEffect(() => {
+    const getPosts = async () => {
+      const data = await fetchPosts();
+      dispatch(initFetch(data));
+    };
+
     getPosts();
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
