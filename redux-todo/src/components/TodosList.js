@@ -21,9 +21,7 @@ export default function TodosList() {
                   id={todo.id}
                   title={todo.title}
                   completed={todo.completed}
-                >
-                  {todo.title}
-                </Todo>
+                />
               </StyledLi>
             );
           })}
