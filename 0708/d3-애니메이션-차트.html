@@ -161,13 +161,15 @@
         svgGroup.append("g").call(xAxis).attr("class", "x-axis");
         svgGroup.append("g").call(yAxis).attr("class", "y-axis");
 
+        let playInterval;
         button.on("click", function (el, d) {
+          clearInterval(playInterval);
           update(d);
         });
 
         playAll.on("click", function (el, d) {
           let i = 0;
-          const playInterval = setInterval(() => {
+          playInterval = setInterval(() => {
             update(years[i]);
             i += 1;
 
