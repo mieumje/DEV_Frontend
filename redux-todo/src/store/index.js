@@ -1,19 +1,7 @@
-import { createStore } from "redux";
+import { createStore, combineReducers } from "redux";
+import todoReducer from "../reducer/todos";
+import postReducer from "../reducer/posts";
 
-const initialState = [];
+const reducer = combineReducers({ posts: postReducer, todos: todoReducer });
 
-const postReducer = (prevState, action) => {
-  switch (action.type) {
-    case "FETCH_POSTS": {
-      return action.payload;
-    }
-    case "ADD_POST": {
-      return [...prevState, action.payload];
-    }
-    default: {
-      return;
-    }
-  }
-};
-
-export const store = createStore(postReducer, initialState);
+export const store = createStore(reducer);

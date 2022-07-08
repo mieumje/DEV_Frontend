@@ -10,7 +10,7 @@ const StyledLi = styled.li`
 `;
 
 export default function PostsList() {
-  const selector = useSelector((state) => state);
+  const selector = useSelector((state) => state.posts);
 
   return (
     <>
