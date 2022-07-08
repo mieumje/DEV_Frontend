@@ -6,6 +6,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import PostsPage from "./pages/PostsPage";
 import PostDetailPage from "./pages/PostDetailPage";
 import Navbar from "./pages";
+import AddPostPage from "./pages/AddPostPage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/posts" element={<PostsPage />} />
           <Route path="/posts/:id" element={<PostDetailPage />} />
           <Route path="/todos" element={<TodosPage />}></Route>
+          <Route path="/newPost" element={<AddPostPage />}></Route>
         </Route>
         <Route path="*" element={<NotFoundPage />}></Route>
       </Routes>

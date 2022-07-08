@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { fetchPosts } from "../api/posts/fetchPosts";
 import PostsList from "../components/PostsList";
+import { Link } from "react-router-dom";
 
 export default function PostsPage() {
   const [posts, setPosts] = useState([]);
@@ -13,5 +14,12 @@ export default function PostsPage() {
     getPosts();
   }, []);
 
-  return <PostsList posts={posts} />;
+  return (
+    <>
+      <Link to="/newPost">
+        <button>글 쓰기</button>
+      </Link>
+      <PostsList posts={posts} />
+    </>
+  );
 }
