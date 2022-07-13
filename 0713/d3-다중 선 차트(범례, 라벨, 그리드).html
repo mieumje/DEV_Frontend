@@ -57,7 +57,7 @@
       async function makeChart() {
         const data = await getData();
 
-        const margin = { top: 10, right: 50, bottom: 30, left: 50 };
+        const margin = { top: 30, right: 50, bottom: 30, left: 50 };
         const width = 1000 - margin.left - margin.right;
         const height = 400 - margin.top - margin.bottom;
 
@@ -65,9 +65,7 @@
         const svg = body
           .append("svg")
           .attr("width", width + margin.left + margin.right)
-          .attr("height", height + margin.top + margin.bottom)
-          .append("g")
-          .attr("transform", `translate(${margin.left}, ${margin.top})`);
+          .attr("height", height + margin.top + margin.bottom);
 
         const xScale = d3
           .scaleUtc()
@@ -82,6 +80,11 @@
           ])
           .range([height - margin.bottom, margin.top]);
 
+        const colorScale = d3
+          .scaleOrdinal()
+          .domain(data.members)
+          .range(d3.schemeCategory10);
+
         const xAxis = d3.axisBottom(xScale);
         const yAxis = d3.axisLeft(yScale);
 
@@ -90,7 +93,11 @@
           .x((d) => xScale(d.date))
           .y((d) => yScale(d.value));
 
-        svg
+        const chart = svg
+          .append("g")
+          .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+        chart
           .append("g")
           .attr("transform", `translate(0, ${height - margin.bottom})`)
           .call(xAxis)
@@ -100,7 +107,7 @@
           .attr("x", width / 2)
           .attr("y", 50);
 
-        svg
+        chart
           .append("g")
           .attr("transform", `translate(${margin.left}, 0)`)
           .call(yAxis)
@@ -111,7 +118,7 @@
           .attr("x", -height / 2)
           .attr("y", -60);
 
-        const lineGroup = svg
+        const lineGroup = chart
           .append("g")
           .selectAll("g")
           .data(data.series)
@@ -121,7 +128,7 @@
           .append("path")
           .attr("d", (d) => line(d.values))
           .attr("class", "line-path")
-          .style("stroke", (d, i) => d3.schemeCategory10[i % 10])
+          .style("stroke", (d) => colorScale(d.member))
           .style("opacity", 1);
 
         lineGroup
@@ -149,6 +156,33 @@
           .attr("fill", "none")
           .attr("stroke", "white")
           .attr("stroke-width", 6);
+
+        const legendGroup = svg
+          .append("g")
+          .attr("transform", `translate(${margin.left}, 0)`)
+          .attr("text-anchor", "start")
+          .attr("font-family", "sans-serif")
+          .attr("font-size", 10);
+
+        const legend = legendGroup
+          .selectAll(".legend")
+          .data(data.members)
+          .join("g")
+          .attr("transform", (d, i) => `translate(${i * 90}, 0)`);
+
+        legend
+          .append("rect")
+          .attr("width", 19)
+          .attr("height", 19)
+          .attr("fill", colorScale)
+          .attr("fill-opacity", 0.8);
+
+        legend
+          .append("text")
+          .attr("x", 23)
+          .attr("y", 9.5)
+          .attr("dy", "0.35em")
+          .text((d) => d);
       }
 
       makeChart();
