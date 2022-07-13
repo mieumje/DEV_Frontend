@@ -1,4 +1,5 @@
 import addPost from "./addPost";
 import initFetch from "./initFetch";
+import initialFetch from "./initialFetch";
 
-export { addPost, initFetch };
+export { addPost, initFetch, initialFetch };

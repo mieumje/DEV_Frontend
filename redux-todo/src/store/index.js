@@ -9,13 +9,22 @@ const reducer = combineReducers({
   theme: themeReducer,
 });
 
+const thunkMiddleware = (store) => (dispatch) => (action) => {
+  if (typeof action === "function") {
+    return action(store.dispatch, store.getState);
+  }
+
+  return dispatch(action);
+};
+
 const tmpMiddleware = (store) => (dispatch) => (action) => {
   // disaptch 이전에 처리할 기능 추가
-  console.log("action logging...", action);
+  console.log("before action...", store.getState(), action);
   dispatch(action);
+  console.log("after action...", store.getState());
   // disaptch 이후에 처리할 기능 추가
 };
 
-const enhancer = compose(applyMiddleware(tmpMiddleware));
+const enhancer = compose(applyMiddleware(thunkMiddleware, tmpMiddleware));
 
 export const store = createStore(reducer, enhancer);

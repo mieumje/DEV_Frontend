@@ -1,9 +1,8 @@
 import { useEffect } from "react";
-import { fetchPosts } from "../api/posts/fetchPosts";
 import PostsList from "../components/PostsList";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { initFetch } from "../actions/posts";
+import { initialFetch } from "../actions/posts";
 import Heading from "../components/Heading";
 import { useSelector } from "react-redux";
 
@@ -12,12 +11,7 @@ export default function PostsPage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const getPosts = async () => {
-      const data = await fetchPosts();
-      dispatch(initFetch(data));
-    };
-
-    getPosts();
+    dispatch(initialFetch());
   }, [dispatch]);
 
   return (
