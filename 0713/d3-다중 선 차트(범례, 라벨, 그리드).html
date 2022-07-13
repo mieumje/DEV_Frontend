@@ -13,6 +13,11 @@
         font-size: 10px;
         text-anchor: middle;
       }
+      .grid-lines {
+        stroke: gray;
+        stroke-opacity: 0.2;
+        stroke-dasharray: 5, 5;
+      }
     </style>
   </head>
   <body>
@@ -117,6 +122,17 @@
           .attr("transform", "rotate(-90)")
           .attr("x", -height / 2)
           .attr("y", -60);
+
+        chart
+          .append("g")
+          .attr("class", "grid-lines")
+          .selectAll("line")
+          .data(yScale.ticks())
+          .join("line")
+          .attr("x1", margin.left)
+          .attr("x2", width - margin.right)
+          .attr("y1", yScale)
+          .attr("y2", yScale);
 
         const lineGroup = chart
           .append("g")
