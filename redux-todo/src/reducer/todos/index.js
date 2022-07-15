@@ -1,21 +1,28 @@
-const initialState = [];
+import produce from "immer";
+
+const initialState = {
+  todosList: [],
+};
 
 const todoReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case "FETCH_TODOS": {
-      return action.payload;
+  return produce(state, (draft) => {
+    switch (action.type) {
+      case "FETCH_TODOS": {
+        draft.todosList = action.payload;
+        break;
+      }
+      case "TOGGLE_TODO": {
+        const updateTodo = action.payload;
+        draft.todosList.map((todo) =>
+          todo.id === updateTodo.id ? updateTodo : todo
+        );
+        break;
+      }
+      default: {
+        break;
+      }
     }
-    case "TOGGLE_TODO": {
-      const updateTodo = action.payload;
-      const nextState = state.map((todo) =>
-        todo.id === updateTodo.id ? updateTodo : todo
-      );
-      return nextState;
-    }
-    default: {
-      return state;
-    }
-  }
+  });
 };
 
 export default todoReducer;

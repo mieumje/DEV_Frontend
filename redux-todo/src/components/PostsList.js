@@ -12,7 +12,7 @@ const StyledOl = styled.ol`
 `;
 
 export default function PostsList({ theme }) {
-  const selector = useSelector((state) => state.posts);
+  const selector = useSelector((state) => state.posts.postsList);
 
   return (
     <>

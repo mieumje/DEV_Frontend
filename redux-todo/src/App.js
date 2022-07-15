@@ -10,7 +10,7 @@ import AddPostPage from "./pages/AddPostPage";
 import { useSelector } from "react-redux";
 
 function App() {
-  const theme = useSelector((state) => state.theme);
+  const theme = useSelector((state) => state.theme.dark);
   return (
     <div
       style={{

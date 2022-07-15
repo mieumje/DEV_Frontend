@@ -1,14 +1,22 @@
-const initialState = false;
+import produce from "immer";
+
+const initialState = {
+  dark: false,
+};
 
 const themeReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case "DARK": {
-      return action.payload;
+  return produce(state, (draft) => {
+    switch (action.type) {
+      case "DARK": {
+        console.log(action.payload);
+        draft.dark = action.payload;
+        break;
+      }
+      default: {
+        break;
+      }
     }
-    default: {
-      return state;
-    }
-  }
+  });
 };
 
 export default themeReducer;

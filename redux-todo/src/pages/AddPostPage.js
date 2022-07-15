@@ -58,7 +58,7 @@ export default function AddPostPage() {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const dispatch = useDispatch();
-  const theme = useSelector((state) => state.theme);
+  const theme = useSelector((state) => state.theme.dark);
 
   const onSubmitHandler = (e) => {
     e.preventDefault();

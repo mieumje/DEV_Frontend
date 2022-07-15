@@ -11,7 +11,7 @@ const StyledOl = styled.ol`
 `;
 
 export default function TodosList({ theme }) {
-  const todos = useSelector((state) => state.todos);
+  const todos = useSelector((state) => state.todos.todosList);
 
   return (
     <>

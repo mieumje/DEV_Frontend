@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import setDrakMdoe from "../actions/theme";
 
 export default function Topbar() {
-  const theme = useSelector((state) => state.theme);
+  const theme = useSelector((state) => state.theme.dark);
   const dispatch = useDispatch();
 
   const onClickHandler = () => {

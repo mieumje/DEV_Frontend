@@ -7,7 +7,7 @@ import Heading from "../components/Heading";
 import { useSelector } from "react-redux";
 
 export default function PostsPage() {
-  const theme = useSelector((state) => state.theme);
+  const theme = useSelector((state) => state.theme.dark);
   const dispatch = useDispatch();
 
   useEffect(() => {

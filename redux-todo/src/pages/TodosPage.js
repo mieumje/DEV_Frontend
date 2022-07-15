@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { initFetch } from "../actions/todos";
 
 export default function TodosPage() {
-  const theme = useSelector((state) => state.theme);
+  const theme = useSelector((state) => state.theme.dark);
   const dispatch = useDispatch();
 
   useEffect(() => {
