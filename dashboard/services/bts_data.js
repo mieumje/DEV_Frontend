@@ -35,3 +35,27 @@ export async function getBoyBandComposeData() {
 
   return data.sort((a, b) => b["참여"] - a["침여"]);
 }
+
+export async function getBoyBandOwnSongData() {
+  const csv = await d3.csv("./data/남자아이돌년도별작곡작사횟수.csv");
+  const data = csv
+    .map((d) => {
+      d.date = new Date(d.date);
+      return d;
+    })
+    .sort((a, b) => a.date - b.date);
+
+  const groups = ["BTS", "EXO", "GOT7"];
+  const series = groups.map((key) =>
+    data.map(({ [key]: value, date }) => ({
+      key,
+      date,
+      value: parseInt(value),
+    }))
+  );
+  return {
+    data,
+    series,
+    groups,
+  };
+}

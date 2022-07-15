@@ -4,9 +4,11 @@ import {
   getBtsComposeRatioData,
   getBoyBandWriteData,
   getBoyBandComposeData,
+  getBoyBandOwnSongData,
 } from "./services/bts_data.js";
 import { makeBoard as initTextBoard, makeBoard } from "./charts/text-board.js";
 import { makeChart as initStackedBarChart } from "./charts/stacked_bar_chart.js";
+import { makeChart as initMultiLineChart } from "./charts/multi_line_chart.js";
 
 async function iniCharts() {
   const colorScheme = d3.schemeTableau10;
@@ -40,6 +42,13 @@ async function iniCharts() {
   initStackedBarChart(
     "#boyband-compose-bar-chart",
     boyBandComposeData,
+    colorScheme
+  );
+
+  const boyBandOwnSongData = await getBoyBandOwnSongData();
+  initMultiLineChart(
+    "#boyband-make-own-song-line-chart",
+    boyBandOwnSongData,
     colorScheme
   );
 }
