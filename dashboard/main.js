@@ -3,6 +3,7 @@ import {
   getBtsWriteRatioData,
   getBtsComposeRatioData,
 } from "./services/bts_data.js";
+import { makeBoard as initTextBoard, makeBoard } from "./charts/text-board.js";
 
 async function iniCharts() {
   const colorScheme = d3.schemeTableau10;
@@ -22,6 +23,9 @@ async function iniCharts() {
     colorScheme,
     "멤버 작곡 참여 비율"
   ); // chartId, data
+
+  makeBoard("#total-song-board", 226, colorScheme);
+  makeBoard("#total-album-board", 38, colorScheme);
 }
 
 iniCharts();
