@@ -2,8 +2,11 @@ import { makeChart as initArcChart } from "./charts/big_percentage_arc_chart.js"
 import {
   getBtsWriteRatioData,
   getBtsComposeRatioData,
+  getBoyBandWriteData,
+  getBoyBandComposeData,
 } from "./services/bts_data.js";
 import { makeBoard as initTextBoard, makeBoard } from "./charts/text-board.js";
+import { makeChart as initStackedBarChart } from "./charts/stacked_bar_chart.js";
 
 async function iniCharts() {
   const colorScheme = d3.schemeTableau10;
@@ -24,8 +27,21 @@ async function iniCharts() {
     "멤버 작곡 참여 비율"
   ); // chartId, data
 
-  makeBoard("#total-song-board", 226, colorScheme);
-  makeBoard("#total-album-board", 38, colorScheme);
+  initTextBoard("#total-song-board", 226, colorScheme);
+  initTextBoard("#total-album-board", 38, colorScheme);
+
+  const boyBandWriteData = await getBoyBandWriteData();
+  initStackedBarChart(
+    "#boyband-write-bar-chart",
+    boyBandWriteData,
+    colorScheme
+  );
+  const boyBandComposeData = await getBoyBandComposeData();
+  initStackedBarChart(
+    "#boyband-compose-bar-chart",
+    boyBandComposeData,
+    colorScheme
+  );
 }
 
 iniCharts();
