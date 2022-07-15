@@ -5,3 +5,11 @@ export async function getBtsWriteRatioData() {
     return d;
   });
 }
+
+export async function getBtsComposeRatioData() {
+  const csv = await d3.csv("./data/BTS작곡비율.csv");
+  return csv.map((d) => {
+    d.value = parseFloat(d.value);
+    return d;
+  });
+}
