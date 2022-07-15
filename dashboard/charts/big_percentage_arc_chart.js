@@ -4,6 +4,7 @@ export function makeChart(chartId, data, colorScheme, dataKey) {
   const margin = { top: 10, right: 10, bottom: 10, left: 10 };
   const width = 151 - margin.left - margin.right;
   const height = 116 - margin.top - margin.bottom;
+  const addedWidth = 113;
 
   // 차트를 그릴 selection
   const chartBox = d3.select(chartId);
@@ -16,7 +17,7 @@ export function makeChart(chartId, data, colorScheme, dataKey) {
   // 원형 차트를 위한 svg
   const svg = chartBox
     .append("svg")
-    .attr("width", width + margin.left + margin.right)
+    .attr("width", width + margin.left + margin.right + addedWidth)
     .attr("height", height + margin.top + margin.bottom)
     .attr("viewBox", [-width / 2, -height / 2, width, height]);
 
@@ -57,10 +58,10 @@ export function makeChart(chartId, data, colorScheme, dataKey) {
     .style("text-align", "center")
     .style("font-size", "40px")
     .style("font-weight", "bold")
-    .style("width", width + margin.left + margin.right + "px")
+    .style("width", width + margin.left + margin.right + addedWidth + "px")
     .style("height", height + margin.top + margin.bottom + "px")
     .style("color", colorScale(dataKey))
     .append("div")
-    .style("width", width + margin.left + margin.right + "px")
+    .style("width", width + margin.left + margin.right + addedWidth + "px")
     .text(d3.format(".0%")(data.find((d) => d.name === dataKey).value / 100));
 }
