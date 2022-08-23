@@ -1,5 +1,5 @@
 # Gamebu(껨부)
-
+2
 ## 목차
 1. [프로젝트 소개](#프로젝트-소개)
 2. [Ground Rules](#Ground-rules)
