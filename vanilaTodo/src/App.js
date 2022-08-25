@@ -1,4 +1,5 @@
 import Header from "./Header.js";
+import TodoList from "./TodoList.js";
 
 export default function App({ $target, initialState = [] }) {
   this.state = initialState;
@@ -8,16 +9,8 @@ export default function App({ $target, initialState = [] }) {
     text: "Simple Todo List",
   });
 
-  const $todoList = document.createElement("div");
-  $target.appendChild($todoList);
-
-  this.render = () => {
-    $todoList.innerHTML = `
-      <ul>
-        ${this.state.map((todo) => `<li>${todo.text}</li>`).join("")}
-      </ul>
-    `;
-  };
-
-  this.render();
+  new TodoList({
+    $target,
+    initialState,
+  });
 }
