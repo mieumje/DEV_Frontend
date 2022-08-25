@@ -1,15 +1,9 @@
 import App from "./App.js";
+import { getItem } from "./storage.js";
 
 const $app = document.querySelector(".app");
 
-const initialState = [
-  {
-    text: "8월 25일 할일 1",
-  },
-  {
-    text: "8월 25일 할일 2",
-  },
-];
+const initialState = getItem("todos", []);
 
 new App({
   $target: $app,
