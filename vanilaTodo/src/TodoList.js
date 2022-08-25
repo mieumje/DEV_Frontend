@@ -4,6 +4,12 @@ export default function TodoList({ $target, initialState }) {
 
   this.state = initialState;
 
+  this.setState = (newState) => {
+    this.state = newState;
+
+    this.render();
+  };
+
   this.render = () => {
     $todoList.innerHTML = `
       ${this.state.map((todo) => `<li>${todo.text}</li>`).join("")}

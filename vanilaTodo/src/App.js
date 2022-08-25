@@ -13,11 +13,12 @@ export default function App({ $target, initialState = [] }) {
   new TodoForm({
     $target,
     onSubmit: (value) => {
-      console.log(value);
+      const newState = [...todoList.state, { text: value }];
+      todoList.setState(newState);
     },
   });
 
-  new TodoList({
+  const todoList = new TodoList({
     $target,
     initialState,
   });
