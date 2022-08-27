@@ -1,0 +1,50 @@
+[
+  {
+    "idx": "0",
+    "name": "나희도",
+    "nickname": "April",
+    "email": "custom@email.com",
+    "role": "front-end",
+    "mbti": "ENFP"
+  },
+  {
+    "idx": "2",
+    "name": "백의진",
+    "nickname": "Busan",
+    "email": "custom1@email.com",
+    "role": "back-end",
+    "mbti": "ESTP"
+  },
+  {
+    "idx": "3",
+    "name": "박창호",
+    "nickname": "Crayon",
+    "email": "custom2@email.com",
+    "role": "front-end",
+    "mbti": "INTJ"
+  },
+  {
+    "idx": "4",
+    "name": "고미호",
+    "nickname": "Deja vu",
+    "email": "custom3@email.com",
+    "role": "full-stack",
+    "mbti": "ISFP"
+  },
+  {
+    "idx": "5",
+    "name": "Mike",
+    "nickname": "Mike",
+    "email": "custom4@email.com",
+    "role": "front-end",
+    "mbti": "ENTP"
+  },
+  {
+    "idx": "6",
+    "name": "Ell",
+    "nickname": "Ellice",
+    "email": "custom5@email.com",
+    "role": "back-end",
+    "mbti": "INFP"
+  }
+]
