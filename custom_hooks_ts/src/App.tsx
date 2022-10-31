@@ -1,7 +1,9 @@
-import React from "react";
+import useInput from "./hooks/useInput";
 
 function App() {
-  return <div>hello</div>;
+  const [value, setValue] = useInput("");
+
+  return <input placeholder="Name" value={value} onChange={setValue} />;
 }
 
 export default App;
