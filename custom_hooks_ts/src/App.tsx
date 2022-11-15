@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import fetchDummy from "./apis/fetchDummy";
 import useInput from "./hooks/useInput";
 import useTabs from "./hooks/useTabs";
+import useTitle from "./hooks/useTitle";
 
 interface content {
   tab: string;
@@ -12,6 +13,7 @@ function App() {
   const [value, setValue] = useInput("");
   const [contents, setContents] = useState<content[]>([]);
   const { currentItem, changeItem } = useTabs(1, contents);
+  const setTitle = useTitle("Loading...");
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -24,6 +26,9 @@ function App() {
 
     fetchData();
   }, []);
+  setTimeout(() => {
+    setTitle("Home");
+  }, 3000);
 
   return (
     <>
