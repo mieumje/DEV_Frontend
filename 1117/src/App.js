@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import counterAction from "./store/action/counterAction";
 import counterInitAction from "./store/action/counterInitAction";
@@ -31,17 +31,9 @@ function App() {
       console.error("Input task or count value");
       return;
     }
-    const checkDuplicate = taskList
-      .map((item) => {
-        return item.task;
-      })
-      .filter((item, index) => (item === task ? index : ""));
-
     dispatch(taskAction("ADD", { task, count }));
   };
-  useEffect(() => {
-    console.log(taskList);
-  }, [taskList]);
+
   return (
     <>
       <div>Redux Example</div>
