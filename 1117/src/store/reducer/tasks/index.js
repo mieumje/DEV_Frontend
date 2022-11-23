@@ -15,11 +15,12 @@ export const taskReducer = (state = initialState, action) => {
             item.task === task ? { task, count: item.count + count } : item
           ),
         };
+      } else {
+        return {
+          ...state,
+          tasks: [...state.tasks, action.task],
+        };
       }
-      return {
-        ...state,
-        tasks: [...state.tasks, action.task],
-      };
     }
     default:
       return {
