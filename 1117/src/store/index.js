@@ -1,15 +1,17 @@
 import { combineReducers, createStore } from "redux";
 import { counterReducer } from "./reducer/counter";
 import { taskReducer } from "./reducer/tasks";
-import { setItem, getItem } from "../utils/storage";
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
-const rootStore = combineReducers({ counterReducer, taskReducer });
+const persistConfig = {
+  key: "task",
+  storage,
+};
 
-const persistedState = getItem("taskState");
-
-export const store = createStore(rootStore, persistedState);
-
-store.subscribe(() => {
-  const state = store.getState();
-  setItem("taskState", state);
+export const rootStore = combineReducers({
+  counterReducer,
+  taskReducer: persistReducer(persistConfig, taskReducer),
 });
+
+export const store = createStore(rootStore);
