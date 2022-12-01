@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import fetchDummy from "./apis/fetchDummy";
+import useClick from "./hooks/useClick";
 import useInput from "./hooks/useInput";
 import useTabs from "./hooks/useTabs";
 import useTitle from "./hooks/useTitle";
@@ -14,6 +15,9 @@ function App() {
   const [contents, setContents] = useState<content[]>([]);
   const { currentItem, changeItem } = useTabs(1, contents);
   const setTitle = useTitle("Loading...");
+  const title = useClick(() => {
+    console.log("hi");
+  });
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -32,6 +36,7 @@ function App() {
 
   return (
     <>
+      <h1 ref={title}>Hello !</h1>
       <input placeholder="Name" value={value} onChange={setValue} />
       <div>
         {contents.map((item, index) => {
