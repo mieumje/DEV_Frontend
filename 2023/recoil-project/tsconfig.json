@@ -19,16 +19,16 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
-      "@src/*": ["src/*"],
-      "@components/*": ["src/components/*"],
-      "@layout/*": ["src/layout/*"],
-      "@pages/*": ["src/pages/*"],
-      "@apis/*": ["src/apis/*"],
-      "@utils/*": ["src/utils/*"],
-      "@assets/*": ["src/assets/*"],
-      "@hooks/*": ["src/hooks/*"],
-      "@router/*": ["src/router/*"],
-      "@interfaces/*": ["src/interfaces/*"]
+      "@/*": ["./src"],
+      "@components/*": ["./src/components/*"],
+      "@layout/*": ["./src/layout/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@apis/*": ["./src/apis/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@assets/*": ["./src/assets/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@router/*": ["./src/router/*"],
+      "@interfaces/*": ["./src/interfaces/*"]
     }
   },
   "include": [
