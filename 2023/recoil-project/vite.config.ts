@@ -7,44 +7,18 @@ import svgr from 'vite-plugin-svgr';
 export default defineConfig({
   plugins: [react(), svgr()],
   resolve: {
-    alias: [
-      { find: '@', replacement: path.resolve(__dirname, 'src') },
-      {
-        find: '@components/*',
-        replacement: path.resolve(__dirname, 'src/components/*'),
-      },
-      {
-        find: '@layout/*',
-        replacement: path.resolve(__dirname, 'src/layout/*'),
-      },
-      {
-        find: '@pages/*',
-        replacement: path.resolve(__dirname, 'src/pages/*'),
-      },
-      {
-        find: '@apis/*',
-        replacement: path.resolve(__dirname, 'src/apis/*'),
-      },
-      {
-        find: '@utils/*',
-        replacement: path.resolve(__dirname, 'src/utils/*'),
-      },
-      {
-        find: '@assets/*',
-        replacement: path.resolve(__dirname, 'src/assets/*'),
-      },
-      {
-        find: '@hooks/*',
-        replacement: path.resolve(__dirname, 'src/hooks/*'),
-      },
-      {
-        find: '@router/*',
-        replacement: path.resolve(__dirname, 'src/router/*'),
-      },
-      {
-        find: '@interfaces/*',
-        replacement: path.resolve(__dirname, 'src/interfaces/*'),
-      },
-    ],
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+      '@components': path.resolve(__dirname, 'src/components'),
+      '@layout': path.resolve(__dirname, 'src/layout'),
+      '@pages': path.resolve(__dirname, 'src/pages'),
+      '@apis': path.resolve(__dirname, 'src/apis'),
+      '@utils': path.resolve(__dirname, 'src/utils'),
+      '@assets': path.resolve(__dirname, 'src/assets'),
+      '@hooks': path.resolve(__dirname, 'src/hooks'),
+      '@router': path.resolve(__dirname, 'src/router'),
+      '@interfaces': path.resolve(__dirname, 'src/interfaces'),
+      '@store': path.resolve(__dirname, 'src/store'),
+    },
   },
 });
