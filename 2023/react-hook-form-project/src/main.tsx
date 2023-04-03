@@ -4,6 +4,7 @@ import App from './App';
 import './index.css';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
+import 'react-datepicker/dist/react-datepicker.css'; // react-datepicker
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
