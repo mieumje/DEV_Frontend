@@ -3,6 +3,7 @@ import { RangeDateInput } from '@components/Input';
 import DatePicker from 'react-datepicker';
 import { forwardRef, useState } from 'react';
 import { ko } from 'date-fns/locale';
+import RangeDatePicker from '@components/RangeDatePicker';
 
 type FormValues = {
   dateRange: {
@@ -38,6 +39,7 @@ function App() {
           gap: '1rem',
         }}
       >
+        <RangeDatePicker />
         <div style={{ display: 'flex', gap: '1rem' }}>
           <DatePicker
             selected={startDate}
