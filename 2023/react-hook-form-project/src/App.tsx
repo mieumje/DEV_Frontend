@@ -10,6 +10,10 @@ type FormValues = {
     startDate: Date;
     endDate: Date;
   };
+  mui: {
+    startDate: Date;
+    endDate: Date;
+  };
   name: string;
 };
 
@@ -39,7 +43,7 @@ function App() {
           gap: '1rem',
         }}
       >
-        <RangeDatePicker />
+        <RangeDatePicker control={control} />
         <div style={{ display: 'flex', gap: '1rem' }}>
           <DatePicker
             selected={startDate}
