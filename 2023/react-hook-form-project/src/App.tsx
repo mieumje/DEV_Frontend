@@ -1,9 +1,10 @@
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { RangeDateInput } from '@components/Input';
 import DatePicker from 'react-datepicker';
-import { forwardRef, useState } from 'react';
+import { useState } from 'react';
 import { ko } from 'date-fns/locale';
 import RangeDatePicker from '@components/RangeDatePicker';
+import Temp from '@components/RangeDatePicker/tt';
 
 type FormValues = {
   dateRange: {
@@ -14,11 +15,20 @@ type FormValues = {
     startDate: Date;
     endDate: Date;
   };
+  temp: {
+    startDate: Date;
+    endDate: Date;
+  };
   name: string;
 };
 
 function App() {
-  const { control, handleSubmit, register } = useForm<FormValues>();
+  const {
+    control,
+    handleSubmit,
+    register,
+    formState: { isSubmitting, errors, isDirty },
+  } = useForm<FormValues>();
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
   const onSubmit = (data: FormValues) => {
@@ -44,7 +54,37 @@ function App() {
         }}
       >
         <RangeDatePicker control={control} />
-        <div style={{ display: 'flex', gap: '1rem' }}>
+        <Controller
+          control={control}
+          name="temp"
+          render={({
+            field: { onChange, onBlur, value, ref },
+            formState: { errors },
+          }) => <Temp onChange={onChange} errors={errors} />}
+          rules={{
+            validate: (value) => {
+              if (!value) return '날짜를 입력해주세요.';
+
+              const { startDate, endDate } = value;
+              if (!startDate) return '시작일을 입력해주세요.';
+              if (!endDate) return '종료일을 입력해주세요.';
+            },
+          }}
+        />
+        <RangeDateInput control={control} />
+        <input
+          type="text"
+          {...register('name', {
+            required: '이름을 입력해주세요',
+            minLength: {
+              value: 3,
+              message: '3자리 이상의 이름을 입력하세요.',
+            },
+          })}
+          style={{ border: '1px solid black', padding: '3px' }}
+        />
+        {errors.name && <p>{errors.name.message}</p>}
+        {/* <div style={{ display: 'flex', gap: '1rem' }}>
           <DatePicker
             selected={startDate}
             onChange={(date) => date && setStartDate(date)}
@@ -66,13 +106,7 @@ function App() {
             dateFormat="yyyy년 MM월 dd일"
             placeholderText="종료일"
           />
-        </div>
-        <RangeDateInput control={control} />
-        <input
-          type="text"
-          {...register('name')}
-          style={{ border: '1px solid black', padding: '3px' }}
-        />
+        </div> */}
         <button
           type="submit"
           style={{
