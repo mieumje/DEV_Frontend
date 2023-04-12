@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { ko } from 'date-fns/locale';
 import RangeDatePicker from '@components/RangeDatePicker';
 import Temp from '@components/RangeDatePicker/tt';
+import { useNavigate } from 'react-router-dom';
 
 type FormValues = {
   dateRange: {
@@ -40,6 +41,7 @@ function App() {
     start && setStartDate(start);
     end && setEndDate(end);
   };
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -119,6 +121,40 @@ function App() {
           submit
         </button>
       </form>
+      <div
+        style={{
+          display: 'flex',
+          width: '100%',
+          justifyContent: 'center',
+          padding: '16px 0',
+        }}
+      >
+        <button
+          type="button"
+          style={{
+            border: '1px solid black',
+            padding: '3px',
+            width: '150px',
+            height: '40px',
+          }}
+        >
+          Home
+        </button>
+        <button
+          type="button"
+          style={{
+            border: '1px solid black',
+            padding: '3px',
+            width: '150px',
+            height: '40px',
+          }}
+          onClick={() => {
+            navigate('/test');
+          }}
+        >
+          Test
+        </button>
+      </div>
     </div>
   );
 }

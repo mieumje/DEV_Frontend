@@ -10,6 +10,10 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { createTheme, ThemeProvider } from '@mui/material';
 import { koKR } from '@mui/x-date-pickers/locales/koKR';
 import 'dayjs/locale/ko';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Test from '@pages/test';
+import locale from 'antd/lib/locale/ko_KR';
+import { ConfigProvider } from 'antd';
 
 const theme = createTheme(
   {
@@ -20,11 +24,29 @@ const theme = createTheme(
   koKR
 );
 
+const antdTheme = {
+  token: {
+    colorPrimary: '#59b2e7',
+  },
+  components: {
+    Button: {
+      colorPrimary: 'red',
+    },
+  },
+};
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="ko">
-        <App />
+        <ConfigProvider locale={locale} theme={antdTheme}>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<App />} />
+              <Route path="/test" element={<Test />} />
+            </Routes>
+          </BrowserRouter>
+        </ConfigProvider>
       </LocalizationProvider>
     </ThemeProvider>
   </React.StrictMode>
