@@ -30,7 +30,7 @@ const antdTheme = {
   },
   components: {
     Button: {
-      colorPrimary: 'red',
+      colorPrimary: '#59b2e7',
     },
   },
 };
