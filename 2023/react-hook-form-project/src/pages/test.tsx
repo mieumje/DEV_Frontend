@@ -22,11 +22,11 @@ const StyledForm = styled.form`
   justify-content: center;
   align-items: center;
   background-color: #f8f8f9;
-  flex-grow: 1;
   width: 100%;
   max-width: 1330px;
   height: 100%;
   gap: 2rem;
+  box-sizing: border-box;
 `;
 
 const AlignP = styled.p`
@@ -63,6 +63,7 @@ function Test() {
     name: 'file',
     listType: 'picture',
     multiple: true,
+    accept: 'image/*',
     // beforeUpload(file) {
     //   console.log(file);
     //   setFileList(fileList.concat(file));
