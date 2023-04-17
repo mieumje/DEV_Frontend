@@ -1,10 +1,12 @@
 import styled from '@emotion/styled';
 import { DatePicker, UploadProps } from 'antd';
-import { Button, Input } from 'antd';
+import { Button, Input, Select } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { Upload } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import type { InputRef } from 'antd';
+import { useEffect } from 'react';
 
 const Container = styled.div`
   display: flex;
@@ -52,6 +54,18 @@ const StyledButton = styled(Button)`
   width: 120px;
 `;
 
+const EventStatementWrapper = styled.div`
+  gap: 0.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
+const SelectWrapper = styled.div`
+  display: flex;
+  gap: 1rem;
+`;
+
 function Test() {
   const navigate = useNavigate();
   const { RangePicker } = DatePicker;
@@ -59,6 +73,9 @@ function Test() {
   const [title, setTitle] = useState<string>('');
   const [duration, setDuration] = useState<string[]>([]);
   const [fileList, setFileList] = useState<Blob[]>([]);
+  const [flag, setFlag] = useState(true);
+  const inputRef = useRef<InputRef | null>(null);
+  const [eventMessage, setEventMessage] = useState('');
   const dragProps: UploadProps = {
     name: 'file',
     listType: 'picture',
@@ -79,15 +96,38 @@ function Test() {
     fileList.forEach((item, index) => {
       formData.append(`file ${index}`, item);
     });
+    formData.append('expired message', eventMessage);
 
     const obj = {
       title,
       startDt: duration[0],
       endDt: duration[1],
       fileList,
+      eventMessage,
     };
     console.log(obj);
   };
+
+  const handleChange = (value: string) => {
+    if (value === '직접 입력') {
+      setFlag(false);
+      inputRef.current?.focus();
+    } else {
+      console.log(inputRef.current);
+      setEventMessage(value);
+      setFlag(true);
+    }
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { target } = e;
+    const { value } = target;
+    setEventMessage(value);
+  };
+
+  useEffect(() => {
+    inputRef && inputRef.current?.focus();
+  }, [flag]);
 
   return (
     <Container>
@@ -186,6 +226,36 @@ function Test() {
             </AlignP>
           </Dragger>
         </ImageInputWrapper>
+        <EventStatementWrapper>
+          <p
+            style={{
+              display: 'inline-block',
+              width: '100%',
+              fontSize: '1.2rem',
+              fontWeight: 'bold',
+            }}
+          >
+            <label>이벤트 종료 문구</label>
+          </p>
+          <SelectWrapper>
+            <Select
+              defaultValue="이벤트 종료"
+              style={{ width: '100%' }}
+              options={[
+                { value: '이벤트 종료', label: '이벤트 종료' },
+                { value: '이벤트 기간 종료', label: '이벤트 기간 종료' },
+                { value: '직접 입력', label: '직접 입력' },
+              ]}
+              onChange={handleChange}
+            />
+            <Input
+              ref={inputRef}
+              disabled={flag}
+              value={eventMessage}
+              onChange={handleInputChange}
+            />
+          </SelectWrapper>
+        </EventStatementWrapper>
         <FlexDiv>
           <StyledButton>취소</StyledButton>
           <StyledButton type="primary" onClick={handleClick}>
