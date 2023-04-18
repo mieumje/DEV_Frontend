@@ -12,8 +12,10 @@ import { koKR } from '@mui/x-date-pickers/locales/koKR';
 import 'dayjs/locale/ko';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Test from '@pages/test';
+import DescriptionPage from '@pages/description';
 import locale from 'antd/lib/locale/ko_KR';
 import { ConfigProvider } from 'antd';
+import BannerDescriptionPage from '@pages/banner';
 
 const theme = createTheme(
   {
@@ -44,6 +46,11 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
             <Routes>
               <Route path="/" element={<App />} />
               <Route path="/test" element={<Test />} />
+              <Route path="/description" element={<DescriptionPage />} />
+              <Route
+                path="/banner-description"
+                element={<BannerDescriptionPage />}
+              />
             </Routes>
           </BrowserRouter>
         </ConfigProvider>

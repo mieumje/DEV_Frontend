@@ -6,6 +6,7 @@ import { ko } from 'date-fns/locale';
 import RangeDatePicker from '@components/RangeDatePicker';
 import Temp from '@components/RangeDatePicker/tt';
 import { useNavigate } from 'react-router-dom';
+import { Button } from 'antd';
 
 type FormValues = {
   dateRange: {
@@ -129,19 +130,7 @@ function App() {
           padding: '16px 0',
         }}
       >
-        <button
-          type="button"
-          style={{
-            border: '1px solid black',
-            padding: '3px',
-            width: '150px',
-            height: '40px',
-          }}
-        >
-          Home
-        </button>
-        <button
-          type="button"
+        <Button
           style={{
             border: '1px solid black',
             padding: '3px',
@@ -153,7 +142,33 @@ function App() {
           }}
         >
           Test
-        </button>
+        </Button>
+        <Button
+          style={{
+            border: '1px solid black',
+            padding: '3px',
+            width: '150px',
+            height: '40px',
+          }}
+          onClick={() => {
+            navigate('/description');
+          }}
+        >
+          Description
+        </Button>
+        <Button
+          style={{
+            border: '1px solid black',
+            padding: '3px',
+            width: '150px',
+            height: '40px',
+          }}
+          onClick={() => {
+            navigate('/banner-description');
+          }}
+        >
+          Banner
+        </Button>
       </div>
     </div>
   );
