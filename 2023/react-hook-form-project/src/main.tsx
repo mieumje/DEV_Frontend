@@ -14,7 +14,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Test from '@pages/test';
 import DescriptionPage from '@pages/description';
 import locale from 'antd/lib/locale/ko_KR';
-import { ConfigProvider } from 'antd';
+import { ConfigProvider, Layout } from 'antd';
 import BannerDescriptionPage from '@pages/banner';
 
 const theme = createTheme(
@@ -42,17 +42,38 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <ThemeProvider theme={theme}>
       <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="ko">
         <ConfigProvider locale={locale} theme={antdTheme}>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<App />} />
-              <Route path="/test" element={<Test />} />
-              <Route path="/description" element={<DescriptionPage />} />
-              <Route
-                path="/banner-description"
-                element={<BannerDescriptionPage />}
-              />
-            </Routes>
-          </BrowserRouter>
+          <Layout className="layout">
+            <Layout.Header
+              style={{
+                backgroundColor: '#fff',
+                display: 'flex',
+                justifyContent: 'space-between',
+              }}
+            >
+              <span>this is header</span>
+              <div>
+                <span>item 1</span>
+                <span>item 2</span>
+                <span>item 3</span>
+              </div>
+            </Layout.Header>
+            <Layout.Content style={{ padding: '0 2rem' }}>
+              <BrowserRouter>
+                <Routes>
+                  <Route path="/" element={<App />} />
+                  <Route path="/test" element={<Test />} />
+                  <Route path="/description" element={<DescriptionPage />} />
+                  <Route
+                    path="/banner-description"
+                    element={<BannerDescriptionPage />}
+                  />
+                </Routes>
+              </BrowserRouter>
+            </Layout.Content>
+            <Layout.Footer style={{ textAlign: 'center' }}>
+              <span>this is footer</span>
+            </Layout.Footer>
+          </Layout>
         </ConfigProvider>
       </LocalizationProvider>
     </ThemeProvider>
