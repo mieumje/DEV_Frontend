@@ -1,10 +1,10 @@
-import { Small } from "./style";
+import { Large } from "./style";
 
-export default function SmallBox() {
+export default function LargeBox() {
   return (
-    <Small>
+    <Large>
       <div style={{ width: "100%", display: "flex", justifyContent: "start" }}>
-        <h4>Small</h4>
+        <h4>Large</h4>
       </div>
       <div
         style={{
@@ -15,8 +15,8 @@ export default function SmallBox() {
           alignItems: "center",
         }}
       >
-        <span>1x2</span>
+        <span>3x2</span>
       </div>
-    </Small>
+    </Large>
   );
 }
