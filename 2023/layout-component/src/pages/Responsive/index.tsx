@@ -1,8 +1,8 @@
 import { useState } from "react";
-import LargeBox from "../../components/box/large";
-import MediumBox from "../../components/box/medium";
-import SmallBox from "../../components/box/small";
-import { ButtonGroup, Container, FirstRow } from "./style";
+import { ButtonGroup, Container, FirstRow, SecondRows } from "./style";
+import SmallBox from "./small";
+import MediumBox from "./medium";
+import LargeBox from "./large";
 
 export default function Responsive() {
   const LoremIpsum = [
@@ -21,6 +21,10 @@ export default function Responsive() {
     {
       title: "Where can I get some?",
       description: `There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.`,
+    },
+    {
+      title: "What is Lorem Ipsum?",
+      description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
     },
   ];
 
@@ -47,11 +51,6 @@ export default function Responsive() {
   return (
     <>
       <h1>반응형</h1>
-      <ButtonGroup>
-        <button onClick={SmallAdd}>button 1</button>
-        <button onClick={MediumAdd}>button 2</button>
-        <button onClick={LargeAdd}>button 3</button>
-      </ButtonGroup>
       <hr />
       <h1>컨텐츠</h1>
       <Container>
@@ -65,7 +64,44 @@ export default function Responsive() {
         })}
       </Container>
       <hr />
+      <Container>
+        {LoremIpsum.map((item, index) => {
+          return (
+            <SecondRows key={index}>
+              <h2>{item.title}</h2>
+              <p>{item.description}</p>
+            </SecondRows>
+          );
+        })}
+      </Container>
+      <hr />
+      <ButtonGroup>
+        <button onClick={SmallAdd}>button 1</button>
+        <button onClick={MediumAdd}>button 2</button>
+        <button onClick={LargeAdd}>button 3</button>
+      </ButtonGroup>
       <Container>{list.map((item) => item)}</Container>
+      <hr />
+      <Container>
+        {list.map((_, index) => (
+          <SecondRows key={index}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: "1.25rem",
+                fontWeight: "bold",
+                height: "100px",
+                borderRadius: "1rem",
+                backgroundColor: `rgba(127, 17, 224, 1)`,
+              }}
+            >
+              Component {index}
+            </div>
+          </SecondRows>
+        ))}
+      </Container>
     </>
   );
 }
