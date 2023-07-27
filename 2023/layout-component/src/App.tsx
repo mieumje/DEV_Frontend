@@ -1,10 +1,10 @@
 import "./App.css";
-import Layout from "./container";
+import Routers from "./router";
 
 function App() {
   return (
     <>
-      <Layout />
+      <Routers />
     </>
   );
 }
