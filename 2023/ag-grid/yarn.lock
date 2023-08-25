@@ -7,6 +7,34 @@
   resolved "https://registry.yarnpkg.com/@aashutoshrathi/word-wrap/-/word-wrap-1.2.6.tgz#bd9154aec9983f77b3a034ecaa015c2e4201f6cf"
   integrity sha512-1Yjs2SvM8TflER/OD3cOjhWWOZb58A2t7wpE2S9XfBYTiIl+XFhQG2bjy4Pu1I+EAlCNUzRDYDdFwFYUKvXcIA==
 
+"@ag-grid-community/core@~30.1.0":
+  version "30.1.0"
+  resolved "https://registry.yarnpkg.com/@ag-grid-community/core/-/core-30.1.0.tgz#e91b1d64b8cab23abb0da7ce9d9308280360de24"
+  integrity sha512-UR/cqyV4r/fLi8w6x+okL9DGHMXtyxthQMgCFa5zBs4UzmRuJeg39NfcRsHoNg2LT2GPHWaE/8Qa+ae7pjXh4g==
+
+"@ag-grid-enterprise/core@~30.1.0":
+  version "30.1.0"
+  resolved "https://registry.yarnpkg.com/@ag-grid-enterprise/core/-/core-30.1.0.tgz#e13f8d5e7e17b5d2943295f86c28c6d328f5fd47"
+  integrity sha512-dZG0YVU3CWRsA1zUv8CrpJXthFBD2I/xFwA4NBqKnUKW4DbtyJ5VOlCusOJ4XoWs3X+NsC5z0DVHqei1AlVDfw==
+  dependencies:
+    "@ag-grid-community/core" "~30.1.0"
+
+"@ag-grid-enterprise/row-grouping@~30.1.0":
+  version "30.1.0"
+  resolved "https://registry.yarnpkg.com/@ag-grid-enterprise/row-grouping/-/row-grouping-30.1.0.tgz#06e13cf601b683aeb5aebb0c41a5bf7d92ea2985"
+  integrity sha512-CGcm4I/bbtL+GS0GZBnnjcQT6jCzQJIQFh/Uf+naTXzSB/j7Z04546xNUUPcLJrwaudMUZotdJ5HT8C3tcM9Ng==
+  dependencies:
+    "@ag-grid-community/core" "~30.1.0"
+    "@ag-grid-enterprise/core" "~30.1.0"
+
+"@ag-grid-enterprise/server-side-row-model@~30.1.0":
+  version "30.1.0"
+  resolved "https://registry.yarnpkg.com/@ag-grid-enterprise/server-side-row-model/-/server-side-row-model-30.1.0.tgz#0516262fa4ed077630f57d770446e196d645f210"
+  integrity sha512-fuSH+9N3PwGSuF81+eUFhMziHrvL+V/dxkcRHqW93ITdkvP4hXW7xLpEE8Z0u1rjxumVFkLwNqVXwKcdO3fhOA==
+  dependencies:
+    "@ag-grid-community/core" "~30.1.0"
+    "@ag-grid-enterprise/core" "~30.1.0"
+
 "@esbuild/android-arm64@0.18.20":
   version "0.18.20"
   resolved "https://registry.yarnpkg.com/@esbuild/android-arm64/-/android-arm64-0.18.20.tgz#984b4f9c8d0377443cc2dfcef266d02244593622"
