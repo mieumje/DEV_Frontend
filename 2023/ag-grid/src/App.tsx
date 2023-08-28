@@ -7,19 +7,54 @@ import "ag-grid-community/styles/ag-theme-balham.css";
 import "ag-grid-community/styles/ag-theme-material.css";
 import "./App.css";
 import "./style.css";
+import { ICellRendererParams } from "ag-grid-enterprise";
+
+type ButtonProps = {
+  buttonLabel: string;
+  handleClick?: () => void;
+};
+
+function Button({ buttonLabel, handleClick }: ButtonProps) {
+  return <button onClick={handleClick}>{buttonLabel}</button>;
+}
 
 function App() {
   const gridRef = useRef<AgGridReact>(null);
   const [rowData] = useState([
-    { make: "Toyota", model: "Celica", price: 35000 },
-    { make: "Ford", model: "Mondeo", price: 32000 },
-    { make: "Porsche", model: "Boxter", price: 72000 },
+    { id: 1, make: "Toyota", model: "Celica", price: 35000 },
+    { id: 2, make: "Ford", model: "Mondeo", price: 32000 },
+    { id: 3, make: "Porsche", model: "Boxter", price: 72000 },
   ]);
 
   const [columnDefs] = useState([
+    { field: "id" },
     { field: "make" },
     { field: "model" },
     { field: "price" },
+    {
+      field: "value",
+      cellRenderer: (params: ICellRendererParams) => {
+        return (
+          <div
+            style={{
+              display: "flex",
+              gap: "1rem",
+              alignItems: "center",
+              height: "100%",
+            }}
+          >
+            <Button
+              buttonLabel="Actions 1"
+              handleClick={() => alert(`actions ${params.data.id}`)}
+            />
+            <Button
+              buttonLabel="Actions 2"
+              handleClick={() => alert(`actions ${params.data.id}`)}
+            />
+          </div>
+        );
+      },
+    },
   ]);
 
   const handleExportExcel = () => {
@@ -55,14 +90,10 @@ function App() {
           }}
         >
           <span>ag theme alpine</span>
-          <button
-            style={{
-              fontSize: "1rem",
-            }}
-            onClick={handleExportExcel}
-          >
-            Export to Excel
-          </button>
+          <Button
+            handleClick={handleExportExcel}
+            buttonLabel="Export to Excel"
+          />
         </div>
         <AgGridReact
           ref={gridRef}
@@ -71,7 +102,7 @@ function App() {
           enableRangeSelection={true}
         />
       </div>
-      <div
+      {/* <div
         className="ag-theme-alpine-dark"
         style={{
           color: "#fefefe",
@@ -138,7 +169,7 @@ function App() {
           columnDefs={columnDefs}
           enableRangeSelection={true}
         />
-      </div>
+      </div> */}
     </div>
   );
 }
