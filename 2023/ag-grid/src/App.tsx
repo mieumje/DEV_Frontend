@@ -1,4 +1,3 @@
-import "./App.css";
 import { useState } from "react";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-enterprise";
@@ -6,6 +5,8 @@ import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 import "ag-grid-community/styles/ag-theme-balham.css";
 import "ag-grid-community/styles/ag-theme-material.css";
+import "./App.css";
+import "./style.css";
 
 function App() {
   const [rowData] = useState([
@@ -43,7 +44,11 @@ function App() {
         }}
       >
         <span>ag theme alpine</span>
-        <AgGridReact rowData={rowData} columnDefs={columnDefs}></AgGridReact>
+        <AgGridReact
+          rowData={rowData}
+          columnDefs={columnDefs}
+          enableRangeSelection={true}
+        />
       </div>
       <div
         className="ag-theme-alpine-dark"
@@ -56,7 +61,11 @@ function App() {
         }}
       >
         <span>ag theme alpine dark</span>
-        <AgGridReact rowData={rowData} columnDefs={columnDefs}></AgGridReact>
+        <AgGridReact
+          rowData={rowData}
+          columnDefs={columnDefs}
+          enableRangeSelection={true}
+        />
       </div>
       <div
         className="ag-theme-balham"
@@ -69,7 +78,11 @@ function App() {
         }}
       >
         <span>ag theme balham</span>
-        <AgGridReact rowData={rowData} columnDefs={columnDefs}></AgGridReact>
+        <AgGridReact
+          rowData={rowData}
+          columnDefs={columnDefs}
+          enableRangeSelection={true}
+        />
       </div>
       <div
         className="ag-theme-balham-dark"
@@ -82,7 +95,11 @@ function App() {
         }}
       >
         <span>ag theme balham dark</span>
-        <AgGridReact rowData={rowData} columnDefs={columnDefs}></AgGridReact>
+        <AgGridReact
+          rowData={rowData}
+          columnDefs={columnDefs}
+          enableRangeSelection={true}
+        />
       </div>
       <div
         className="ag-theme-material"
@@ -95,7 +112,11 @@ function App() {
         }}
       >
         <span>ag theme material</span>
-        <AgGridReact rowData={rowData} columnDefs={columnDefs}></AgGridReact>
+        <AgGridReact
+          rowData={rowData}
+          columnDefs={columnDefs}
+          enableRangeSelection={true}
+        />
       </div>
     </div>
   );
