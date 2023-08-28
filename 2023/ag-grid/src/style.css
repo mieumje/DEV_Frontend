@@ -1,0 +1,13 @@
+.ag-theme-alpine {
+  --ag-foreground-color: #111827; /* text, icons 색상 (메뉴와 같은 Primary UI에서) */
+  --ag-background-color: #fefefe; /* Grid의 배경 색상 */
+  --ag-header-foreground-color: rgb(61, 183, 248); /* Header Text, icons 색상 */
+  --ag-header-background-color: rgba(0, 0, 0, 0.1); /* Header 배경 색상 */
+  --ag-odd-row-background-color: rgb(0, 0, 0, 0.05); /* 짝수 row 배경 색상 */
+  --ag-range-selection-border-color: red; /* 선택된 요소 border 색상 */
+  --ag-range-selection-highlight-color: green; /* 선택된 요소 Copy or paste 색상 */
+  --ag-row-border-color: rgb(150, 150, 200); /* Row border 색상 */
+  --ag-row-hover-color: rgba(61, 183, 248, 0.2); /* Row hover 색상 */
+  --ag-font-size: 16px; /* Grid Text Default size */
+  --ag-grid-size: 6px;
+}
