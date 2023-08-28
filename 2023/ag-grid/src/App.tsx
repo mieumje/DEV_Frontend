@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-enterprise";
 import "ag-grid-community/styles/ag-grid.css";
@@ -9,6 +9,7 @@ import "./App.css";
 import "./style.css";
 
 function App() {
+  const gridRef = useRef<AgGridReact>(null);
   const [rowData] = useState([
     { make: "Toyota", model: "Celica", price: 35000 },
     { make: "Ford", model: "Mondeo", price: 32000 },
@@ -20,6 +21,10 @@ function App() {
     { field: "model" },
     { field: "price" },
   ]);
+
+  const handleExportExcel = () => {
+    gridRef.current?.api.exportDataAsExcel();
+  };
 
   return (
     <div
@@ -43,8 +48,24 @@ function App() {
           padding: "1rem",
         }}
       >
-        <span>ag theme alpine</span>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <span>ag theme alpine</span>
+          <button
+            style={{
+              fontSize: "1rem",
+            }}
+            onClick={handleExportExcel}
+          >
+            Export to Excel
+          </button>
+        </div>
         <AgGridReact
+          ref={gridRef}
           rowData={rowData}
           columnDefs={columnDefs}
           enableRangeSelection={true}
