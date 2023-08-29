@@ -99,7 +99,8 @@ function App() {
           ref={gridRef}
           rowData={rowData}
           columnDefs={columnDefs}
-          enableRangeSelection={true}
+          enableRangeSelection={true} // 범위 선택
+          enableRangeHandle={true} // 범위 선택 Handling
         />
       </div>
       {/* <div
