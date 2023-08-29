@@ -14,7 +14,12 @@ import "ag-grid-community/styles/ag-theme-balham.css";
 import "ag-grid-community/styles/ag-theme-material.css";
 import "./App.css";
 import "./style.css";
-import { ColDef, ExcelStyle, ICellRendererParams } from "ag-grid-enterprise";
+import {
+  ColDef,
+  ExcelExportParams,
+  ExcelStyle,
+  ICellRendererParams,
+} from "ag-grid-enterprise";
 import { getCardList } from "./apis";
 import dayjs from "dayjs";
 
@@ -60,6 +65,11 @@ function App() {
         },
       },
     ];
+  }, []);
+  const excelExportParams = useMemo<ExcelExportParams>(() => {
+    return {
+      fileName: "카드 정보.xlsx",
+    };
   }, []);
   const [rowData, setRowData] = useState([]);
   const [columnDefs] = useState<ColDef[]>([
@@ -209,7 +219,8 @@ function App() {
           // onGridReady={(event) => event.api.sizeColumnsToFit()}
           onGridSizeChanged={handleSize} // Grid Size Change Handling
           rowSelection="multiple" // Row 다중 선택
-          excelStyles={excelStyles}
+          excelStyles={excelStyles} // excel style 지정
+          defaultExcelExportParams={excelExportParams} // excel export 설정
         />
       </div>
       {/* <div
