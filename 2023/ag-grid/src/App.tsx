@@ -1,4 +1,4 @@
-import { FormEvent, useCallback, useRef, useState } from "react";
+import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-enterprise";
 import "ag-grid-community/styles/ag-grid.css";
@@ -8,6 +8,8 @@ import "ag-grid-community/styles/ag-theme-material.css";
 import "./App.css";
 import "./style.css";
 import { ColDef, ICellRendererParams } from "ag-grid-enterprise";
+import { getCardList } from "./apis";
+import dayjs from "dayjs";
 
 type ButtonProps = {
   buttonLabel: string;
@@ -19,24 +21,31 @@ function Button({ buttonLabel, handleClick }: ButtonProps) {
 }
 
 function App() {
+  const [start] = useState(0);
+  const [end] = useState(20);
   const gridRef = useRef<AgGridReact>(null);
-  const [rowData] = useState([
-    { id: 1, make: "Toyota", model: "Celica", price: 35000 },
-    { id: 2, make: "Ford", model: "Mondeo", price: 32000 },
-    { id: 3, make: "Porsche", model: "Boxter", price: 72000 },
-  ]);
+  const [rowData, setRowData] = useState([]);
   const [columnDefs] = useState<ColDef[]>([
     {
+      headerName: "ID", // Header Name 설정
       field: "id",
       sortable: true,
       checkboxSelection: true, // Row Checkbox
       headerCheckboxSelection: true, // Header Checkbox
       lockPosition: "left", // Column 이동 금지, [boolean, 'left', 'right']
+      width: 100,
     },
-    { field: "make", sortable: true, resizable: true },
-    { field: "model", sortable: true },
-    { field: "price", sortable: true },
+    { headerName: "Corp.", field: "name", sortable: true, resizable: true },
+    { headerName: "카드 번호", field: "cardNumber", sortable: true },
     {
+      headerName: "등록일",
+      field: "createdAt",
+      sortable: true,
+      cellRenderer: (params: ICellRendererParams) =>
+        dayjs(params.data.createdAt).format("YYYY-MM-DD HH:mm"),
+    },
+    {
+      headerName: "Actions",
       field: "value",
       cellRenderer: (params: ICellRendererParams) => {
         return (
@@ -65,14 +74,14 @@ function App() {
 
   const handleExportExcel = () => {
     gridRef.current?.api.exportDataAsExcel({
-      columnKeys: ["id", "make", "model", "price"], // Excel Export column key 지정
+      columnKeys: ["id", "name", "cardNumber", "createdAt"], // Excel Export column key 지정
     });
   };
 
   const handleExportSelectedExcel = () => {
     gridRef.current?.api.exportDataAsExcel({
       onlySelected: true, // 선택된 Row만 Export
-      columnKeys: ["id", "make", "model", "price"], // Excel Export column key 지정
+      columnKeys: ["id", "name", "cardNumber", "createdAt"], // Excel Export column key 지정
     });
   };
 
@@ -86,10 +95,21 @@ function App() {
 
   const handleSize = useCallback(() => {
     gridRef.current?.api.sizeColumnsToFit({
-      defaultMinWidth: 200, // Grid Size 조절 시 default min width
+      defaultMinWidth: 100, // Grid Size 조절 시 default min width
       columnLimits: [{ key: "make", minWidth: 400 }], // Grid Size 조절 시 제외할 Column
     });
   }, []);
+
+  useEffect(() => {
+    (async () => {
+      const data = await getCardList({
+        _start: start,
+        _end: end,
+      });
+
+      setRowData(() => data);
+    })();
+  }, [start, end]);
 
   return (
     <div
