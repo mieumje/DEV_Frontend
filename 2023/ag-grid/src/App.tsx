@@ -62,12 +62,15 @@ function App() {
   ]);
 
   const handleExportExcel = () => {
-    gridRef.current?.api.exportDataAsExcel();
+    gridRef.current?.api.exportDataAsExcel({
+      columnKeys: ["id", "make", "model", "price"], // Excel Export column key 지정
+    });
   };
 
   const handleExportSelectedExcel = () => {
     gridRef.current?.api.exportDataAsExcel({
       onlySelected: true, // 선택된 Row만 Export
+      columnKeys: ["id", "make", "model", "price"], // Excel Export column key 지정
     });
   };
 
