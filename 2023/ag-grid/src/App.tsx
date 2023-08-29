@@ -25,12 +25,11 @@ function App() {
     { id: 2, make: "Ford", model: "Mondeo", price: 32000 },
     { id: 3, make: "Porsche", model: "Boxter", price: 72000 },
   ]);
-
   const [columnDefs] = useState([
-    { field: "id" },
-    { field: "make" },
-    { field: "model" },
-    { field: "price" },
+    { field: "id", sortable: true },
+    { field: "make", sortable: true },
+    { field: "model", sortable: true },
+    { field: "price", sortable: true },
     {
       field: "value",
       cellRenderer: (params: ICellRendererParams) => {
