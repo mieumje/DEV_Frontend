@@ -10,4 +10,17 @@
   --ag-row-hover-color: rgba(61, 183, 248, 0.2); /* Row hover 색상 */
   --ag-font-size: 16px; /* Grid Text Default size */
   --ag-grid-size: 6px;
+  --ag-header-cell-hover-background-color: rgba(
+    61,
+    183,
+    248,
+    0.2
+  ); /* Header Cell Hover 색상*/
+  --ag-header-column-separator-display: block; /* Header Cell 구분선 */
+  --ag-header-column-separator-color: rgb(
+    0,
+    0,
+    0,
+    0.15
+  ); /* Header Cell 구분선 색상*/
 }
