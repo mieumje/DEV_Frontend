@@ -26,7 +26,12 @@ function App() {
     { id: 3, make: "Porsche", model: "Boxter", price: 72000 },
   ]);
   const [columnDefs] = useState([
-    { field: "id", sortable: true },
+    {
+      field: "id",
+      sortable: true,
+      checkboxSelection: true, // Row Checkbox
+      headerCheckboxSelection: true, // Header Checkbox
+    },
     { field: "make", sortable: true, resizable: true },
     { field: "model", sortable: true },
     { field: "price", sortable: true },
@@ -58,6 +63,12 @@ function App() {
 
   const handleExportExcel = () => {
     gridRef.current?.api.exportDataAsExcel();
+  };
+
+  const handleExportSelectedExcel = () => {
+    gridRef.current?.api.exportDataAsExcel({
+      onlySelected: true, // 선택된 Row만 Export
+    });
   };
 
   const onFilterTextBoxChanged = useCallback(
@@ -110,10 +121,21 @@ function App() {
             placeholder="Filter..."
             onInput={onFilterTextBoxChanged}
           />
-          <Button
-            handleClick={handleExportExcel}
-            buttonLabel="Export to Excel"
-          />
+          <div
+            style={{
+              display: "flex",
+              gap: "1rem",
+            }}
+          >
+            <Button
+              handleClick={handleExportExcel}
+              buttonLabel="Export to Excel"
+            />
+            <Button
+              handleClick={handleExportSelectedExcel}
+              buttonLabel="Export Selected to Excel"
+            />
+          </div>
         </div>
         <AgGridReact
           ref={gridRef}
@@ -124,6 +146,7 @@ function App() {
           onFirstDataRendered={handleSize}
           // onGridReady={(event) => event.api.sizeColumnsToFit()}
           onGridSizeChanged={handleSize} // Grid Size Change Handling
+          rowSelection="multiple" // Row 다중 선택
         />
       </div>
       {/* <div
