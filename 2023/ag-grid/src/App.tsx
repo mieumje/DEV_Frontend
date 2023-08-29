@@ -1,4 +1,11 @@
-import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
+import {
+  FormEvent,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-enterprise";
 import "ag-grid-community/styles/ag-grid.css";
@@ -7,7 +14,7 @@ import "ag-grid-community/styles/ag-theme-balham.css";
 import "ag-grid-community/styles/ag-theme-material.css";
 import "./App.css";
 import "./style.css";
-import { ColDef, ICellRendererParams } from "ag-grid-enterprise";
+import { ColDef, ExcelStyle, ICellRendererParams } from "ag-grid-enterprise";
 import { getCardList } from "./apis";
 import dayjs from "dayjs";
 
@@ -24,6 +31,28 @@ function App() {
   const [start] = useState(0);
   const [end] = useState(20);
   const gridRef = useRef<AgGridReact>(null);
+  const excelStyles = useMemo<ExcelStyle[]>(() => {
+    return [
+      {
+        id: "header", // column Def의 class name과 일치
+        alignment: {
+          vertical: "Center",
+        },
+        interior: {
+          color: "#d4d4d4cc",
+          pattern: "Solid",
+          patternColor: undefined,
+        },
+        borders: {
+          borderBottom: {
+            color: "#11827",
+            lineStyle: "Continuous",
+            weight: 3,
+          },
+        },
+      },
+    ];
+  }, []);
   const [rowData, setRowData] = useState([]);
   const [columnDefs] = useState<ColDef[]>([
     {
@@ -120,7 +149,7 @@ function App() {
         gap: "0.5rem",
         padding: "2rem",
         gridTemplateColumns: "repeat(8, minmax(0, 1fr))",
-        gridTemplateRows: "repeat(8, minmax(0, 1fr))",
+        gridTemplateRows: "repeat(8, minmax(0, 100px))",
       }}
     >
       <div
@@ -172,6 +201,7 @@ function App() {
           // onGridReady={(event) => event.api.sizeColumnsToFit()}
           onGridSizeChanged={handleSize} // Grid Size Change Handling
           rowSelection="multiple" // Row 다중 선택
+          excelStyles={excelStyles}
         />
       </div>
       {/* <div
