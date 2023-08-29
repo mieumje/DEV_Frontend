@@ -7,7 +7,7 @@ import "ag-grid-community/styles/ag-theme-balham.css";
 import "ag-grid-community/styles/ag-theme-material.css";
 import "./App.css";
 import "./style.css";
-import { ICellRendererParams } from "ag-grid-enterprise";
+import { ColDef, ICellRendererParams } from "ag-grid-enterprise";
 
 type ButtonProps = {
   buttonLabel: string;
@@ -25,12 +25,13 @@ function App() {
     { id: 2, make: "Ford", model: "Mondeo", price: 32000 },
     { id: 3, make: "Porsche", model: "Boxter", price: 72000 },
   ]);
-  const [columnDefs] = useState([
+  const [columnDefs] = useState<ColDef[]>([
     {
       field: "id",
       sortable: true,
       checkboxSelection: true, // Row Checkbox
       headerCheckboxSelection: true, // Header Checkbox
+      lockPosition: "left", // Column 이동 금지, [boolean, 'left', 'right']
     },
     { field: "make", sortable: true, resizable: true },
     { field: "model", sortable: true },
@@ -58,6 +59,7 @@ function App() {
           </div>
         );
       },
+      lockPosition: "right", // Column 이동 금지, [boolean, 'left', 'right']
     },
   ]);
 
