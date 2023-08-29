@@ -27,7 +27,7 @@ function App() {
   ]);
   const [columnDefs] = useState([
     { field: "id", sortable: true },
-    { field: "make", sortable: true },
+    { field: "make", sortable: true, resizable: true },
     { field: "model", sortable: true },
     { field: "price", sortable: true },
     {
@@ -67,6 +67,13 @@ function App() {
     },
     []
   );
+
+  const handleSize = useCallback(() => {
+    gridRef.current?.api.sizeColumnsToFit({
+      defaultMinWidth: 200, // Grid Size 조절 시 default min width
+      columnLimits: [{ key: "make", minWidth: 400 }], // Grid Size 조절 시 제외할 Column
+    });
+  }, []);
 
   return (
     <div
@@ -114,6 +121,9 @@ function App() {
           columnDefs={columnDefs}
           enableRangeSelection={true} // 범위 선택
           enableRangeHandle={true} // 범위 선택 Handling
+          onFirstDataRendered={handleSize}
+          // onGridReady={(event) => event.api.sizeColumnsToFit()}
+          onGridSizeChanged={handleSize} // Grid Size Change Handling
         />
       </div>
       {/* <div
