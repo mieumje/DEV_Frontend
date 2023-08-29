@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { FormEvent, useCallback, useRef, useState } from "react";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-enterprise";
 import "ag-grid-community/styles/ag-grid.css";
@@ -61,6 +61,14 @@ function App() {
     gridRef.current?.api.exportDataAsExcel();
   };
 
+  const onFilterTextBoxChanged = useCallback(
+    (e: FormEvent<HTMLInputElement>) => {
+      if (!(e.target instanceof HTMLInputElement)) return;
+      gridRef.current?.api.setQuickFilter(e.target.value);
+    },
+    []
+  );
+
   return (
     <div
       style={{
@@ -78,8 +86,8 @@ function App() {
         style={{
           color: "#fefefe",
           fontSize: "1rem",
-          gridColumn: "span 4",
-          gridRow: "span 2",
+          gridColumn: "span 8",
+          gridRow: "span 4",
           padding: "1rem",
         }}
       >
@@ -90,6 +98,12 @@ function App() {
           }}
         >
           <span>ag theme alpine</span>
+          <input
+            type="text"
+            id="filter-text-box"
+            placeholder="Filter..."
+            onInput={onFilterTextBoxChanged}
+          />
           <Button
             handleClick={handleExportExcel}
             buttonLabel="Export to Excel"
