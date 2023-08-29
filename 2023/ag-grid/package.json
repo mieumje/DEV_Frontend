@@ -10,13 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "ag-grid-community": "29.3.0",
-    "ag-grid-react": "29.3.0",
-    "ag-grid-enterprise": "29.3.0",
     "@ag-grid-enterprise/row-grouping": "~29.3.0",
-    "@ag-grid-enterprise/server-side-row-model": "~29.3.0"
+    "@ag-grid-enterprise/server-side-row-model": "~29.3.0",
+    "ag-grid-community": "29.3.0",
+    "ag-grid-enterprise": "29.3.0",
+    "ag-grid-react": "29.3.0",
+    "axios": "^1.5.0",
+    "dayjs": "^1.11.9",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
@@ -27,6 +29,7 @@
     "eslint": "^8.45.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
+    "json-server": "^0.17.3",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
   },
