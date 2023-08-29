@@ -51,6 +51,14 @@ function App() {
           },
         },
       },
+      {
+        // excel data format 설정
+        id: "createdAt",
+        dataType: "DateTime",
+        numberFormat: {
+          format: "yyyy-mm-dd hh:mm",
+        },
+      },
     ];
   }, []);
   const [rowData, setRowData] = useState([]);
@@ -69,6 +77,7 @@ function App() {
     {
       headerName: "등록일",
       field: "createdAt",
+      cellClass: "createdAt", // excel style 식별자
       sortable: true,
       cellRenderer: (params: ICellRendererParams) =>
         dayjs(params.data.createdAt).format("YYYY-MM-DD HH:mm"),
@@ -106,7 +115,6 @@ function App() {
       columnKeys: ["id", "name", "cardNumber", "createdAt"], // Excel Export column key 지정
     });
   };
-
   const handleExportSelectedExcel = () => {
     gridRef.current?.api.exportDataAsExcel({
       onlySelected: true, // 선택된 Row만 Export
