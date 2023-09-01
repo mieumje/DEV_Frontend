@@ -143,7 +143,7 @@ function App() {
   const handleSize = useCallback(() => {
     gridRef.current?.api.sizeColumnsToFit({
       defaultMinWidth: 100, // Grid Size 조절 시 default min width
-      columnLimits: [{ key: "make", minWidth: 400 }], // Grid Size 조절 시 제외할 Column
+      columnLimits: [{ key: "cardNumber", minWidth: 400 }], // Grid Size 조절 시 제외할 Column
     });
   }, []);
 
